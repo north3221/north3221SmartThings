@@ -17,7 +17,7 @@
  */
 
 metadata {
-    definition (name: "Samsung Smart TV", namespace: "smartthings", author: "SmartThings") {
+    definition (name: "Samsung Smart TV", namespace: "north3221", author: "north3221") {
         capability "switch"
 
         command "mute"
