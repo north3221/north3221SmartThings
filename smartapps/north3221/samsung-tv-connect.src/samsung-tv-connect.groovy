@@ -17,8 +17,8 @@
 
 definition(
         name: "Samsung TV (Connect)",
-        namespace: "smartthings",
-        author: "SmartThings",
+        namespace: "north3221",
+        author: "north3221",
         description: "Allows you to control your Samsung TV from the SmartThings app. Perform basic functions like power Off, source, volume, channels and other remote control functions.",
         category: "SmartThings Labs",
         iconUrl: "https://s3.amazonaws.com/smartapp-icons/Samsung/samsung-remote%402x.png",
