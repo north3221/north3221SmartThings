@@ -110,7 +110,7 @@ metadata {
         state "default", label:'Picture Size', action:"Size", icon:"st.contact.contact.open"
     }
     //Added authN button
-    standardTile("authN", "device.switch", decoration: "flat", canChangeIcon: false) {
+    standardTile("AuthN", "device.switch", decoration: "flat", canChangeIcon: false) {
         state "default", label:'Authenticate', action:"AuthN", icon:"st.contact.contact.open"
     }
     main "switch"
