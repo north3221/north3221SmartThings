@@ -108,6 +108,10 @@ metadata {
     standardTile("Size", "device.switch", decoration: "flat", canChangeIcon: false) {
         state "default", label:'Picture Size', action:"Size", icon:"st.contact.contact.open"
     }
+    //Added authN button
+    standardTile("authN", "device.switch", decoration: "flat", canChangeIcon: false) {
+        state "default", label:'Authenticate', action:"AUTHENTICATE", icon:"st.contact.contact.open"
+    }
     main "switch"
     details (["power","HDMI","Sleep","chup","prech","volup","chdown","mute","voldown", "menu", "Up", "tools", "Left", "Enter", "Right", "Return", "Down", "Exit", "Info","Size"])
 }
