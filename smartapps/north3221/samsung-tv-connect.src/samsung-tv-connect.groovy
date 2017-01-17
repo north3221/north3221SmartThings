@@ -122,7 +122,7 @@ def addsamsung() {
             def newPlayer = players.find { (it.value.ip + ":" + it.value.port) == dni }
             log.trace "newPlayer = $newPlayer"
             log.trace "dni = $dni"
-            d = addChildDevice("smartthings", "Samsung Smart TV", dni, newPlayer?.value.hub, [label:"${newPlayer?.value.name}"])
+            d = addChildDevice("north3221", "Samsung Smart TV", dni, newPlayer?.value.hub, [label:"${newPlayer?.value.name}"])
             log.trace "created ${d.displayName} with id $dni"
 
             d.setModel(newPlayer?.value.model)
