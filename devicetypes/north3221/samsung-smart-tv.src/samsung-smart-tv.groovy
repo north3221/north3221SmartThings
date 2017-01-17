@@ -40,6 +40,7 @@ metadata {
         command "Exit"
         command "Info"
         command "Size"
+        command "AuthN"
     }
 
     standardTile("switch", "device.switch", width: 1, height: 1, canChangeIcon: true) {
@@ -110,10 +111,10 @@ metadata {
     }
     //Added authN button
     standardTile("authN", "device.switch", decoration: "flat", canChangeIcon: false) {
-        state "default", label:'Authenticate', action:"AUTHENTICATE", icon:"st.contact.contact.open"
+        state "default", label:'Authenticate', action:"AuthN", icon:"st.contact.contact.open"
     }
     main "switch"
-    details (["power","HDMI","Sleep","chup","prech","volup","chdown","mute","voldown", "menu", "Up", "tools", "Left", "Enter", "Right", "Return", "Down", "Exit", "Info","Size"])
+    details (["power","HDMI","Sleep","chup","prech","volup","chdown","mute","voldown", "menu", "Up", "tools", "Left", "Enter", "Right", "Return", "Down", "Exit", "Info","Size", "AuthN"])
 }
 
 def parse(String description) {
@@ -236,4 +237,10 @@ def Size() {
     log.debug "PICTURE_SIZE pressed"
     parent.tvAction("PICTURE_SIZE",device.deviceNetworkId)
     sendEvent(name:"Command", value: "Picture Size", displayed: true)
+}
+
+def AuthN() {
+    log.debug "Authenticate pressed"
+    parent.tvAction("AUTHENTICATE",device.deviceNetworkId)
+    sendEvent(name:"Command", value: "AUTHENTICATE", displayed: true)
 }
