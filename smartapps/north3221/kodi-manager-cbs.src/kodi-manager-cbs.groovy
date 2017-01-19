@@ -18,7 +18,7 @@ definition(
         namespace: "north3221",
         author: "north3221",
         description: "Add kodi endpoints",
-        category: "Media",
+        category: "Other",
         iconUrl: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon48x48.png",
         iconX2Url: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon120x120.png",
         iconX3Url: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon256x256.png",
@@ -68,8 +68,9 @@ def pgURL(){
             input "stopvalue", "text", title:"Web address to copy for stop command:", required: false, defaultValue:"${url}stop"
             input "pausevalue", "text", title:"Web address to copy for pause command:", required: false, defaultValue:"${url}pause"
             input "resumevalue", "text", title:"Web address to copy for resume command:", required: false, defaultValue:"${url}resume"
-            input "allvalue", "text", title:"All Commands", required: false, defaultValue:"Play:${url}play###Stop:${url}stop###Pause:${url}pause###Resume:${url}resume"
-
+            input "shutdownvalue", "text", title:"Web address to copy for shutdown command:", required: false, defaultValue:"${url}shutdown"
+            input "startupvalue", "text", title:"Web address to copy for startup command:", required: false, defaultValue:"${url}startup"
+            input "allvalue", "text", title:"All Commands", required: false, defaultValue:"Play:${url}play###Stop:${url}stop###Pause:${url}pause###Resume:${url}resume###Shutdown:${url}shutdown###startup:${url}startup"
 
             paragraph "If you have more than one Kodi install, you may install an additional copy of this app for unique addresses specific to each room."
         }
@@ -169,6 +170,11 @@ mappings {
                 GET: "stateIsShutdown"
         ]
     }
+    path("/startup") {
+        action: [
+                GET: "stateIsStartup"
+        ]
+    }
 }
 void stateIsPlay() {
     if("$settings.shouldControlLights" == "true"){
@@ -233,6 +239,19 @@ void stateIsShutdown() {
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
     //Set State
     KodiClient.setPlaybackState("shutdown")
+}
+
+void stateIsStartup() {
+    if("$settings.shouldControlLights" == "true"){
+        RunCommand(stopLevel)
+    }
+    //Code to execute when playback stopped in KODI
+    log.debug "Startup command started"
+    //Find client
+    def children = getChildDevices()
+    def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
+    //Set State
+    KodiClient.setPlaybackState("startup")
 }
 
 

@@ -32,7 +32,7 @@ metadata {
 
     tiles {
 
-        standardTile("main", "device.status", width: 3, height: 2, canChangeIcon: false) {
+        valueTile("main", "device.status", width: 3, height: 2, canChangeIcon: false) {
             state "playing", label:'Playing', action:"music Player.pause", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", nextState:"paused", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", nextState:"playing", backgroundColor:"#FFA500"
@@ -212,7 +212,6 @@ def setPlaybackState(state) {
         case "stopped":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "stopped");
-
             break;
 
         case "playing":
@@ -223,6 +222,17 @@ def setPlaybackState(state) {
         case "paused":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "paused");
+            break;
+
+        case "shutdown":
+            sendEvent(name: "switch", value: "off");
+            sendEvent(name: "status", value: "shutdown");
+            break;
+
+        case "startup":
+            sendEvent(name: "switch", value: "off");
+            sendEvent(name: "status", value: "startup");
+            break;
     }
 }
 
