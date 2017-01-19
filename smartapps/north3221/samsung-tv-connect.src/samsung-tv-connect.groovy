@@ -140,7 +140,7 @@ private tvAction(key,deviceNetworkId) {
     def thetv = tvs.find { (it.value.ip + ":" + it.value.port) == deviceNetworkId }
 
     // Standard Connection Data
-    def appString = "iphone..iapp.samsung"
+    def appString = "iphone.iapp.samsung"
     def appStringLength = appString.getBytes().size()
 
     def tvAppString = "iphone.UE48H6670.iapp.samsung"
