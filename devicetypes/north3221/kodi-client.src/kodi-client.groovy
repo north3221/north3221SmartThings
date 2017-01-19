@@ -63,8 +63,8 @@ metadata {
         }
 
         standardTile("shutdown", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "default", label:'', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
+            state "default", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
+            state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
 

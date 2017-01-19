@@ -170,6 +170,11 @@ mappings {
                 GET: "stateIsShutdown"
         ]
     }
+    path("/startup") {
+        action: [
+                GET: "stateIsStartup"
+        ]
+    }
 
 }
 void stateIsPlay() {
@@ -229,7 +234,7 @@ void stateIsShutdown() {
         RunCommand(stopLevel)
     }
     //Code to execute when playback stopped in KODI
-    log.debug "Shutdown command started"
+    log.debug "Shutdown command"
     //Find client
     def children = getChildDevices()
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
@@ -242,7 +247,7 @@ void stateIsStartup() {
         RunCommand(stopLevel)
     }
     //Code to execute when playback stopped in KODI
-    log.debug "Startup command started"
+    log.debug "Startup command"
     //Find client
     def children = getChildDevices()
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
