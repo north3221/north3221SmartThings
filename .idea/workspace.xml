@@ -4,6 +4,7 @@
     <list default="true" id="18702dc0-f562-4a1f-b3e1-b2965bbb7667" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" afterPath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy" afterPath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,21 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kodi-manager-callbacks.groovy" pinned="false" current-in-tab="false">
+      <file leaf-file-name="kodi-manager-callbacks.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="524" column="1" lean-forward="false" selection-start-line="524" selection-start-column="1" selection-end-line="524" selection-end-column="1" />
+            <state relative-caret-position="221">
+              <caret line="28" column="62" lean-forward="false" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+            <state relative-caret-position="170">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -104,8 +105,8 @@
       <list>
         <option value="$PROJECT_DIR$/devicetypes/north3221/samsung-smart-tv.src/samsung-smart-tv.groovy" />
         <option value="$PROJECT_DIR$/smartapps/north3221/samsung-tv-connect.src/samsung-tv-connect.groovy" />
-        <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy" />
         <option value="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
+        <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy" />
       </list>
     </option>
   </component>
@@ -821,21 +822,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="524" column="1" lean-forward="false" selection-start-line="524" selection-start-column="1" selection-end-line="524" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        <state relative-caret-position="170">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="62" lean-forward="false" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>

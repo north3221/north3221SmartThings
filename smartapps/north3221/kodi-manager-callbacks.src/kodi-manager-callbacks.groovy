@@ -19,7 +19,7 @@
  *
  */
 definition(
-        name: "KODI Manager - Callbacks",
+        name: "KODI Manager CBs",
         namespace: "north3221",
         author: "north3221",
         description: "Add kodi endpoints",
@@ -312,7 +312,7 @@ def checkKodi() {
 
     if(!KodiClient){
         log.debug "No Devices found, adding device"
-        KodiClient = addChildDevice("north3221", "Kodi Client", NetworkDeviceId() , theHub.id, [label:"$settings.clientName", name:"$settings.clientName"])
+        KodiClient = addChildDevice("north3221", "Kodi-Client", NetworkDeviceId() , theHub.id, [label:"$settings.clientName", name:"$settings.clientName"])
         log.debug "Added Device"
     }
     else

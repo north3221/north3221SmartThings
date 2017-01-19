@@ -14,7 +14,7 @@
  */
 
 metadata {
-    definition (name: "Kodi Client", namespace: "north3221", author: "north3221") {
+    definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
         capability "Switch"
         capability "musicPlayer"
         capability "mediaController"
