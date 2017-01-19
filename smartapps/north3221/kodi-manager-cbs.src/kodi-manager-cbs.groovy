@@ -18,7 +18,7 @@ definition(
         namespace: "north3221",
         author: "north3221",
         description: "Add kodi endpoints",
-        category: "Other",
+        category: "My Apps",
         iconUrl: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon48x48.png",
         iconX2Url: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon120x120.png",
         iconX3Url: "https://raw.githubusercontent.com/xbmc/xbmc/master/media/icon256x256.png",
