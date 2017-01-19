@@ -1,8 +1,3 @@
-//Get current playing
-//http://192.168.0.100/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D
-//Play/pause
-//http://192.168.0.100/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.PlayPause%22%2C%20%22params%22%3A%20%7B%20%22playerid%22%3A%201%20%7D%2C%20%22id%22%3A%201%7D
-
 /**
  *  KODI Manager
  *
