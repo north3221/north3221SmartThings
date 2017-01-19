@@ -170,11 +170,7 @@ mappings {
                 GET: "stateIsShutdown"
         ]
     }
-    path("/startup") {
-        action: [
-                GET: "stateIsStartup"
-        ]
-    }
+
 }
 void stateIsPlay() {
     if("$settings.shouldControlLights" == "true"){
