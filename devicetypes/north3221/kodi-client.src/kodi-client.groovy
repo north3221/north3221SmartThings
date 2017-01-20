@@ -33,7 +33,7 @@ metadata {
     tiles {
 
         valueTile("appList", "device.status", width: 3, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#79b821"
+            state "startup", label:'Startup', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"music Player.pause", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#FFA500"
@@ -41,7 +41,7 @@ metadata {
         }
 
         standardTile("main", "device.status", width: 1, height: 1, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#79b821"
+            state "startup", label:'Startup', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"music Player.pause", icon:"st.Electronics.electronics16", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#FFA500"
