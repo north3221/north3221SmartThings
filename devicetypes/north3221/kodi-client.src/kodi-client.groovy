@@ -129,6 +129,10 @@ def parse(evt) {
 
     if (msg.body.startsWith("{\"id\":\"VideoGetItem\""))
     {
+        //Lists to check if label contains and assign type - MUST be lowecase
+        def movie = ["cinema", "movie"]
+        def sport = ["sports"]
+        //start
         log.debug "Getting title."
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
         def title = slurper.result.item.showtitle
@@ -136,7 +140,8 @@ def parse(evt) {
             title = slurper.result.item.title
             if (!title){
                 title = slurper.result.item.label
-                if (title.toLowerCase().contains("cinema") | title.toLowerCase().contains("movie")){
+                //if (title.toLowerCase().contains("cinema") | title.toLowerCase().contains("movie")){
+                if (movie.any {title.toLowerCase().contains(it)}){
                     title = "Movie:" + title
                 }else{
                     title = "Other:" + title
