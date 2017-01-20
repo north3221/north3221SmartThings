@@ -136,14 +136,19 @@ def parse(evt) {
             title = slurper.result.item.title
             if (!title){
                 title = "Other:" + slurper.result.item.label
+                setPlaybackTitle(title)
+                log.debug "title is a " + title
             }else {
                 title = "Movie:" + title
+                setPlaybackTitle(title)
+                log.debug "title is a " + title
             }
         }else{
             title = "TV Show:" + title + " " + slurper.result.item.title
+            setPlaybackTitle(title)
+            log.debug "title is a " + title
         }
-        setPlaybackTitle(title)
-        log.debug "title is a " + title
+
     }
 
 
