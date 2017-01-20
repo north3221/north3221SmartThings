@@ -134,7 +134,7 @@ def parse(evt) {
         def title = slurper.result.item.showtitle
         if(!title){
             if (!slurper.result.item.title){
-                title = "Other:" + slurper.result.item.lable
+                title = "Other:" + slurper.result.item.label
             }else {
                 title = "Movie:" + slurper.result.item.title
             }
