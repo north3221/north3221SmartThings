@@ -214,7 +214,7 @@ void stateIsPause() {
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
     //Set State
     KodiClient.setPlaybackState("paused")
-    getPlayingtitle()
+    //getPlayingtitle()
 }
 void stateIsResume() {
     if("$settings.shouldControlLights" == "true"){
@@ -369,7 +369,7 @@ def setVolume(kodiIP, level) {
     executeRequest("/jsonrpc", "POST",command)
 }
 def getPlayingtitle(){
-    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"label\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}"
+    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"track\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}"
     executeRequest("/jsonrpc", "POST",command);
 
 }
