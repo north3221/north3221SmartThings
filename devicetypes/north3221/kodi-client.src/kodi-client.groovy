@@ -133,16 +133,16 @@ def parse(evt) {
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
         def title = slurper.result.item.showtitle
         if(!title){
-            title = "Movie: " + slurper.result.item.title
-            setPlaybackTitle(title)
-            log.debug "title is a movie: " + title
+            if (!slurper.result.item.title){
+                title = "Other:" + slurper.result.item.lable
+            }else {
+                title = "Movie:" + slurper.result.item.title
+            }
         }else{
-            title = "TV Show: " + title + " " + slurper.result.item.title
-            log.debug "title is a tvshow: " + title
-
-
-            setPlaybackTitle(title)
+            title = "TV Show:" + title + " " + slurper.result.item.title
         }
+        setPlaybackTitle(title)
+        log.debug "title is a " + title
     }
 
 

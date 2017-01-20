@@ -4,6 +4,7 @@
     <list default="true" id="18702dc0-f562-4a1f-b3e1-b2965bbb7667" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" afterPath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" afterPath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +60,8 @@
       <file leaf-file-name="kodi-manager-cbs.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="399" column="33" lean-forward="false" selection-start-line="399" selection-start-column="33" selection-end-line="399" selection-end-column="33" />
+            <state relative-caret-position="276">
+              <caret line="378" column="46" lean-forward="true" selection-start-line="378" selection-start-column="46" selection-end-line="378" selection-end-column="46" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -71,8 +72,8 @@
       <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1305">
-              <caret line="136" column="35" lean-forward="true" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+            <state relative-caret-position="170">
+              <caret line="138" column="60" lean-forward="false" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -108,8 +109,8 @@
         <option value="$PROJECT_DIR$/smartapps/north3221/samsung-tv-connect.src/samsung-tv-connect.groovy" />
         <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-callbacks.src/kodi-manager-callbacks.groovy" />
         <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-callbacks.groovy" />
-        <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" />
         <option value="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
+        <option value="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" />
       </list>
     </option>
   </component>
@@ -877,8 +878,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="136" column="35" lean-forward="true" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+        <state relative-caret-position="170">
+          <caret line="138" column="60" lean-forward="false" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -887,8 +888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="399" column="33" lean-forward="false" selection-start-line="399" selection-start-column="33" selection-end-line="399" selection-end-column="33" />
+        <state relative-caret-position="276">
+          <caret line="378" column="46" lean-forward="true" selection-start-line="378" selection-start-column="46" selection-end-line="378" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
