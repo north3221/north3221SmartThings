@@ -22,36 +22,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="samsung-smart-tv.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devicetypes/north3221/samsung-smart-tv.src/samsung-smart-tv.groovy">
+      <file leaf-file-name="tkb-metering-switch-tz88e-gen5.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/devicetypes/codersaur/tkb-metering-switch-tz88e-gen5.src/tkb-metering-switch-tz88e-gen5.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1649">
-              <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
+            <state relative-caret-position="4862">
+              <caret line="406" column="40" lean-forward="false" selection-start-line="406" selection-start-column="29" selection-end-line="406" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="samsung-tv-connect.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smartapps/north3221/samsung-tv-connect.src/samsung-tv-connect.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2465">
-              <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="samsung-tv-remote.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devicetypes/nicholaswilde/samsung-tv-remote.src/samsung-tv-remote.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="350" selection-end-column="1" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -59,7 +37,7 @@
       <file leaf-file-name="kodi-manager-cbs.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-452">
+            <state relative-caret-position="1668">
               <caret line="373" column="0" lean-forward="true" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -71,8 +49,8 @@
       <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -86,7 +64,12 @@
     <findStrings>
       <find>samsung</find>
       <find>smartthings</find>
+      <find>energy</find>
       <find>getPlayingtitle</find>
+      <find>previousTrack</find>
+      <find>sendCommand</find>
+      <find>def sendCommand</find>
+      <find>powerFactor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -276,6 +259,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="kodi-client.src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="north3221SmartThings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="north3221SmartThings" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="devicetypes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codersaur" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tkb-metering-switch-tz88e-gen5.src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,7 +602,7 @@
         <state relative-caret-position="1921">
           <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -616,7 +621,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="350" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -645,7 +652,7 @@
         <state relative-caret-position="1649">
           <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -664,7 +671,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="350" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -683,7 +692,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -703,7 +712,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -723,7 +732,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -743,7 +752,7 @@
         <state relative-caret-position="3706">
           <caret line="234" column="1" lean-forward="false" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,7 +772,7 @@
         <state relative-caret-position="3978">
           <caret line="234" column="1" lean-forward="false" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,7 +792,7 @@
         <state relative-caret-position="3978">
           <caret line="234" column="1" lean-forward="false" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -803,7 +812,7 @@
         <state relative-caret-position="3978">
           <caret line="234" column="1" lean-forward="false" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -823,7 +832,7 @@
         <state relative-caret-position="3706">
           <caret line="234" column="1" lean-forward="false" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="1" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -848,27 +857,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devicetypes/north3221/samsung-smart-tv.src/samsung-smart-tv.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/nicholaswilde/samsung-tv-remote.src/samsung-tv-remote.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="350" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/smartapps/north3221/samsung-tv-connect.src/samsung-tv-connect.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
+        <state relative-caret-position="2567">
           <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -876,10 +877,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/devicetypes/north3221/samsung-smart-tv.src/samsung-smart-tv.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-452">
+        <state relative-caret-position="1668">
           <caret line="373" column="0" lean-forward="true" selection-start-line="373" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devicetypes/codersaur/tkb-metering-switch-tz88e-gen5.src/tkb-metering-switch-tz88e-gen5.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4862">
+          <caret line="406" column="40" lean-forward="false" selection-start-line="406" selection-start-column="29" selection-end-line="406" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -888,8 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

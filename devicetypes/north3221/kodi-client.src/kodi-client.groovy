@@ -24,6 +24,10 @@ metadata {
         command "setPlaybackTitle", ["string"]
         command "setVolumeLevel", ["number"]
         command "shutdown"
+
+        //custom attributes
+        attribute "currentPlayingType", "string"
+        attribute "currentPlayingName", "string"
     }
 
     /*simulator {
@@ -31,13 +35,14 @@ metadata {
     }*/
 
     tiles {
+        def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
 
         valueTile("appList", "device.status", width: 3, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"music Player.pause", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"music Player.pause", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 1, height: 1, canChangeIcon: true) {
@@ -76,18 +81,16 @@ metadata {
             state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
-
-        valueTile("currentSong", "device.trackDescription", inactiveLabel: true, height:1, width:3, decoration: "flat") {
+        valueTile("currentPlayingLabel", "device.currentPlayingType" + ":" + "device.currentPlayingName", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
-        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 3, inactiveLabel: false) {
+        controlTile("levelSliderControl", "device.level", "slider", height: 0.5, width: 3, inactiveLabel: false) {
             state "level", action:"setVolumeLevel", backgroundColor:"#ffffff"
         }
 
-
         main("appList")
-        details(["currentSong", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl","fillerTile", "scanNewClients"])
+        details(["currentPlayingLabel", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl","fillerTile", "scanNewClients"])
     }
 }
 
@@ -136,23 +139,24 @@ def parse(evt) {
         log.debug "Getting title."
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
         def title = slurper.result.item.showtitle
+        def type = "Other"
         if(!title){
             title = slurper.result.item.title
             if (!title){
                 title = slurper.result.item.label
-                //if (title.toLowerCase().contains("cinema") | title.toLowerCase().contains("movie")){
-                if (movie.any {title.toLowerCase().contains(it)}){
-                    title = "Movie:" + title
-                }else{
-                    title = "Other:" + title
+                if (movie.any {title.toLowerCase().contains(it)}) {
+                    type = "Movie"
+                }else if(sport.any {title.toLowerCase().contains(it)}) {
+                    type = "Sports"
                 }
             }else {
-                title = "Movie:" + title
+                type = "Movie"
             }
         }else{
-            title = "TV Show:" + title + " " + slurper.result.item.title
+            type = "TV Show"
+            title =  title + " " + slurper.result.item.title
         }
-        setPlaybackTitle(title)
+        setPlaybackTitle(type, title)
         log.debug "title is a " + title
     }
 
@@ -255,13 +259,14 @@ def setPlaybackState(state) {
     }
 }
 
-def setPlaybackTitle(text) {
+def setPlaybackTitle(type, name) {
 
-    def currentPlaybackTitle = device.currentState("trackDescription")
-    if (text != currentPlaybackTitle){
-        log.debug "Setting title to :" + text
-        sendEvent(name: "trackDescription", value: text)
-    }
+    //def currentPlaybackTitle = device.currentState("trackDescription")
+    //if (text != currentPlaybackTitle){
+        log.debug "Setting title to :" + name
+        sendEvent(name: "currentPlayingType", value: type)
+        sendEvent(name: "currentPlayingName", value: name)
+    //}
 }
 
 def setPlaybackIcon(iconUrl) {
