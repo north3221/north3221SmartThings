@@ -81,11 +81,11 @@ metadata {
             state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
-        valueTile("currentPlayingLabel", "device.currentPlayingType" + ":" + "device.currentPlayingName", inactiveLabel: true, height:1, width:3, decoration: "flat") {
+        valueTile("currentPlayingLabel", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
-        controlTile("levelSliderControl", "device.level", "slider", height: 0.5, width: 3, inactiveLabel: false) {
+        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 3, inactiveLabel: false) {
             state "level", action:"setVolumeLevel", backgroundColor:"#ffffff"
         }
 
