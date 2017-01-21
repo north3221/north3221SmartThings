@@ -139,7 +139,7 @@ def parse(evt) {
     {
         //Lists to check if label contains and assign type - MUST be lowecase
         def movie = ["cinema", "movie"]
-        def sport = ["sports"]
+        def sport = ["sport"]
         //start
         log.debug "Getting title."
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
@@ -291,7 +291,7 @@ def setPlaybackIcon(iconUrl) {
 //define attributes for CoRE
 def describeAttributes(payload) {
     payload.attributes = [
-            [ name: "currentPlayingType", type: "enum", options: ["Movie", "TV Show", "Sport", "Other"]],
+            [ name: "currentPlayingType", type: "string"],
             [ name: "currentPlayingName", type: "string"]
     ]
     return null
