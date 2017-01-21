@@ -38,7 +38,7 @@ metadata {
         def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
         def mainIcon = "st.Electronics.electronics16"
 
-        valueTile("appList", "device.status", width: 3, height: 2, canChangeIcon: false) {
+        valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"music Player.pause", icon:"${appListIcon}", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ffffff"
@@ -46,7 +46,7 @@ metadata {
             state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
-        standardTile("main", "device.status", width: 1, height: 1, canChangeIcon: true) {
+        standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
             state "startup", label:'Startup', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"music Player.pause", icon:"${mainIcon}", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ffffff"
@@ -54,11 +54,11 @@ metadata {
             state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
-        standardTile("next", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
             state "next", label:'', action:"music Player.nextTrack", icon:"st.sonos.next-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("previous", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("previous", "device.status", width: 2, height: 2, decoration: "flat") {
             state "previous", label:'', action:"music Player.previousTrack", icon:"st.sonos.previous-btn", backgroundColor:"#ffffff"
         }
 
@@ -67,22 +67,22 @@ metadata {
             state "grouped", label:'', action:"scanNewClients", icon:"state.icon", backgroundColor:"#ffffff"
         }
 
-        standardTile("fillerTile", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("fillerTile", "device.status", width: 2, height: 2, decoration: "flat") {
             state "default", label:'', action:"", icon:"", backgroundColor:"#ffffff"
             state "grouped", label:'', action:"", icon:"", backgroundColor:"#ffffff"
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("stop", "device.status", width: 2, height: 2, decoration: "flat") {
             state "default", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
             state "grouped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("shutdown", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("shutdown", "device.status", width: 2, height: 2, decoration: "flat") {
             state "default", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
             state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
-        valueTile("currentPlayingLabel", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+        valueTile("currentPlayingLabel", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
