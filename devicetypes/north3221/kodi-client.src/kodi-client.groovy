@@ -24,6 +24,7 @@ metadata {
         command "setPlaybackTitle", ["string"]
         command "setVolumeLevel", ["number"]
         command "shutdown"
+        command "describeAttributes"
 
         //custom attributes
         attribute "currentPlayingType", "string"
@@ -285,4 +286,13 @@ def setPlaybackIcon(iconUrl) {
     //sendEvent(name: "scanNewClients", icon: iconUrl)
 
     log.debug "Icon set to " + state.icon
+}
+
+//define attributes for CoRE
+def describeAttributes(payload) {
+    payload.attributes = [
+            [ name: "currentPlayingType", type: "enum", options: ["Movie", "TV Show", "Sport", "Other"]],
+            [ name: "currentPlayingName", type: "string"]
+    ]
+    return null
 }
