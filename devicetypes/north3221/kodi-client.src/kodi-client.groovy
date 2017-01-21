@@ -269,6 +269,13 @@ def setPlaybackState(state) {
 
 def setPlaybackTitle(type, name) {
 
+    if(type == ""){
+        type = "None"
+    }
+    if(name == ""){
+        name = "Nothing Playing"
+    }
+
     //def currentPlaybackTitle = device.currentState("trackDescription")
     //if (text != currentPlaybackTitle){
         log.debug "Setting title to :" + name
