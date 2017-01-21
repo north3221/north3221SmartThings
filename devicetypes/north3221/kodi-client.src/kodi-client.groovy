@@ -82,16 +82,19 @@ metadata {
             state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
-        valueTile("currentPlayingLabel", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
+        valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
+        }
+        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
-        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 3, inactiveLabel: false) {
+        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
             state "level", action:"setVolumeLevel", backgroundColor:"#ffffff"
         }
 
         main("appList")
-        details(["currentPlayingLabel", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl","fillerTile", "scanNewClients"])
+        details(["currentPlayingType", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
     }
 }
 
@@ -185,7 +188,7 @@ def stop() {
     sendEvent(name: "switch", value: device.deviceNetworkId + ".stop");
     sendEvent(name: "switch", value: "off");
     sendEvent(name: "status", value: "stopped");
-    setPlaybackTitle("Stopped");
+    //setPlaybackTitle("Stopped");
 }
 
 def shutdown() {
@@ -194,20 +197,20 @@ def shutdown() {
     sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
     sendEvent(name: "switch", value: "off");
     sendEvent(name: "status", value: "shutdown");
-    setPlaybackTitle("Shutdown");
+    //setPlaybackTitle("Shutdown");
 }
 
 def previousTrack() {
     log.debug "Executing 'previous': "
 
-    setPlaybackTitle("Skipping previous");
+    //setPlaybackTitle("Skipping previous");
     sendCommand("previous");
 }
 
 def nextTrack() {
     log.debug "Executing 'next'"
 
-    setPlaybackTitle("Skipping next");
+    //setPlaybackTitle("Skipping next");
     sendCommand("next");
 }
 
@@ -236,6 +239,7 @@ def setPlaybackState(state) {
         case "stopped":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "stopped");
+            setPlaybackTitle("","")
             break;
 
         case "playing":
@@ -251,11 +255,13 @@ def setPlaybackState(state) {
         case "shutdown":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "shutdown");
+            setPlaybackTitle("","")
             break;
 
         case "startup":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "startup");
+            setPlaybackTitle("","")
             break;
     }
 }
