@@ -34,8 +34,9 @@ metadata {
         // TODO: define status and reply messages here
     }*/
 
-    tiles {
+    tiles(scale: 2) {
         def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
+        def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 3, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ddf4be"
@@ -46,11 +47,11 @@ metadata {
         }
 
         standardTile("main", "device.status", width: 1, height: 1, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"music Player.pause", icon:"st.Electronics.electronics16", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"st.Electronics.electronics16", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"music Player.pause", icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("next", "device.status", width: 1, height: 1, decoration: "flat") {
