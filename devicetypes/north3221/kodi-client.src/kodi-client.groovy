@@ -25,7 +25,7 @@ def getDefaultMovieLabels() {
         returnList = inputMovieLabel
     }
     returnList.toLowerCase()
-    return returnList
+    return "cinema, movie"
 }
 def getDefaultSportLabels() {
     return "sport"
@@ -191,8 +191,8 @@ def parse(evt) {
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
             //Set movie label list
-            String[] movieLabel = defaultMovieLabels.Split(',')
             log.info "Default Movie list = " + defaultMovieLabels
+            def movieLabel = defaultMovieLabels.Split(',')
             log.info "Movie list = " + movieLabel
 
             //Set sport label list
