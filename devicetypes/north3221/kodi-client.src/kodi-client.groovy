@@ -191,7 +191,7 @@ def parse(evt) {
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
             //Set movie label list
-            def movieLabel = defaultMovieLabels
+            def movieLabel = defaultMovieLabels.Split(',')
             log.info "Default Movie list = " + defaultMovieLabels
             log.info "Movie list = " + movieLabel
 
