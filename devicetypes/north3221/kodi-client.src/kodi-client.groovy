@@ -186,7 +186,7 @@ def parse(evt) {
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
             //Set movie label list
-            def movieLabel = [defaultMovieLabels]
+            def movieLabel = defaultMovieLabels.toSet()
             if (inputMovieLabel) {
                 movieLabel = [inputMovieLabel.toLowerCase().toArray()]
             }
@@ -194,8 +194,8 @@ def parse(evt) {
             log.info "Movie Label list is: " + movieLabel
             def testArr = ["Test1","Test2"]
             log.info "Test array is: " + testArr
-            log.info "Test arrag is Array? :" + testArr instanceof Array
-            log.info "Test arrag is Array? :" + movieLabel instanceof Array
+            log.info "Test arrag is Set? :" + testArr instanceof Set
+            log.info "Test arrag is Set? :" + movieLabel instanceof Set
             //DELETE END
             //Set sport label list
             def sportLabel = [defaultSportLabels]
