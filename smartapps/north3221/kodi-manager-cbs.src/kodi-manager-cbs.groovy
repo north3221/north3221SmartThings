@@ -51,7 +51,7 @@ def pgSettings() {
             href( "pgURL", description: "Click here to view URLs", title: "")
         }
         section("View Category Labels"){
-            href( "pgCategoryDefaults", description: "Click here to view default labels to assign category", title: "")
+            href( "pgCategoryDefaults", description: "Edit default labels to assign category", title: "")
         }
         section("Name")
                 {                    label title: "Assign a name", required: false

@@ -145,7 +145,9 @@ def parse(evt) {
         def tvShowType = ["episode"]
         def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
-        def movieLabel = [settings.movieLabel]
+        log.info "Movie Label settings are: $settings.movieLabel"
+        def movieLabel = [$settings.movieLabel]
+        log.info "Movie Label array is set to: " + movieLabel
         def sportLabel = ["sport"]
         def tvShowLabel = ["bbc", "itv", "channel"]
 
