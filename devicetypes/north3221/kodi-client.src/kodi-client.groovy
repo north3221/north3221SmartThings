@@ -20,7 +20,12 @@ import java.lang.reflect.Array
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    return "cinema, movie"
+    def returnList = "cinema, movie"
+    if (inputMovieLabel){
+        returnList = inputMovieLabel
+    }
+    returnList.toLowerCase().split(',')
+    return returnList
 }
 def getDefaultSportLabels() {
     return "sport"
@@ -188,14 +193,8 @@ def parse(evt) {
             //Set movie label list
             def movieLabel = defaultMovieLabels
             log.info "Default Movie list = " + defaultMovieLabels
-            if (inputMovieLabel) {
-                //movieLabel = inputMovieLabel.toLowerCase().toSet()
-            }
             log.info "Movie list = " + movieLabel
-            movieLabel = movieLabel.split(',')
-            log.info "Movie list = " + movieLabel
-            log.info movieLabel instanceof Set
-            log.info movieLabel instanceof Array
+
             //Set sport label list
             def sportLabel = defaultSportLabels.toSet()
             if (inputSportLabel) {
