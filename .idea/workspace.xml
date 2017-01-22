@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="18702dc0-f562-4a1f-b3e1-b2965bbb7667" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" afterPath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +49,8 @@
       <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="124">
+              <caret line="196" column="24" lean-forward="false" selection-start-line="196" selection-start-column="24" selection-end-line="196" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -553,7 +554,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1380" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1380" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -940,8 +941,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="124">
+          <caret line="196" column="24" lean-forward="false" selection-start-line="196" selection-start-column="24" selection-end-line="196" selection-end-column="24" />
           <folding />
         </state>
       </provider>
