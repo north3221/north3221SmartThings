@@ -28,6 +28,7 @@ metadata {
 
         //custom attributes
         attribute "currentPlayingType", "string"
+        attribute "currentPlayingCategory", "string"
         attribute "currentPlayingName", "string"
     }
 
@@ -86,6 +87,9 @@ metadata {
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
+        valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
+        }
         valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
@@ -95,7 +99,7 @@ metadata {
         }
 
         main("appList")
-        details(["currentPlayingType", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
+        details(["currentPlayingType", "currentPlayingCategory", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
     }
 }
 
@@ -137,32 +141,44 @@ def parse(evt) {
 
     if (msg.body.startsWith("{\"id\":\"VideoGetItem\""))
     {
+        //Lists to check 'type' against to set category - I think this is the best way tp validate type as this means kodi knows the type
+        def tvShowType = ["episode"]
+        def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
-        def movie = ["cinema", "movie"]
-        def sport = ["sport"]
+        def movieLabel = ["cinema", "movie"]
+        def sportLabel = ["sport"]
+        def tvShowLabel = ["bbc"]
+
         //start
-        log.debug "Getting title."
+        log.debug "Getting title, type and label"
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
-        def title = slurper.result.item.showtitle
-        def type = "Other"
-        if(!title){
-            title = slurper.result.item.title
-            if (!title){
-                title = slurper.result.item.label
-                if (movie.any {title.toLowerCase().contains(it)}) {
-                    type = "Movie"
-                }else if(sport.any {title.toLowerCase().contains(it)}) {
-                    type = "Sports"
-                }
-            }else {
-                type = "Movie"
+        def title = slurper.result.item.title
+        def showTitle = slurper.result.item.showtitle
+        def label = slurper.result.item.label
+        def type = slurper.result.item.type
+        //initialise category - Unknown so if not set stays as Unknown
+        def category = "Unknown"
+        def playingTitle = ""
+
+        if (type == "unknown"){
+            if (movieLabel.any {label.toLowerCase().contains(it)}) {
+                category = "Movie"
+            }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
+                category = "Sports"
+            }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
+                category = "TV Show"
             }
-        }else{
-            type = "TV Show"
-            title =  title + " " + slurper.result.item.title
+            playingTitle = label
+        } else if (movieType.any {type.toLowerCase().comtains(it)}){
+            category = "Movie"
+            playingTitle = title
+        } else if (tvShowType.any {type.toLowerCase().comtains(it)}){
+            category = "TV Show"
+            playingTitle = showTitle + " : " + title
         }
-        setPlaybackTitle(type, title)
-        log.debug "title is a " + title
+
+        setPlaybackTitle(category, type, playingTitle)
+        log.debug "Playing title is :" + title
     }
 
 }
@@ -267,21 +283,22 @@ def setPlaybackState(state) {
     }
 }
 
-def setPlaybackTitle(type, name) {
+def setPlaybackTitle(type, category, name) {
 
     if(type == ""){
         type = "None"
+    }
+    if(category == ""){
+        category = "Unknown"
     }
     if(name == ""){
         name = "Nothing Playing"
     }
 
-    //def currentPlaybackTitle = device.currentState("trackDescription")
-    //if (text != currentPlaybackTitle){
-        log.debug "Setting title to :" + name
-        sendEvent(name: "currentPlayingType", value: type)
-        sendEvent(name: "currentPlayingName", value: name)
-    //}
+    log.debug "Setting title to :" + name
+    sendEvent(name: "currentPlayingType", value: type)
+    sendEvent(name: "currentPlayingCategory", value: category)
+    sendEvent(name: "currentPlayingName", value: name)
 }
 
 def setPlaybackIcon(iconUrl) {
