@@ -186,7 +186,7 @@ def parse(evt) {
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
             //Set movie label list
-            def movieLabel = "["+defaultMovieLabels+"]".toSet()
+            def movieLabel = "[$defaultMovieLabels]"
             log.info "Default Movie list = " + defaultMovieLabels
             if (inputMovieLabel) {
                 movieLabel = inputMovieLabel.toLowerCase().toSet()
