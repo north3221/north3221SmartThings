@@ -159,10 +159,10 @@ def parse(evt) {
         //Lists to check if label contains and assign type - MUST be lowecase
         if (inputMovieLabel) {
             log.info "Setting Movie Label to input: " + inputMovieLabel
-            def movieLabel = inputMovieLabel
+            def movieLabel = [$inputMovieLabel]
         } else {
             log.info "Setting Movie Label to default: " + defaultMovieLabels
-            def movieLabel = defaultMovieLabels
+            def movieLabel = [$defaultMovieLabels]
         }
         log.info "Movie Label array is set to: " + movieLabel
         def sportLabel = ["sport"]
