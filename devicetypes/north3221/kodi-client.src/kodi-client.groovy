@@ -208,6 +208,7 @@ def parse(evt) {
 
             //Check labels
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
+                log.info "Movie label list to check = " + movieLabel
                 log.info "Label Movie: Label = " + label
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
