@@ -186,7 +186,7 @@ def parse(evt) {
             //Set movie label list
             def movieLabel = [defaultMovieLabels]
             if (inputMovieLabel) {
-                movieLabel = [inputMovieLabel.toLowerCase()]
+                movieLabel = [inputMovieLabel.toLowerCase().toSet()]
             }
             log.debug "Movie Label list is: " + movieLabel
             //Set sport label list
