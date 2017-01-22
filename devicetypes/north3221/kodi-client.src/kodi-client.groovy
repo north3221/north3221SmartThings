@@ -199,9 +199,9 @@ def parse(evt) {
                 tvShowLabel = [inputTVLabel.toLowerCase()]
             }
             //Set min runtime to be a movie
-            def minMovieRuntime = [defaultMinMovieRuntime]
+            def minMovieRuntime = defaultMinMovieRuntime
             if (inputMinMovieRuntime) {
-                minMovieRuntime = [inputMinMovieRuntime]
+                minMovieRuntime = inputMinMovieRuntime
             }
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
