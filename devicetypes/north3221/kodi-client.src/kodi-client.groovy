@@ -157,8 +157,8 @@ def parse(evt) {
         def tvShowType = ["episode"]
         def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
-        log.info "Movie Label settings are: $settings.movieLabel"
-        if ($settings.movieLabel) {
+        log.info "Movie Label settings are: " + inputMovieLabel
+        if (inputMovieLabel) {
             def movieLabel = [inputMovieLabel]
         } else {
             def movieLabel = [defaultMovieLabels]
