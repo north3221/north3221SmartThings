@@ -192,7 +192,8 @@ def parse(evt) {
         if (type == "unknown"){
             //Set movie label list
             log.info "Default Movie list = " + defaultMovieLabels
-            def movieLabel = defaultMovieLabels.Split(',')
+            def movieLabel = defaultMovieLabels
+            movieLabel = movieLabel.Split(',')
             log.info "Movie list = " + movieLabel
 
             //Set sport label list
