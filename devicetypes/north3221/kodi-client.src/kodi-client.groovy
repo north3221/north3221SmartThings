@@ -20,6 +20,15 @@
 def getDefaultMovieLabels() {
     return '"cinema", "movie"'
 }
+def getDefaultSportLabels() {
+    return '"sport"'
+}
+def getDefaultTVLabels() {
+    return '"bbc", "itv", "channel"'
+}
+def getDefaultMinMovieRuntime() {
+    return 4200
+}
 
 
 metadata {
@@ -112,7 +121,10 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: true, title: "Movie: labels to search for to assign category", defaultValue: defaultMovieLabels, displayDuringSetup: false
+        input "inputMovieLabel", "text", required: true, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
+        input "inputSportLabel", "text", required: true, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
+        input "inputTVLabel", "text", required: true, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
+        input "inputMinMovieRuntime", "number", required: true, title: "Minimum Runtime to be classed as Move (seconds):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
     }
 }
 
@@ -153,22 +165,9 @@ def parse(evt) {
     }
 
     if (msg.body.startsWith("{\"id\":\"VideoGetItem\"")) {
-        //Lists to check 'type' against to set category - I think this is the best way tp validate type as this means kodi knows the type
+        //Lists to check 'type' against to set category - I think this is the best way to validate type as this means kodi knows the type
         def tvShowType = ["episode"]
         def movieType = ["movie"]
-        //Set movile label list
-        log.info "Setting Movie Label to default: " + defaultMovieLabels
-        def movieLabel = [defaultMovieLabels]
-        log.info "Movie Label array is set to: " + movieLabel
-        if (inputMovieLabel) {
-            log.info "Setting Movie Label to input: " + inputMovieLabel
-            movieLabel = [inputMovieLabel]
-            log.info "Movie Label array is set to: " + movieLabel
-        }
-        log.info "Movie Label array is set to: " + movieLabel
-        def sportLabel = ["sport"]
-        def tvShowLabel = ["bbc", "itv", "channel"]
-
 
         //start
         log.debug "Getting title, type and label"
@@ -182,14 +181,35 @@ def parse(evt) {
         def category = "Unknown"
         def playingTitle = ""
 
+        //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
+            //Set movie label list
+            def movieLabel = [defaultMovieLabels]
+            if (inputMovieLabel) {
+                movieLabel = [inputMovieLabel.toLowerCase()]
+            }
+            //Set sport label list
+            def sportLabel = [defaultSportLabels]
+            if (inputSportLabel) {
+                sportLabel = [inputSportLabel.toLowerCase()]
+            }
+            //Set tv label list
+            def tvShowLabel = [defaultTVLabels]
+            if (inputTVLabel) {
+                tvShowLabel = [inputTVLabel.toLowerCase()]
+            }
+            //Set min runtime to be a movie
+            def minMovieRuntime = [defaultMinMovieRuntime]
+            if (inputMinMovieRuntime) {
+                minMovieRuntime = [inputMinMovieRuntime]
+            }
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
             }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
                 category = "TV Show"
-            }else if (runtime > 4200){
+            }else if (runtime >= minMovieRuntime){
                 category = "Movie"
             }else if (runtime > 0){
                 category = "TV Show"
@@ -204,7 +224,9 @@ def parse(evt) {
         }
 
         setPlaybackTitle(type, category, playingTitle)
-        log.debug "Playing title is :" + title
+        log.debug "Playing type is     :" + type
+        log.debug "Playing category is :" + category
+        log.debug "Playing title is    :" + playingTitle
     }
 
 }
