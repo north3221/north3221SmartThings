@@ -84,10 +84,10 @@ metadata {
             state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
         }
 
-        valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+        valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
-        valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+        valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
         valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
