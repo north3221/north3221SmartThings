@@ -32,7 +32,7 @@ def getDefaultSportLabels() {
     return returnList
 }
 def getDefaultTVLabels() {
-    def returnList = "bbc, itv, channel"
+    def returnList = "bbc, itv, channel, sky"
     if (inputTVLabel){returnList = inputTVLabel}
     returnList.toLowerCase()
     return returnList
@@ -205,20 +205,14 @@ def parse(evt) {
 
             //Check labels
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
-                log.info "Movie label list to check = " + movieLabel
-                log.info "Label Movie: Label = " + label
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
-                log.info "Label Sport: Label = " + label
                 category = "Sports"
             }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
-                log.info "Label TV: Label = " + label
                 category = "TV Show"
             }else if (runtime >= minMovieRuntime){
-                log.info "Label long runtime: Runtime = " + runtime
                 category = "Movie"
             }else if (runtime > 0){
-                log.info "Label short runtime: Runtime = " + runtime
                 category = "TV Show"
             }
             playingTitle = label
