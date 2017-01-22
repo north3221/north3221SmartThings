@@ -160,9 +160,11 @@ def parse(evt) {
         if (inputMovieLabel) {
             log.info "Setting Movie Label to input: " + inputMovieLabel
             def movieLabel = [$inputMovieLabel]
+            log.info "Movie Label array is set to: " + movieLabel
         } else {
             log.info "Setting Movie Label to default: " + defaultMovieLabels
             def movieLabel = [$defaultMovieLabels]
+            log.info "Movie Label array is set to: " + movieLabel
         }
         log.info "Movie Label array is set to: " + movieLabel
         def sportLabel = ["sport"]
