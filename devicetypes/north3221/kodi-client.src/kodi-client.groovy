@@ -57,7 +57,7 @@ metadata {
 
         //custom attributes
         attribute "currentPlayingType", "string"
-        attribute "currentPlayingCategory", "string"
+        attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
     }
 
@@ -335,10 +335,10 @@ def setPlaybackState(state) {
 def setPlaybackTitle(type, category, name) {
 
     if(type == ""){
-        type = 'none'
+        type = 'None'
     }
     if(category == ""){
-        category = 'none'
+        category = 'None'
     }
     if(name == ""){
         name = 'Nothing Playing'
@@ -364,9 +364,9 @@ def setPlaybackIcon(iconUrl) {
 //define attributes for CoRE
 def describeAttributes(payload) {
     payload.attributes = [
-            [ name: "currentPlayingType", type: "text"],
-            [ name: "currentPlayingCategory", type: "String"],
-            [ name: "currentPlayingName", type: "text"]
+            [ name: "currentPlayingType", type: "string"],
+            [ name: "currentPlayingCategory", type: "enum", options: ["Movie", "TV Show", "Sports", "None", "Unknown"]],
+            [ name: "currentPlayingName", type: "string"]
     ]
     return null
 }
