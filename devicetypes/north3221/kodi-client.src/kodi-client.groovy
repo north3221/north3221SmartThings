@@ -1,5 +1,5 @@
 /**
- *
+ * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -11,7 +11,16 @@
  *  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
  *  for the specific language governing permissions and limitations under the License.
  *
+ *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
+ *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
  */
+
+//DEFAULTS
+//Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
+def getDefaultMovieLabels() {
+    return '"cinema", "movie"'
+}
+
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
@@ -103,9 +112,7 @@ metadata {
     }
 
     preferences {
-        section("List of labels to associates with a category type") {
-            input "inputMovieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"', displayDuringSetup: false
-        }
+        input "inputMovieLabel", "text", required: true, title: "Movie: labels to search for to assign category", defaultValue: defaultMovieLabels, displayDuringSetup: false
     }
 }
 
@@ -145,14 +152,17 @@ def parse(evt) {
         return
     }
 
-    if (msg.body.startsWith("{\"id\":\"VideoGetItem\""))
-    {
+    if (msg.body.startsWith("{\"id\":\"VideoGetItem\"")) {
         //Lists to check 'type' against to set category - I think this is the best way tp validate type as this means kodi knows the type
         def tvShowType = ["episode"]
         def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
         log.info "Movie Label settings are: $settings.movieLabel"
-        def movieLabel = [inputMovieLabel]
+        if ($settings.movieLabel) {
+            def movieLabel = [inputMovieLabel]
+        } else {
+            def movieLabel = [defaultMovieLabels]
+        }
         log.info "Movie Label array is set to: " + movieLabel
         def sportLabel = ["sport"]
         def tvShowLabel = ["bbc", "itv", "channel"]
