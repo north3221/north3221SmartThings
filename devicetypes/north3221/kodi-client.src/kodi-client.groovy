@@ -147,7 +147,7 @@ def parse(evt) {
         //Lists to check if label contains and assign type - MUST be lowecase
         def movieLabel = ["cinema", "movie"]
         def sportLabel = ["sport"]
-        def tvShowLabel = ["bbc"]
+        def tvShowLabel = ["bbc", "itv", "channel"]
 
         //start
         log.debug "Getting title, type and label"
@@ -172,7 +172,7 @@ def parse(evt) {
         } else if (movieType.any {type.toLowerCase().comtains(it)}){
             category = "Movie"
             playingTitle = title
-        } else if (tvShowType.any {type.toLowerCase().comtains(it)}){
+        } else if (tvShowType.any {type.toLowerCase().contains(it)}){
             category = "TV Show"
             playingTitle = showTitle + " : " + title
         }
@@ -289,7 +289,7 @@ def setPlaybackTitle(type, category, name) {
         type = "None"
     }
     if(category == ""){
-        category = "Unknown"
+        category = "None"
     }
     if(name == ""){
         name = "Nothing Playing"
