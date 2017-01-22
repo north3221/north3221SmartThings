@@ -365,7 +365,7 @@ def setPlaybackIcon(iconUrl) {
 def describeAttributes(payload) {
     payload.attributes = [
             [ name: "currentPlayingType", type: "text"],
-            [ name: "currentPlayingCategory", type: "text"],
+            [ name: "currentPlayingCategory", type: "String"],
             [ name: "currentPlayingName", type: "text"]
     ]
     return null
