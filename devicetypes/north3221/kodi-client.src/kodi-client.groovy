@@ -194,6 +194,8 @@ def parse(evt) {
             log.info "Movie list = " + movieLabel
             movieLabel = movieLabel.split(',')
             log.info "Movie list = " + movieLabel
+            log.info movieLabel instanceof Set
+            log.info movieLabel instanceof Array
             //Set sport label list
             def sportLabel = defaultSportLabels.toSet()
             if (inputSportLabel) {
