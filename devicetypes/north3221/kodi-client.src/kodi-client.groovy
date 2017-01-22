@@ -156,14 +156,13 @@ def parse(evt) {
         //Lists to check 'type' against to set category - I think this is the best way tp validate type as this means kodi knows the type
         def tvShowType = ["episode"]
         def movieType = ["movie"]
-        //Lists to check if label contains and assign type - MUST be lowecase
+        //Set movile label list
+        log.info "Setting Movie Label to default: " + defaultMovieLabels
+        def movieLabel = [defaultMovieLabels]
+        log.info "Movie Label array is set to: " + movieLabel
         if (inputMovieLabel) {
             log.info "Setting Movie Label to input: " + inputMovieLabel
-            def movieLabel = [inputMovieLabel]
-            log.info "Movie Label array is set to: " + movieLabel
-        } else {
-            log.info "Setting Movie Label to default: " + defaultMovieLabels
-            def movieLabel = [defaultMovieLabels]
+            movieLabel = [inputMovieLabel]
             log.info "Movie Label array is set to: " + movieLabel
         }
         log.info "Movie Label array is set to: " + movieLabel
