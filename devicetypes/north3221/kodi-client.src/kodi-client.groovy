@@ -335,10 +335,10 @@ def setPlaybackState(state) {
 def setPlaybackTitle(type, category, name) {
 
     if(type == ""){
-        type = "None"
+        type = "none"
     }
     if(category == ""){
-        category = "None"
+        category = "none"
     }
     if(name == ""){
         name = "Nothing Playing"

@@ -49,8 +49,8 @@
       <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="367" column="59" lean-forward="false" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
+            <state relative-caret-position="54">
+              <caret line="337" column="17" lean-forward="false" selection-start-line="337" selection-start-column="17" selection-end-line="337" selection-end-column="17" />
               <folding>
                 <element signature="e#9927#9977#1" expanded="false" />
                 <element signature="e#9927#9977#1" expanded="false" />
@@ -976,8 +976,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="367" column="59" lean-forward="false" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
+        <state relative-caret-position="54">
+          <caret line="337" column="17" lean-forward="false" selection-start-line="337" selection-start-column="17" selection-end-line="337" selection-end-column="17" />
           <folding>
             <element signature="e#9927#9977#1" expanded="false" />
             <element signature="e#9927#9977#1" expanded="false" />
