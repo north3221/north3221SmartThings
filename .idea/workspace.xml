@@ -37,8 +37,8 @@
       <file leaf-file-name="kodi-manager-cbs.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="104" column="1" lean-forward="true" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+            <state relative-caret-position="204">
+              <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -914,8 +914,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="104" column="1" lean-forward="true" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+        <state relative-caret-position="204">
+          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
