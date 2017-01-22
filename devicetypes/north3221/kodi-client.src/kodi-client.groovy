@@ -192,7 +192,7 @@ def parse(evt) {
                 //movieLabel = inputMovieLabel.toLowerCase().toSet()
             }
             log.info "Movie list = " + movieLabel
-            movieLabel = movieLabel.toSet()
+            movieLabel = movieLabel.split(',').toSet()
             log.info "Movie list = " + movieLabel
             //Set sport label list
             def sportLabel = defaultSportLabels.toSet()
