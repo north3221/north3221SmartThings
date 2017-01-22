@@ -97,8 +97,10 @@ def pgLights(){
 }
 
 def pgCategoryDefaults(){
-    section("List of labels to associates with a category type"){
-        input "movieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"'
+    dynamicPage(name: "pgCategoryDefaults", title: "Category Defaults" , uninstall: false, install: true) {
+        section("List of labels to associates with a category type") {
+            input "movieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"'
+        }
     }
 }
 //END PAGES
