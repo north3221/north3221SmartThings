@@ -364,8 +364,8 @@ def setPlaybackIcon(iconUrl) {
 //define attributes for CoRE
 def describeAttributes(payload) {
     payload.attributes = [
-            [ name: "currentPlayingType", type: "string"],
-            [ name: "currentPlayingCategory", type: "string"],
+            [ name: "currentPlayingType", type: "test"],
+            [ name: "currentPlayingCategory", type: "String"],
             [ name: "currentPlayingName", type: "string"]
     ]
     return null
