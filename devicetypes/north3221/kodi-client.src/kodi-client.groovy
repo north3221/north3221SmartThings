@@ -101,6 +101,12 @@ metadata {
         main("appList")
         details(["currentPlayingType", "currentPlayingCategory", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
     }
+
+    preferences {
+        section("List of labels to associates with a category type") {
+            input "inputMovieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"', displayDuringSetup: false
+        }
+    }
 }
 
 // parse events into attributes
@@ -146,7 +152,7 @@ def parse(evt) {
         def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
         log.info "Movie Label settings are: $settings.movieLabel"
-        def movieLabel = [$settings.movieLabel]
+        def movieLabel = [inputMovieLabel]
         log.info "Movie Label array is set to: " + movieLabel
         def sportLabel = ["sport"]
         def tvShowLabel = ["bbc", "itv", "channel"]

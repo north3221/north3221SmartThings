@@ -29,7 +29,6 @@ preferences {
     page(name: "pgSettings")
     page(name: "pgURL")
     page(name: "pgLights")
-    page(name: "pgCategoryDefaults")
 }
 
 //PAGES
@@ -49,9 +48,6 @@ def pgSettings() {
         }
         section("View URLs"){
             href( "pgURL", description: "Click here to view URLs", title: "")
-        }
-        section("View Category Labels"){
-            href( "pgCategoryDefaults", description: "Edit default labels to assign category", title: "")
         }
         section("Name")
                 {                    label title: "Assign a name", required: false
@@ -99,13 +95,6 @@ def pgLights(){
     }
 }
 
-def pgCategoryDefaults(){
-    dynamicPage(name: "pgCategoryDefaults", title: "Category Defaults" , uninstall: false, install: true) {
-        section("List of labels to associates with a category type") {
-            input "movieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"'
-        }
-    }
-}
 //END PAGES
 /////////////////////////
 
