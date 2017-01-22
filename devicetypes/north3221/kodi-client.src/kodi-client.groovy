@@ -18,13 +18,13 @@
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    return '"cinema", "movie"'
+    return "cinema, movie"
 }
 def getDefaultSportLabels() {
-    return '"sport"'
+    return "sport"
 }
 def getDefaultTVLabels() {
-    return '"bbc", "itv", "channel"'
+    return "bbc, itv, channel"
 }
 def getDefaultMinMovieRuntime() {
     return 4200
@@ -188,8 +188,6 @@ def parse(evt) {
             if (inputMovieLabel) {
                 movieLabel = [inputMovieLabel.toLowerCase()]
             }
-            log.debug "Movie Label list is: " + movieLabel
-            movieLabel = ["movie", "cinema"]
             log.debug "Movie Label list is: " + movieLabel
             //Set sport label list
             def sportLabel = [defaultSportLabels]
