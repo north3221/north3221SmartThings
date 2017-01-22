@@ -156,6 +156,7 @@ def parse(evt) {
         def showTitle = slurper.result.item.showtitle
         def label = slurper.result.item.label
         def type = slurper.result.item.type
+        def runtime = slurper.result.item.runtime
         //initialise category - Unknown so if not set stays as Unknown
         def category = "Unknown"
         def playingTitle = ""
@@ -167,6 +168,8 @@ def parse(evt) {
                 category = "Sports"
             }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
                 category = "TV Show"
+            }else if (runtime > 3600){
+                category = "Movie"
             }
             playingTitle = label
         } else if (movieType.any {type.toLowerCase().contains(it)}){
