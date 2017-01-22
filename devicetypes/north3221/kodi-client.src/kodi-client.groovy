@@ -188,24 +188,17 @@ def parse(evt) {
             //Set movie label list
             def movieLabel = defaultMovieLabels.toSet()
             if (inputMovieLabel) {
-                movieLabel = [inputMovieLabel.toLowerCase().toArray()]
+                movieLabel = inputMovieLabel.toLowerCase().toSet()
             }
-            //DELETE
-            log.info "Movie Label list is: " + movieLabel
-            def testArr = ["Test1","Test2"]
-            log.info "Test array is: " + testArr
-            log.info "Test arrag is Set? :" + testArr instanceof Set
-            log.info "Test arrag is Set? :" + movieLabel instanceof Set
-            //DELETE END
             //Set sport label list
-            def sportLabel = [defaultSportLabels]
+            def sportLabel = defaultSportLabels.toSet()
             if (inputSportLabel) {
-                sportLabel = [inputSportLabel.toLowerCase()]
+                sportLabel = inputSportLabel.toLowerCase().toSet()
             }
             //Set tv label list
-            def tvShowLabel = [defaultTVLabels]
+            def tvShowLabel = defaultTVLabels.toSet()
             if (inputTVLabel) {
-                tvShowLabel = [inputTVLabel.toLowerCase()]
+                tvShowLabel = inputTVLabel.toLowerCase().toSet()
             }
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
