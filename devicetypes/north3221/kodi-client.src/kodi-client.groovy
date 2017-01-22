@@ -24,8 +24,8 @@ def getDefaultMovieLabels() {
     if (inputMovieLabel){
         returnList = inputMovieLabel
     }
-    returnList.toLowerCase()
-    return "cinema, movie"
+    returnList.toLowerCase().split(',')
+    return returnList
 }
 def getDefaultSportLabels() {
     return "sport"
@@ -192,7 +192,7 @@ def parse(evt) {
         if (type == "unknown"){
             //Set movie label list
             log.info "Default Movie list = " + defaultMovieLabels
-            def movieLabel = defaultMovieLabels.split(',')
+            def movieLabel = defaultMovieLabels
             //movieLabel = movieLabel.Split(',')
             log.info "Movie list = " + movieLabel
 
