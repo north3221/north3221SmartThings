@@ -1,3 +1,5 @@
+import java.lang.reflect.Array
+
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
@@ -186,9 +188,15 @@ def parse(evt) {
             //Set movie label list
             def movieLabel = [defaultMovieLabels]
             if (inputMovieLabel) {
-                movieLabel = [inputMovieLabel.toLowerCase().toSet()]
+                movieLabel = [inputMovieLabel.toLowerCase().toArray()]
             }
-            log.debug "Movie Label list is: " + movieLabel
+            //DELETE
+            log.info "Movie Label list is: " + movieLabel
+            def testArr = ["Test1","Test2"]
+            log.info "Test array is: " testArr
+            log.info "Test arrag is Array? :" + testArr instanceof Array
+            log.info "Test arrag is Array? :" + movieLabel instanceof Array
+            //DELETE END
             //Set sport label list
             def sportLabel = [defaultSportLabels]
             if (inputSportLabel) {
