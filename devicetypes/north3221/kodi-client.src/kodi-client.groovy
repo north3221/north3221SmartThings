@@ -256,7 +256,7 @@ def setPlaybackState(state) {
         case "stopped":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "stopped");
-            setPlaybackTitle("","")
+            setPlaybackTitle("","","")
             break;
 
         case "playing":
@@ -272,13 +272,13 @@ def setPlaybackState(state) {
         case "shutdown":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "shutdown");
-            setPlaybackTitle("","")
+            setPlaybackTitle("","", "")
             break;
 
         case "startup":
             sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "startup");
-            setPlaybackTitle("","")
+            setPlaybackTitle("","", "")
             break;
     }
 }
