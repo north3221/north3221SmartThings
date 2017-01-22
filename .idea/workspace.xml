@@ -50,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="195" column="49" lean-forward="false" selection-start-line="195" selection-start-column="49" selection-end-line="195" selection-end-column="49" />
+              <caret line="195" column="47" lean-forward="true" selection-start-line="195" selection-start-column="47" selection-end-line="195" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -914,7 +914,7 @@
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="195" column="49" lean-forward="false" selection-start-line="195" selection-start-column="49" selection-end-line="195" selection-end-column="49" />
+          <caret line="195" column="47" lean-forward="true" selection-start-line="195" selection-start-column="47" selection-end-line="195" selection-end-column="47" />
           <folding />
         </state>
       </provider>
