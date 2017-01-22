@@ -29,6 +29,7 @@ preferences {
     page(name: "pgSettings")
     page(name: "pgURL")
     page(name: "pgLights")
+    page(name: "pgCategoryDefaults")
 }
 
 //PAGES
@@ -92,6 +93,12 @@ def pgLights(){
                 input "stopLevel", "number", required: true, title: "On Stop", defaultValue:"101"
             }
         }
+    }
+}
+
+def pgCategoryDefaults(){
+    section("List of labels to associates with a category type"){
+        input "movieLabel", "text", required: true, title: "Movie", defaultValue: '"cinema", "movie"'
     }
 }
 //END PAGES

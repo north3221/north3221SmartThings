@@ -145,9 +145,10 @@ def parse(evt) {
         def tvShowType = ["episode"]
         def movieType = ["movie"]
         //Lists to check if label contains and assign type - MUST be lowecase
-        def movieLabel = ["cinema", "movie"]
+        def movieLabel = [settings.movieLabel]
         def sportLabel = ["sport"]
         def tvShowLabel = ["bbc", "itv", "channel"]
+
 
         //start
         log.debug "Getting title, type and label"
@@ -168,7 +169,7 @@ def parse(evt) {
                 category = "Sports"
             }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
                 category = "TV Show"
-            }else if (runtime > 3600){
+            }else if (runtime > 4200){
                 category = "Movie"
             }else if (runtime > 0){
                 category = "TV Show"
@@ -321,6 +322,7 @@ def setPlaybackIcon(iconUrl) {
 def describeAttributes(payload) {
     payload.attributes = [
             [ name: "currentPlayingType", type: "string"],
+            [ name: "currentPlayingCategory", type: "string"],
             [ name: "currentPlayingName", type: "string"]
     ]
     return null
