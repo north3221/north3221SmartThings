@@ -193,7 +193,7 @@ def parse(evt) {
             //DELETE
             log.info "Movie Label list is: " + movieLabel
             def testArr = ["Test1","Test2"]
-            log.info "Test array is: " testArr
+            log.info "Test array is: " + testArr
             log.info "Test arrag is Array? :" + testArr instanceof Array
             log.info "Test arrag is Array? :" + movieLabel instanceof Array
             //DELETE END
