@@ -177,7 +177,7 @@ def parse(evt) {
             playingTitle = showTitle + " : " + title
         }
 
-        setPlaybackTitle(category, type, playingTitle)
+        setPlaybackTitle(type, category, playingTitle)
         log.debug "Playing title is :" + title
     }
 
