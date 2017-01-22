@@ -21,22 +21,26 @@ import java.lang.reflect.Array
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
     def returnList = "cinema, movie"
-    if (inputMovieLabel){
-        returnList = inputMovieLabel
-    }
+    if (inputMovieLabel){returnList = inputMovieLabel}
     returnList.toLowerCase()
     return returnList
 }
 def getDefaultSportLabels() {
-    return "sport"
+    def returnList = "sport"
+    if (inputSportLabel){returnList = inputSportLabel}
+    returnList.toLowerCase()
+    return returnList
 }
 def getDefaultTVLabels() {
-    return "bbc, itv, channel"
+    def returnList = "bbc, itv, channel"
+    if (inputTVLabel){returnList = inputTVLabel}
+    returnList.toLowerCase()
+    return returnList
 }
 def getDefaultMinMovieRuntime() {
+    if (inputMinMovieRuntime){return inputMinMovieRuntime}
     return 4200
 }
-
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
@@ -191,26 +195,13 @@ def parse(evt) {
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
             //Set movie label list
-            log.info "Default Movie list = " + defaultMovieLabels
             def movieLabel = defaultMovieLabels.split(',')
-            //movieLabel = movieLabel.Split(',')
-            log.info "Movie list = " + movieLabel
-
             //Set sport label list
-            def sportLabel = defaultSportLabels.toSet()
-            if (inputSportLabel) {
-                sportLabel = inputSportLabel.toLowerCase().toSet()
-            }
+            def sportLabel = defaultSportLabels.split(',')
             //Set tv label list
-            def tvShowLabel = defaultTVLabels.toSet()
-            if (inputTVLabel) {
-                tvShowLabel = inputTVLabel.toLowerCase().toSet()
-            }
+            def tvShowLabel = defaultTVLabels.split(',')
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
-            if (inputMinMovieRuntime) {
-                minMovieRuntime = inputMinMovieRuntime
-            }
 
             //Check labels
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
