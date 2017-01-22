@@ -170,6 +170,8 @@ def parse(evt) {
                 category = "TV Show"
             }else if (runtime > 3600){
                 category = "Movie"
+            }else if (runtime > 0){
+                category = "TV Show"
             }
             playingTitle = label
         } else if (movieType.any {type.toLowerCase().contains(it)}){

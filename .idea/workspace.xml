@@ -4,7 +4,6 @@
     <list default="true" id="18702dc0-f562-4a1f-b3e1-b2965bbb7667" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" afterPath="$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" afterPath="$PROJECT_DIR$/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="kodi-client.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="172" column="13" lean-forward="true" selection-start-line="172" selection-start-column="13" selection-end-line="172" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="173" column="35" lean-forward="false" selection-start-line="173" selection-start-column="35" selection-end-line="173" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -910,8 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/devicetypes/north3221/kodi-client.src/kodi-client.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="172" column="13" lean-forward="true" selection-start-line="172" selection-start-column="13" selection-end-line="172" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="173" column="35" lean-forward="false" selection-start-line="173" selection-start-column="35" selection-end-line="173" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
