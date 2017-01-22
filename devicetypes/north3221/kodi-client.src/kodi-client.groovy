@@ -189,7 +189,7 @@ def parse(evt) {
                 movieLabel = [inputMovieLabel.toLowerCase()]
             }
             log.debug "Movie Label list is: " + movieLabel
-            movieLabel = movieLabel.toSet()
+            movieLabel = ["movie", "cinema"]
             log.debug "Movie Label list is: " + movieLabel
             //Set sport label list
             def sportLabel = [defaultSportLabels]
@@ -206,6 +206,8 @@ def parse(evt) {
             if (inputMinMovieRuntime) {
                 minMovieRuntime = inputMinMovieRuntime
             }
+
+            //Check labels
             if (movieLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
