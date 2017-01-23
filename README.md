@@ -35,7 +35,8 @@
                     vi  Movie = a 'plot' has been added by kodi
 
    NB The above labels and runtime is exposed in a device manager preference. So you can update the lists to your
-      own liking. Please **BE AWARE** that the default values on a preference do not really exist - see the <a href="http://docs.smartthings.com/en/latest/device-type-developers-guide/device-preferences.html#additional-notes">Smartthings Docs</a>
+      own liking. Please **BE AWARE** that the default values on a preference do not really exist - see the <a href="http://docs.smartthings.com/en/latest/device-type-developers-guide/device-preferences.html#additional-notes">Smartthings Docs</a> so if you 
+      update **ANY** of them then you have to update them all (you can update to the same thing obviously)
          
      currentPlayingName: Calculated current playing title
 
