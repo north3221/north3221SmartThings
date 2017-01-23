@@ -183,17 +183,18 @@ def parse(evt) {
         //start
         log.debug "Getting title, type and label"
         def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
-        def title = slurper.result.item.title
-        def showTitle = slurper.result.item.showtitle
-        def label = slurper.result.item.label
         def type = slurper.result.item.type
-        def runtime = slurper.result.item.runtime
+        def title = slurper.result.item.title
+
         //initialise category - Unknown so if not set stays as Unknown
         def category = "Unknown"
         def playingTitle = ""
 
         //If kodi doesnt know then let me try and work it out - else use what kodi says
         if (type == "unknown"){
+            def label = slurper.result.item.label
+            def runtime = slurper.result.item.runtime
+            def plot = slurper.result.item.plot
             //Set movie label list
             def movieLabel = defaultMovieLabels.split(',')
             //Set sport label list
@@ -214,12 +215,15 @@ def parse(evt) {
                 category = "Movie"
             }else if (runtime > 0){
                 category = "TV Show"
+            }else if (plot.length() > 0){
+                category = "Movie"
             }
             playingTitle = label
         } else if (movieType.any {type.toLowerCase().contains(it)}){
             category = "Movie"
             playingTitle = title
         } else if (tvShowType.any {type.toLowerCase().contains(it)}){
+            def showTitle = slurper.result.item.showtitle
             category = "TV Show"
             playingTitle = showTitle + " : " + title
         }
