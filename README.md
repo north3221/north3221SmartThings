@@ -5,6 +5,7 @@
  Index
 
  Kodi Manager (Smartapp) & Kodi Client (Device Handler) - Version 1.0
+ 
  Taken from <https://github.com/Toliver182/SmartThings-Kodi>
 
  I wanted to have some more flexibility here and it doesnt look like its in active development anymore, so I have added
