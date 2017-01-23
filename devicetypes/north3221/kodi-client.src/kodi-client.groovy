@@ -1,5 +1,3 @@
-import java.lang.reflect.Array
-
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
@@ -20,7 +18,7 @@ import java.lang.reflect.Array
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    def returnList = "cinema, movie"
+    def returnList = "cinema, movie, film"
     if (inputMovieLabel){returnList = inputMovieLabel}
     returnList.toLowerCase()
     return returnList
