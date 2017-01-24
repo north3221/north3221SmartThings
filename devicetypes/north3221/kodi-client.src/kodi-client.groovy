@@ -18,7 +18,7 @@
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    def returnList = "cinema, movie, film"
+    String[] returnList = "cinema, movie, film"
     if (inputMovieLabel){returnList = inputMovieLabel}
     returnList.toLowerCase()
     return returnList
@@ -196,7 +196,7 @@ def parse(evt) {
             //Set movie label list
             String[] movieList = defaultMovieLabels.split(',')
             log.info "Movie List is " + movieList
-            def movieLabel = new groovy.json.JsonSlurper().parseText(movieList.join(','))
+            def movieLabel = new groovy.json.JsonSlurper().parseText(movieList.join)
             //def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
