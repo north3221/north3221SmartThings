@@ -19,7 +19,7 @@
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
     String[] returnList = ["cinema", "movie", "film"]
-    if (inputMovieLabel){returnList = inputMovieLabel}
+    //if (inputMovieLabel){returnList = inputMovieLabel}
     returnList.toLowerCase()
     return returnList
 }
