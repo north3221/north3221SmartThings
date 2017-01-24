@@ -1,5 +1,3 @@
-import groovyjarjarantlr.collections.List
-
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
@@ -178,10 +176,8 @@ def parseNowPlaying(msgBody){
     def movieType = ["movie"]
 
     //start
-    log.debug "Getting title, type and label"
     def slurper = new groovy.json.JsonSlurper().parseText(msgBody)
     def type = slurper.result.item.type
-    log.info "Type = " + type
     def title = slurper.result.item.title
 
     //initialise category - Unknown so if not set stays as Unknown
@@ -228,7 +224,7 @@ def parseNowPlaying(msgBody){
     }
 
     setPlaybackTitle(type, category, playingTitle)
-    log.debug "Current Playing type (" + type + ") category (" + category + ") title: " + playingTitle
+    log.info "Current Playing type (" + type + ") category (" + category + ") title (" + playingTitle + ")"
 }
 
 def getMovieLabels() {
