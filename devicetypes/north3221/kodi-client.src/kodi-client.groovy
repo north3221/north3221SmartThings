@@ -23,21 +23,24 @@ def getDefaultMovieLabels() {
     def returnList = "cinema, movie, film"
 
     log.info "Begin Return List = " + returnList
-    if (returnList instanceof Array){
+    /*if (returnList instanceof Array){
         log.info "List is an Array"
     }
     if (returnList instanceof List){
         log.info "List is an List"
     }
+    */
     returnList = returnList.split(',').toList()
     log.info "Return List Now = " + returnList
 
+    /*
     if (returnList instanceof Array){
         log.info "List is an Array"
     }
     if (returnList instanceof List){
         log.info "List is an List"
     }
+    */
 
     /*log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
     if (inputMovieLabel != null) {
