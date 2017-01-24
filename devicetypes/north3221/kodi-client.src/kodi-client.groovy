@@ -184,7 +184,7 @@ def parse(evt) {
     }
 
     if (msg.body.startsWith("{\"id\":\"VideoGetItem\"")) {
-
+        parseNowPlaying(msg.body)
     }
 
 }
