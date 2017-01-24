@@ -197,9 +197,9 @@ def parse(evt) {
             //def movieLabel = new JsonSlurper().parseText(defaultMovieLabels)
             def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
-            def sportLabel = defaultSportLabels.split(',')
+            def sportLabel = defaultSportLabels.iterator().join(',')
             //Set tv label list
-            def tvShowLabel = defaultTVLabels.toString().join(',')
+            def tvShowLabel = defaultTVLabels.join(',')
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
