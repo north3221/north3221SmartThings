@@ -242,7 +242,7 @@ def getMovieLabels() {
     if (inputMovieLabel) {
         returnList = inputMovieLabel
     }
-    returnList = returnList.toLowerCase().split(',').toList()
+    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
     return returnList
 }
 
