@@ -211,7 +211,7 @@ def parseNowPlaying(msgBody){
 
         log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
         //Check labels
-        if (movieLabels.each {label.toLowerCase().contains(it)}) {
+        if (movieLabels.any {label.toLowerCase().contains(it)}) {
             category = "Movie"
         }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
             category = "Sports"
