@@ -23,19 +23,12 @@ def getDefaultMovieLabels() {
     return "cinema, movie, film"
 }
 def getDefaultSportLabels() {
-    def returnList = "sport"
-    if (inputSportLabel){returnList = inputSportLabel}
-    returnList.toLowerCase()
-    return returnList
+    return "sport"
 }
 def getDefaultTVLabels() {
-    def returnList = "bbc, itv, channel, sky"
-    if (inputTVLabel){returnList = inputTVLabel}
-    returnList.toLowerCase()
-    return returnList
+    return "bbc, itv, channel, sky"
 }
 def getDefaultMinMovieRuntime() {
-    if (inputMinMovieRuntime){return inputMinMovieRuntime}
     return 4200
 }
 
@@ -200,22 +193,14 @@ def parseNowPlaying(msgBody){
         def label = slurper.result.item.label
         def runtime = slurper.result.item.runtime
         def plot = slurper.result.item.plot
-        //Set movie label list
-        //def movieLabel = defaultMovieLabels
-        //Set sport label list
-        def sportLabel = defaultSportLabels.split(',')
-        //Set tv label list
-        def tvShowLabel = defaultTVLabels.split(',')
-        //Set min runtime to be a movie
-        def minMovieRuntime = defaultMinMovieRuntime
 
-        log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
+        log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabels + ") or TV Show (" + tvLabels + ")"
         //Check labels
         if (movieLabels.any {label.toLowerCase().contains(it)}) {
             category = "Movie"
-        }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
+        }else if(sportLabels.any {label.toLowerCase().contains(it)}) {
             category = "Sports"
-        }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
+        }else if(tvLabels.any {label.toLowerCase().contains(it)}) {
             category = "TV Show"
         }else if (runtime >= minMovieRuntime){
             category = "Movie"
@@ -244,12 +229,33 @@ def parseNowPlaying(msgBody){
 def getMovieLabels() {
     def returnList = defaultMovieLabels
     if (inputMovieLabel) {
-        log.info "Taking input = " + inputMovieLabel
         returnList = inputMovieLabel
     }
     returnList = returnList.toLowerCase().split(',').toList()
-    log.info "Return List Finally = " + returnList
     return returnList
+}
+
+def getSportLabels() {
+    def returnList = defaultSportLabels
+    if (inputSportsLabel) {
+        returnList = inputSportsLabel
+    }
+    returnList = returnList.toLowerCase().split(',').toList()
+    return returnList
+}
+
+def getTvLabels() {
+    def returnList = defaultTVLabels
+    if (inputTVLabel) {
+        returnList = inputTVLabel
+    }
+    returnList = returnList.toLowerCase().split(',').toList()
+    return returnList
+}
+
+def GetMinMovieRuntime(){
+    if (inputMinMovieRuntime){return inputMinMovieRuntime}
+    return defaultMinMovieRuntime
 }
 
 def play() {
