@@ -195,7 +195,8 @@ def parse(evt) {
             def plot = slurper.result.item.plot
             //Set movie label list
             String movieList = defaultMovieLabels.split(',')
-            def movieLabel = new groovy.json.JsonSlurper().parseText(movieList)
+            log.info "Movie List is " + movieList
+            def movieLabel = new groovy.json.JsonSlurper().parseText(movieList.join(','))
             //def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
