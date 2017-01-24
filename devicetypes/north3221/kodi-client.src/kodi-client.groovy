@@ -23,39 +23,14 @@ def getDefaultMovieLabels() {
     def returnList = "cinema, movie, film"
 
     log.info "Begin Return List = " + returnList
-    /*if (returnList instanceof Array){
-        log.info "List is an Array"
-    }
-    if (returnList instanceof List){
-        log.info "List is an List"
-    }
-    */
-    returnList = returnList.split(',').toList()
-    log.info "Return List Now = " + returnList
 
-    /*
-    if (returnList instanceof Array){
-        log.info "List is an Array"
-    }
-    if (returnList instanceof List){
-        log.info "List is an List"
-    }
-    */
-
-    /*log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
     if (inputMovieLabel != null) {
         log.info "Taking input = " + inputMovieLabel
-
-        returnList = new String[0]
-        log.info "Return list cleared now = " + returnList + " join (" + returnList.join(',') + ")"
-
-        inputMovieLabel.split(',').each {
-            log.info "item = " + it
-            returnList.push(it.toLowerCase()) }
-        log.info "Return list loaded from input now = " + returnList + " join (" + returnList.join(',') + ")"
+        returnList = inputMovieLabel
     }
-    */
-    //returnList.toLowerCase()
+    log.info "Return List Now = " + returnList
+    returnList = returnList.split(',').toList()
+    log.info "Return List Finally = " + returnList
     return returnList
 }
 def getDefaultSportLabels() {
