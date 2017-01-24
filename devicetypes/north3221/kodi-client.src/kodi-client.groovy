@@ -197,7 +197,7 @@ def parse(evt) {
             //String[] movieList = defaultMovieLabels.split(',')
             //log.info "Movie List is " + movieList
             //def movieLabel = new groovy.json.JsonSlurper().parseText(movieList.join)
-            def movieLabel = defaultMovieLabels
+            //def movieLabel = defaultMovieLabels
             //def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
@@ -205,19 +205,19 @@ def parse(evt) {
             List<String> tvShowLabel = defaultTVLabels.split(',')
             //log.info "movie class is " + movieLabel.class
             //log.info "TV class is " + tvShowLabel.class
-            log.info "movie size = " + movieLabel.size()
-            log.info "sports size = " + sportLabel.size()
-            log.info "tv size = " + tvShowLabel.size()
+            //log.info "movie size = " + movieLabel.size()
+            //log.info "sports size = " + sportLabel.size()
+            //log.info "tv size = " + tvShowLabel.size()
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
             log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabel + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
             //Check labels
-            if (movieLabel.any {label.toLowerCase().contains(it)}) {
+            if (defaultMovieLabels.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
-            }else if(label.toLowerCase().contains(tvShowLabel[i])) {
+            }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
                 category = "TV Show"
             }else if (runtime >= minMovieRuntime){
                 category = "Movie"
