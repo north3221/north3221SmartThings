@@ -20,7 +20,7 @@
 def getDefaultMovieLabels() {
     String[] returnList = ["cinema", "movie", "film"]
     //if (inputMovieLabel){returnList = inputMovieLabel}
-    returnList.toLowerCase()
+    //returnList.toLowerCase()
     return returnList
 }
 def getDefaultSportLabels() {
