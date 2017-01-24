@@ -214,7 +214,7 @@ def parse(evt) {
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
-            log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabel + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
+            log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels.join(',') + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
             //Check labels
             if (defaultMovieLabels.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
