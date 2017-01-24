@@ -198,37 +198,37 @@ def parseNowPlaying(msgBody){
         //Check labels
         if(movieLabels.any {label.toLowerCase().contains(it)}){
             category = "Movie"
+            log.info "Contains '" + it + "' so category set to (" + category + ")"
         }else if(sportLabels.any {label.toLowerCase().contains(it)}) {
-            log.info "contains sport"
             category = "Sports"
+            log.info "Contains '" + it + "' so category set to (" + category + ")"
         }else if(tvLabels.any {label.toLowerCase().contains(it)}) {
-            log.info "contains tv"
             category = "TV Show"
+            log.info "Contains '" + it + "' so category set to (" + category + ")"
         }else if (runtime >= minMovieRuntime){
-            log.info "runtime movie" + minMovieRuntime + " < " + runtime
             category = "Movie"
+            log.info "Runtime (" + runtime + ") is greater than (" + minMovieRuntime + " so category set to (" + category + ")"
         }else if (runtime > 0){
-            log.info "runtime tv " + runtime
             category = "TV Show"
+            log.info "Runtime (" + runtime + ") is greater than (0) but less than movie min runtime (" + minMovieRuntime + " so category set to (" + category + ")"
         }else if (plot.length() > 0){
-            log.info "movie plot" + plot
             category = "Movie"
+            log.info "Plot (" + plot + ") exists so category set to (" + category + ")"
         }
         playingTitle = label
-        log.info "Work out that category is (" + category + ")"
     } else if (movieType.any {type.toLowerCase().contains(it)}){
         category = "Movie"
+        log.info "Type is (" + type + ") so category set to (" + category + ")"
         playingTitle = title
     } else if (tvShowType.any {type.toLowerCase().contains(it)}){
         def showTitle = slurper.result.item.showtitle
         category = "TV Show"
+        log.info "Type is (" + type + ") so category set to (" + category + ")"
         playingTitle = showTitle + " : " + title
     }
 
     setPlaybackTitle(type, category, playingTitle)
-    log.debug "Playing type is     :" + type
-    log.debug "Playing category is :" + category
-    log.debug "Playing title is    :" + playingTitle
+    log.debug "Current Playing type (" + type + ") category (" + category + ") title: " + playingTitle
 }
 
 def getMovieLabels() {
@@ -260,10 +260,8 @@ def getTvLabels() {
 
 def getMinMovieRuntime(){
     if (inputMinMovieRuntime){
-        log.info "Getting input runtime = " + inputMinMovieRuntime
         return inputMinMovieRuntime
     }
-    log.info "Getting default runtime = " + defaultMinMovieRuntime
     return defaultMinMovieRuntime
 }
 
