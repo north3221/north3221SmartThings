@@ -21,7 +21,7 @@ def getDefaultMovieLabels() {
     String[] returnList = ["cinema", "movie", "film"]
     if (inputMovieLabel) {
         returnList = new String[0]
-        inputMovieLabel.split(',').each { returnList.add("${it}") }
+        inputMovieLabel.split(',').each { returnList.plus("${it}") }
     }
     //returnList.toLowerCase()
     return returnList
