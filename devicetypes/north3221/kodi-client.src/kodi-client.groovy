@@ -247,7 +247,7 @@ def getMovieLabels() {
         log.info "Taking input = " + inputMovieLabel
         returnList = inputMovieLabel
     }
-    returnList = returnList.split(',').toList()
+    returnList = returnList.split(',').toSet()
     log.info "Return List Finally = " + returnList
     return returnList
 }
