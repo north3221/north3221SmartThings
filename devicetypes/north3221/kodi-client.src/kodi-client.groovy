@@ -200,6 +200,8 @@ def parse(evt) {
             def sportLabel = defaultSportLabels.split(',')
             //Set tv label list
             List<String> tvShowLabel = defaultTVLabels.split(',')
+            log.info "movie class is " + movieLabel.class
+            log.info "TV class is " + tvShowLabel.class
             log.info "movie size = " + movieLabel.size()
             log.info "sports size = " + sportLabel.size()
             log.info "tv size = " + tvShowLabel.size()
