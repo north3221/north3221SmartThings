@@ -202,7 +202,7 @@ def parse(evt) {
             List<String> tvShowLabel = defaultTVLabels.split(',')
             log.info "movie size = " + movieLabel.size()
             log.info "sports size = " + sportLabel.size()
-            log.info "tv size = " + tvShowLabel.getClass()
+            log.info "tv size = " + tvShowLabel.size()
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
