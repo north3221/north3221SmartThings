@@ -198,8 +198,8 @@ def parseNowPlaying(msgBody){
         //Check labels
         movieLabels.any {
             log.info "Checking if (" + label.toLowerCase() + ") contains " + it
-            if (label.toString().toLowerCase().contains(it.ToString())) {
-                log.info "contains " + it
+            if (label.toString().toLowerCase().contains(it.toString())) {
+                log.info "contains (" + it + ") - length =" + it.length()
                 category = "Movie"
             }
         }
