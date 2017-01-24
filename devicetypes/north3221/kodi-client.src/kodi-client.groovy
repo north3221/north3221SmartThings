@@ -140,7 +140,7 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: true, title: "Movie labels: search kodi label for:", defaultValue: "movie", displayDuringSetup: false
+        input "inputMovieLabel", "text", required: true, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
         input "inputSportLabel", "text", required: true, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
         input "inputTVLabel", "text", required: true, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: true, title: "Minimum Runtime to be classed as Move (seconds):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
