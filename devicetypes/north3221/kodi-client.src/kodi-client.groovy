@@ -20,18 +20,7 @@ import groovyjarjarantlr.collections.List
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    def returnList = "cinema, movie, film"
-
-    //log.info "Begin Return List = " + returnList
-
-    if (inputMovieLabel != null) {
-        log.info "Taking input = " + inputMovieLabel
-        returnList = inputMovieLabel
-    }
-    //log.info "Return List Now = " + returnList
-    returnList = returnList.split(',').toList()
-    //log.info "Return List Finally = " + returnList
-    return returnList
+    return "cinema, movie, film"
 }
 def getDefaultSportLabels() {
     def returnList = "sport"
@@ -212,7 +201,7 @@ def parseNowPlaying(msgBody){
         def runtime = slurper.result.item.runtime
         def plot = slurper.result.item.plot
         //Set movie label list
-        def movieLabel = defaultMovieLabels
+        //def movieLabel = defaultMovieLabels
         //Set sport label list
         def sportLabel = defaultSportLabels.split(',')
         //Set tv label list
@@ -220,9 +209,9 @@ def parseNowPlaying(msgBody){
         //Set min runtime to be a movie
         def minMovieRuntime = defaultMinMovieRuntime
 
-        log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabel + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
+        log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
         //Check labels
-        if (movieLabel.each {label.toLowerCase().contains(it)}) {
+        if (movieLabels.each {label.toLowerCase().contains(it)}) {
             category = "Movie"
         }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
             category = "Sports"
@@ -250,6 +239,17 @@ def parseNowPlaying(msgBody){
     log.debug "Playing type is     :" + type
     log.debug "Playing category is :" + category
     log.debug "Playing title is    :" + playingTitle
+}
+
+def getMovieLabels() {
+    def returnList = getDefaultMovieLabel
+    if (inputMovieLabel) {
+        log.info "Taking input = " + inputMovieLabel
+        returnList = inputMovieLabel
+    }
+    returnList = returnList.split(',').toList()
+    log.info "Return List Finally = " + returnList
+    return returnList
 }
 
 def play() {
