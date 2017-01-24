@@ -190,17 +190,17 @@ def parseNowPlaying(msgBody){
         def runtime = slurper.result.item.runtime
         def plot = slurper.result.item.plot
 
-        log.info "unknown type so checking label (" + label + ") contains Movie " + movieLabels + " or Sport " + sportLabels + " or TV Show " + tvLabels
+        log.info "unknown type so checking label (" + label + ") contains Movie " + movieLabels + " or Sport " + sportLabels + " or TV Show " + tvLabels + " if not will check runtime and finally will check plot"
         //Check labels
         if(movieLabels.any {label.toLowerCase().contains(it)}){
             category = "Movie"
-            log.info "Contains '" + it + "' so category set to (" + category + ")"
+            log.info "Matched " + category
         }else if(sportLabels.any {label.toLowerCase().contains(it)}) {
             category = "Sports"
-            log.info "Contains '" + it + "' so category set to (" + category + ")"
+            log.info "Matched " + category
         }else if(tvLabels.any {label.toLowerCase().contains(it)}) {
             category = "TV Show"
-            log.info "Contains '" + it + "' so category set to (" + category + ")"
+            log.info "Matched " + category
         }else if (runtime >= minMovieRuntime){
             category = "Movie"
             log.info "Runtime (" + runtime + ") is greater than (" + minMovieRuntime + ") so category set to (" + category + ")"
