@@ -29,7 +29,7 @@ def getDefaultMovieLabels() {
     if (returnList instanceof List){
         log.info "List is an List"
     }
-    returnList = returnList.split(',').toList()
+    //returnList = returnList.split(',').toList()
     log.info "Return List Now = " + returnList
 
     f (returnList instanceof Array){
