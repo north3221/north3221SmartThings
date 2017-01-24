@@ -28,7 +28,7 @@ def getDefaultMovieLabels() {
 
         inputMovieLabel.split(',').each {
             log.info "item = " + it
-            returnList.push(${it}.iterator()) }
+            returnList.push(${it}.toString()) }
         log.info "Return list loaded from input now = " + returnList + " join (" + returnList.join(',') + ")"
     }
     //returnList.toLowerCase()
