@@ -194,14 +194,14 @@ def parse(evt) {
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
             //Set movie label list
-            //def movieLabel = new JsonSlurper().parseText(defaultMovieLabels)
-            def movieLabel = ["movie", "cinema", "film"]
+            def movieLabel = new JsonSlurper().parseText(defaultMovieLabels.split(','))
+            //def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
             //Set tv label list
             List<String> tvShowLabel = defaultTVLabels.split(',')
-            log.info "movie class is " + movieLabel.class
-            log.info "TV class is " + tvShowLabel.class
+            //log.info "movie class is " + movieLabel.class
+            //log.info "TV class is " + tvShowLabel.class
             log.info "movie size = " + movieLabel.size()
             log.info "sports size = " + sportLabel.size()
             log.info "tv size = " + tvShowLabel.size()
