@@ -194,7 +194,7 @@ def parse(evt) {
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
             //Set movie label list
-            def movieLabel = defaultMovieLabels.split(',').toString().toStringList()
+            def movieLabel = defaultMovieLabels.split(',').toCollection()
             //movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',').toString().toSet()
