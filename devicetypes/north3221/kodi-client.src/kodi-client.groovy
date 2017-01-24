@@ -1,3 +1,5 @@
+import groovyjarjarantlr.collections.List
+
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
@@ -18,8 +20,26 @@
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    def returnList = ["cinema", "movie", "film"]
-    log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
+    def returnList = "cinema, movie, film"
+
+    log.info "Begin Return List = " + returnList
+    if (returnList instanceof Array){
+        log.info "List is an Array"
+    }
+    if (returnList instanceof List){
+        log.info "List is an List"
+    }
+    returnList = returnList.toList()
+    log.info "Return List Now = " + returnList
+
+    f (returnList instanceof Array){
+        log.info "List is an Array"
+    }
+    if (returnList instanceof List){
+        log.info "List is an List"
+    }
+
+    /*log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
     if (inputMovieLabel != null) {
         log.info "Taking input = " + inputMovieLabel
 
@@ -31,6 +51,7 @@ def getDefaultMovieLabels() {
             returnList.push(it.toLowerCase()) }
         log.info "Return list loaded from input now = " + returnList + " join (" + returnList.join(',') + ")"
     }
+    */
     //returnList.toLowerCase()
     return returnList
 }
