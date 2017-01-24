@@ -196,15 +196,9 @@ def parseNowPlaying(msgBody){
 
         log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabels + ") or TV Show (" + tvLabels + ")"
         //Check labels
-        movieLabels.any {
-            log.info "Checking if (" + label.toLowerCase() + ") contains (" + it + ") - length =" + it.length()
-            if (label.toString().toLowerCase().contains(it.toString())) {
-                log.info "contains (" + it + ")"
-                category = "Movie"
-            }
-        }
-
-        if(sportLabels.any {label.toLowerCase().contains(it)}) {
+        if(movieLabels.any {label.toLowerCase().contains(it)}){
+            category = "Movie"
+        }else if(sportLabels.any {label.toLowerCase().contains(it)}) {
             log.info "contains sport"
             category = "Sports"
         }else if(tvLabels.any {label.toLowerCase().contains(it)}) {
@@ -251,7 +245,7 @@ def getSportLabels() {
     if (inputSportsLabel) {
         returnList = inputSportsLabel
     }
-    returnList = returnList.toLowerCase().split(',').toList()
+    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
     return returnList
 }
 
@@ -260,13 +254,16 @@ def getTvLabels() {
     if (inputTVLabel) {
         returnList = inputTVLabel
     }
-    returnList = returnList.toLowerCase().split(',').toList()
+    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
     return returnList
 }
 
 def GetMinMovieRuntime(){
-    if (inputMinMovieRuntime){return inputMinMovieRuntime}
-    log.info "Getting default runtime"
+    if (inputMinMovieRuntime){
+        log.info "Getting input runtime = " + inputMinMovieRuntime
+        return inputMinMovieRuntime
+    }
+    log.info "Getting default runtime = " + defaultMinMovieRuntime
     return defaultMinMovieRuntime
 }
 
