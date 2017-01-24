@@ -194,12 +194,12 @@ def parse(evt) {
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
             //Set movie label list
-            def movieLabel = defaultMovieLabels.split(',').collect{it to String}
+            def movieLabel = new JsonSlurper().parseText(defaultMovieLabels)
             //movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
-            def sportLabel = defaultSportLabels.split(',').collect{it to String}
+            def sportLabel = defaultSportLabels.split(',')
             //Set tv label list
-            def tvShowLabel = defaultTVLabels.split(',').collect{it to String}
+            def tvShowLabel = defaultTVLabels.join(',')
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
