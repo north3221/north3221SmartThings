@@ -258,7 +258,7 @@ def getTvLabels() {
     return returnList
 }
 
-def GetMinMovieRuntime(){
+def getMinMovieRuntime(){
     if (inputMinMovieRuntime){
         log.info "Getting input runtime = " + inputMinMovieRuntime
         return inputMinMovieRuntime
