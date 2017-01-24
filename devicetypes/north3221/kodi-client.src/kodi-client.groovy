@@ -212,7 +212,7 @@ def parse(evt) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
-            }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
+            }else if(label.toLowerCase().contains(tvShowLabel.any)) {
                 category = "TV Show"
             }else if (runtime >= minMovieRuntime){
                 category = "Movie"
