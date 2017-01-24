@@ -184,71 +184,72 @@ def parse(evt) {
     }
 
     if (msg.body.startsWith("{\"id\":\"VideoGetItem\"")) {
-        //Lists to check 'type' against to set category - I think this is the best way to validate type as this means kodi knows the type
-        def tvShowType = ["episode"]
-        def movieType = ["movie"]
 
-        //start
-        log.debug "Getting title, type and label"
-        def slurper = new groovy.json.JsonSlurper().parseText(msg.body)
-        def type = slurper.result.item.type
-        def title = slurper.result.item.title
-
-        //initialise category - Unknown so if not set stays as Unknown
-        def category = "Unknown"
-        def playingTitle = ""
-
-        //If kodi doesnt know then let me try and work it out - else use what kodi says
-        if (type == "unknown"){
-            def label = slurper.result.item.label
-            def runtime = slurper.result.item.runtime
-            def plot = slurper.result.item.plot
-            def movieLabel = defaultMovieLabels
-            //def movieLabel = ["movie", "cinema", "film"]
-            //Set sport label list
-            def sportLabel = defaultSportLabels.split(',')
-            //Set tv label list
-            def tvShowLabel = defaultTVLabels.split(',')
-            //log.info "movie class is " + movieLabel.class
-            //log.info "TV class is " + tvShowLabel.class
-            //log.info "movie size = " + movieLabel.size()
-            //log.info "sports size = " + sportLabel.size()
-            //log.info "tv size = " + tvShowLabel.size()
-            //Set min runtime to be a movie
-            def minMovieRuntime = defaultMinMovieRuntime
-
-            log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
-            //Check labels
-            if (movieLabel.each {label.toLowerCase().contains(it)}) {
-                category = "Movie"
-            }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
-                category = "Sports"
-            }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
-                category = "TV Show"
-            }else if (runtime >= minMovieRuntime){
-                category = "Movie"
-            }else if (runtime > 0){
-                category = "TV Show"
-            }else if (plot.length() > 0){
-                category = "Movie"
-            }
-            playingTitle = label
-            log.info "Work out that category is (" + category + ")"
-        } else if (movieType.any {type.toLowerCase().contains(it)}){
-            category = "Movie"
-            playingTitle = title
-        } else if (tvShowType.any {type.toLowerCase().contains(it)}){
-            def showTitle = slurper.result.item.showtitle
-            category = "TV Show"
-            playingTitle = showTitle + " : " + title
-        }
-
-        setPlaybackTitle(type, category, playingTitle)
-        log.debug "Playing type is     :" + type
-        log.debug "Playing category is :" + category
-        log.debug "Playing title is    :" + playingTitle
     }
 
+}
+
+def parseNowPlaying(msgBody){
+    log.info "Parsing Now Playing"
+    //Lists to check 'type' against to set category - I think this is the best way to validate type as this means kodi knows the type
+    def tvShowType = ["episode"]
+    def movieType = ["movie"]
+
+    //start
+    log.debug "Getting title, type and label"
+    def slurper = new groovy.json.JsonSlurper().parseText(msgBody)
+    def type = slurper.result.item.type
+    log.info "Type = " + type
+    def title = slurper.result.item.title
+
+    //initialise category - Unknown so if not set stays as Unknown
+    def category = "Unknown"
+    def playingTitle = ""
+
+    //If kodi doesnt know then let me try and work it out - else use what kodi says
+    if (type == "unknown"){
+        def label = slurper.result.item.label
+        def runtime = slurper.result.item.runtime
+        def plot = slurper.result.item.plot
+        //Set movie label list
+        def movieLabel = defaultMovieLabels
+        //Set sport label list
+        def sportLabel = defaultSportLabels.split(',')
+        //Set tv label list
+        def tvShowLabel = defaultTVLabels.split(',')
+        //Set min runtime to be a movie
+        def minMovieRuntime = defaultMinMovieRuntime
+
+        log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabel + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
+        //Check labels
+        if (movieLabel.each {label.toLowerCase().contains(it)}) {
+            category = "Movie"
+        }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
+            category = "Sports"
+        }else if(tvShowLabel.any {label.toLowerCase().contains(it)}) {
+            category = "TV Show"
+        }else if (runtime >= minMovieRuntime){
+            category = "Movie"
+        }else if (runtime > 0){
+            category = "TV Show"
+        }else if (plot.length() > 0){
+            category = "Movie"
+        }
+        playingTitle = label
+        log.info "Work out that category is (" + category + ")"
+    } else if (movieType.any {type.toLowerCase().contains(it)}){
+        category = "Movie"
+        playingTitle = title
+    } else if (tvShowType.any {type.toLowerCase().contains(it)}){
+        def showTitle = slurper.result.item.showtitle
+        category = "TV Show"
+        playingTitle = showTitle + " : " + title
+    }
+
+    setPlaybackTitle(type, category, playingTitle)
+    log.debug "Playing type is     :" + type
+    log.debug "Playing category is :" + category
+    log.debug "Playing title is    :" + playingTitle
 }
 
 def play() {
