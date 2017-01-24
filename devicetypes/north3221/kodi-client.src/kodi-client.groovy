@@ -194,12 +194,12 @@ def parse(evt) {
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
             //Set movie label list
-            def movieLabel = defaultMovieLabels.split(',').collect(it as string)
+            def movieLabel = Eval.me(defaultMovieLabels.split(','))
             //movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
-            def sportLabel = defaultSportLabels.split(',').collect(it as string)
+            def sportLabel = Eval.me(defaultSportLabels.split(','))
             //Set tv label list
-            def tvShowLabel = defaultTVLabels.split(',').collect(it as string)
+            def tvShowLabel = Eval.me(defaultTVLabels.split(','))
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
