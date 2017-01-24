@@ -22,15 +22,15 @@ import groovyjarjarantlr.collections.List
 def getDefaultMovieLabels() {
     def returnList = "cinema, movie, film"
 
-    log.info "Begin Return List = " + returnList
+    //log.info "Begin Return List = " + returnList
 
     if (inputMovieLabel != null) {
         log.info "Taking input = " + inputMovieLabel
         returnList = inputMovieLabel
     }
-    log.info "Return List Now = " + returnList
+    //log.info "Return List Now = " + returnList
     returnList = returnList.split(',').toList()
-    log.info "Return List Finally = " + returnList
+    //log.info "Return List Finally = " + returnList
     return returnList
 }
 def getDefaultSportLabels() {
