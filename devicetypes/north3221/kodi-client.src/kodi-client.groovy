@@ -194,8 +194,9 @@ def parse(evt) {
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
             //Set movie label list
-            def movieLabel = new groovy.json.JsonSlurper().parseText(defaultMovieLabels)
-            //def movieLabel = ["movie", "cinema", "film"]
+            //String movieList = pa
+            //def movieLabel = new groovy.json.JsonSlurper().parseText(defaultMovieLabels)
+            def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
             //Set tv label list
@@ -214,7 +215,7 @@ def parse(evt) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
-            }else if(label.toLowerCase().contains(tvShowLabel.any)) {
+            }else if(label.toLowerCase().contains(tvShowLabel)) {
                 category = "TV Show"
             }else if (runtime >= minMovieRuntime){
                 category = "Movie"
