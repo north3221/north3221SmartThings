@@ -97,8 +97,8 @@ metadata {
         }
 
         standardTile("shutdown", "device.status", width: 2, height: 2, decoration: "flat") {
-            state "default", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
-            state "grouped", label:'shutdown', action:"shutdown", icon:"st.Electronics.electronics1", backgroundColor:"#ffffff"
+            state "default", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Actions-system-shutdown-icon.png", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Actions-system-shutdown-icon.png", backgroundColor:"#ffffff"
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
