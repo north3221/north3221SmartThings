@@ -197,16 +197,22 @@ def parseNowPlaying(msgBody){
         log.info "unknown type so checking label (" + label + ") contains Movie (" + movieLabels + ") or Sport (" + sportLabels + ") or TV Show (" + tvLabels + ")"
         //Check labels
         if (movieLabels.any {label.toLowerCase().contains(it)}) {
+            log.info "contains movie"
             category = "Movie"
         }else if(sportLabels.any {label.toLowerCase().contains(it)}) {
+            log.info "contains sport"
             category = "Sports"
         }else if(tvLabels.any {label.toLowerCase().contains(it)}) {
+            log.info "contains tv"
             category = "TV Show"
         }else if (runtime >= minMovieRuntime){
+            log.info "runtime movie" + runtime
             category = "Movie"
         }else if (runtime > 0){
+            log.info "runtime tv" + runtime
             category = "TV Show"
         }else if (plot.length() > 0){
+            log.info "movie plot" + plot
             category = "Movie"
         }
         playingTitle = label
