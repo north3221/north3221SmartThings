@@ -20,7 +20,6 @@
 def getDefaultMovieLabels() {
     String[] returnList = ["cinema", "movie", "film"]
     log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
-    log.info "Input = " inputMovieLabel
     if (inputMovieLabel) {
         log.info "Taking input"
         returnList = new String[0]
@@ -220,7 +219,7 @@ def parse(evt) {
             //Set min runtime to be a movie
             def minMovieRuntime = defaultMinMovieRuntime
 
-            log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels.join(',') + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
+            log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
             //Check labels
             if (defaultMovieLabels.any {label.toLowerCase().contains(it)}) {
                 category = "Movie"
