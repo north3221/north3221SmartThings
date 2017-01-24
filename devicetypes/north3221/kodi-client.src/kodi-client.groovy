@@ -21,7 +21,8 @@ def getDefaultMovieLabels() {
     String[] returnList = ["cinema", "movie", "film"]
     log.info "Begin Return List = " + returnList + " join (" + returnList.join(',') + ")"
     if (inputMovieLabel != null) {
-        log.info "Taking input"
+        log.info "Taking input = " + inputMovieLabel
+
         returnList = new String[0]
         log.info "Return list cleared now = " + returnList + " join (" + returnList.join(',') + ")"
 
