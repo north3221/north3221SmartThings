@@ -248,7 +248,7 @@ def parse(evt) {
 
             log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
             //Check labels
-            if (defaultMovieLabels.any {label.toLowerCase().contains(it)}) {
+            if (defaultMovieLabels.each {label.toLowerCase().contains(it)}) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
