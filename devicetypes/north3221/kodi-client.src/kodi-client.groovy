@@ -150,11 +150,11 @@ def parse(evt) {
     }
 
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":0}}"){
-        log.debug "recieved ok"
+        log.debug "recieved speed 0"
         return
     }
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":1}}"){
-        log.debug "recieved ok"
+        log.debug "recieved speed 1"
         return
     }
     if (msg.body == "{\"error\":{\"code\":-32100,\"message\":\"Failed to execute method.\"},\"id\":1,\"jsonrpc\":\"2.0\"}")
@@ -265,24 +265,25 @@ def play() {
     log.debug "Executing 'play'"
 
     sendEvent(name: "switch", value: device.deviceNetworkId + ".play");
-    sendEvent(name: "switch", value: "on");
-    sendEvent(name: "status", value: "playing");
+    //sendEvent(name: "switch", value: "on");
+    //sendEvent(name: "status", value: "playing");
+
 }
 
 def pause() {
     log.debug "Executing 'pause'"
 
     sendEvent(name: "switch", value: device.deviceNetworkId + ".pause");
-    sendEvent(name: "switch", value: "off");
-    sendEvent(name: "status", value: "paused");
+    //sendEvent(name: "switch", value: "off");
+    //sendEvent(name: "status", value: "paused");
 }
 
 def stop() {
     log.debug "Executing 'stop'"
 
     sendEvent(name: "switch", value: device.deviceNetworkId + ".stop");
-    sendEvent(name: "switch", value: "off");
-    sendEvent(name: "status", value: "stopped");
+    //sendEvent(name: "switch", value: "off");
+    //sendEvent(name: "status", value: "stopped");
     //setPlaybackTitle("Stopped");
 }
 
@@ -290,8 +291,8 @@ def shutdown() {
     log.debug "Executing 'stop'"
 
     sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
-    sendEvent(name: "switch", value: "off");
-    sendEvent(name: "status", value: "shutdown");
+    //sendEvent(name: "switch", value: "off");
+    //sendEvent(name: "status", value: "shutdown");
     //setPlaybackTitle("Shutdown");
 }
 

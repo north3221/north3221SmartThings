@@ -293,6 +293,9 @@ def switchChange(evt) {
             break;
 
         case "play":
+            log.debug "Play: Using new dynamic command"
+            executeAction("play")
+            break;
         case "pause":
             playpause(kodiIP);
             break;
@@ -379,7 +382,14 @@ def getPlayingtitle(){
 }
 // Added shutdown
 def shutdown(kodiIP){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
+    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+//
+
+def executeAction (action){
+    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"Input.ExecuteAction\",\"params\": { \"action\": \"" + action + "\"},\"id\":1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
