@@ -261,6 +261,7 @@ def getTvLabels() {
 
 def GetMinMovieRuntime(){
     if (inputMinMovieRuntime){return inputMinMovieRuntime}
+    log.info "Getting default runtime"
     return defaultMinMovieRuntime
 }
 
