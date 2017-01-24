@@ -26,7 +26,9 @@ def getDefaultMovieLabels() {
         returnList = new String[0]
         log.info "Return list cleared now = " + returnList + " join (" + returnList.join(',') + ")"
 
-        inputMovieLabel.split(',').each { returnList.plus("${it}") }
+        inputMovieLabel.split(',').each {
+            log.info "item = " + it
+            returnList.plus("${it}") }
         log.info "Return list loaded from input now = " + returnList + " join (" + returnList.join(',') + ")"
     }
     //returnList.toLowerCase()
