@@ -242,7 +242,7 @@ def parseNowPlaying(msgBody){
 }
 
 def getMovieLabels() {
-    def returnList = getDefaultMovieLabel
+    def returnList = defaultMovieLabel
     if (inputMovieLabel) {
         log.info "Taking input = " + inputMovieLabel
         returnList = inputMovieLabel
