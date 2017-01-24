@@ -203,11 +203,7 @@ def parse(evt) {
             def label = slurper.result.item.label
             def runtime = slurper.result.item.runtime
             def plot = slurper.result.item.plot
-            //Set movie label list
-            //String[] movieList = defaultMovieLabels.split(',')
-            //log.info "Movie List is " + movieList
-            //def movieLabel = new groovy.json.JsonSlurper().parseText(movieList.join)
-            //def movieLabel = defaultMovieLabels
+            def movieLabel = defaultMovieLabels
             //def movieLabel = ["movie", "cinema", "film"]
             //Set sport label list
             def sportLabel = defaultSportLabels.split(',')
@@ -223,7 +219,7 @@ def parse(evt) {
 
             log.info "unknown type so checking label (" + label + ") contains Movie (" + defaultMovieLabels + ") or Sport (" + sportLabel + ") or TV Show (" + tvShowLabel + ")"
             //Check labels
-            if (defaultMovieLabels.each {label.toLowerCase().contains(it)}) {
+            if (movieLabel.each {label.toLowerCase().contains(it)}) {
                 category = "Movie"
             }else if(sportLabel.any {label.toLowerCase().contains(it)}) {
                 category = "Sports"
