@@ -98,8 +98,8 @@ metadata {
         }
 
         standardTile("shutdown", "device.status", width: 2, height: 2) {
-            state "default", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+            state "default", label:'', action:"execute", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"execute", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
