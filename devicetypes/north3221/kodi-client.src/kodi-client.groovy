@@ -281,7 +281,7 @@ def play() {
     //executeAction("play")
     log.debug "Play..."
 
-    def mySwitchCaps = device.capabilities
+    def mySwitchCaps = device.switch.capabilities
 
 // log each capability supported by the "mySwitch" device, along
 // with all its supported attributes
