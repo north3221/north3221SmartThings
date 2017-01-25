@@ -59,19 +59,19 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"select" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"select", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "startup", label:'Startup', action:"play" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"play", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"play", icon:"${appListIcon}", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"select", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "shutdown", label:'Shutdown', action:"play", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"select" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause" , icon:"${mainIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"select" , icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "startup", label:'Startup', action:"play" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"play" , icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"play" , icon:"${mainIcon}", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"play", icon:"${mainIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"select", icon:"${mainIcon}", backgroundColor:"#ff0000"
+            state "shutdown", label:'Shutdown', action:"play", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
