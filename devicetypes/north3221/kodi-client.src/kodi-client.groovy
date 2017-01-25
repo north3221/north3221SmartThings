@@ -58,11 +58,11 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"executeAction('select')", icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"executeAction('pause')", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"executeAction('select')", icon:"${appListIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"executeAction('play')", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"executeAction('select')", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"executeAction", nextState:"test" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
@@ -261,9 +261,10 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
-def executeAction(action){
-    log.debug "Executing '" + action + "'"
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
+def executeAction(){
+
+    log.debug "Executing action state (" + state + ") next state (" + nextState ")"
+    //sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
 }
 
 def play() {
