@@ -263,8 +263,9 @@ def getMinMovieRuntime(){
 }
 
 def execute() {
+    log.debug "Executing Action"
 
-    log.debug "Executing action state (" + state + ") next state (" + nextState ")"
+    log.debug "Executing action state (" + device.state + ") next state (" + device.nextState ")"
     //sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
 }
 
