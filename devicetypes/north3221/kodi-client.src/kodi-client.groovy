@@ -281,13 +281,13 @@ def play() {
     //executeAction("play")
     log.debug "Play..."
 
-    Switch.supportedCommands.each {
+    capability.switch.supportedCommands.each {
         log.debug "Arguments for 'Switch' command ${it.name}: ${it.arguments}"
     }
-    musicPlayer.supportedCommands.each {
+    capability.musicPlayer.supportedCommands.each {
         log.debug "Arguments for 'musicPlayer' command ${it.name}: ${it.arguments}"
     }
-    mediaController.supportedCommands.each {
+    capability.mediaController.supportedCommands.each {
         log.debug "Arguments for 'mediaController' command ${it.name}: ${it.arguments}"
     }
 }
