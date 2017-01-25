@@ -277,7 +277,8 @@ def executeAction() {
     //device.latestValue("attributeName")
     log.debug "Status (" + device.currentValue('status') + ")"
     log.debug  "Latest status (" + device.latestValue('status') + ")"
-    log.debug "Next state (" + device.currentValue('nextState') + ")"
+    log.debug "State (" + device.currentValue('state') + ")"
+    log.debug "Next State (" + device.currentValue('nextState') + ")"
 
 
 
