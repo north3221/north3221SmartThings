@@ -35,6 +35,7 @@ metadata {
         capability "Switch"
         capability "musicPlayer"
         capability "mediaController"
+        capability "Momentary"
 
         command "scanNewClients"
         command "setPlaybackIcon", ["string"]
@@ -67,11 +68,11 @@ metadata {
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"music Player.play" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"music Player.play" , icon:"${mainIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"music Player.play" , icon:"${mainIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"push" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"pause" , icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"push" , icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"play", icon:"${mainIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
@@ -267,7 +268,7 @@ def executeAction(action) {
     sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
 }
 
-def select() {
+def push() {
     executeAction("select")
 }
 
