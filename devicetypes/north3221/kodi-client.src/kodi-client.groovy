@@ -300,7 +300,7 @@ def shutdown() {
     //sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
     //sendEvent(name: "switch", value: "off");
     //sendEvent(name: "status", value: "shutdown");
-    setPlaybackTitle("Shutdown");
+    //setPlaybackTitle("Shutdown");
 }
 
 def previousTrack() {
