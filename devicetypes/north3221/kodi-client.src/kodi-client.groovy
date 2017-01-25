@@ -59,11 +59,11 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"play" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"play", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"play", icon:"${appListIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"play", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"music Player.play" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
@@ -279,9 +279,10 @@ def play() {
         //bla bla
     //}
     //executeAction("play")
+    log.debug "Play..."
 
     supportedCommands.each {
-        log.debug "arguments for swithLevel command ${it.name}: ${it.arguments}"
+        log.debug "arguments for device command ${it.name}: ${it.arguments}"
     }
 }
 
