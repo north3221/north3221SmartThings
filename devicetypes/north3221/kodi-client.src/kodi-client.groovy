@@ -42,6 +42,7 @@ metadata {
         command "setVolumeLevel", ["number"]
         command "shutdown"
         command "describeAttributes"
+        command "executeAction"
 
         //custom attributes
         attribute "currentPlayingType", "string"
@@ -58,20 +59,20 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"execute", nextState:"test" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"execute", nextState:"test", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"execute", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"execute", nextState:"test", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"execute", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
-            state "test", label:'Shutdown', action:"execute", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"executeAction", nextState:"test" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "test", label:'Shutdown', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"execute" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"execute" , icon:"${mainIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"execute" , icon:"${mainIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"execute", icon:"${mainIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"execute", icon:"${mainIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"executeAction" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"executeAction" , icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"executeAction" , icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"executeAction", icon:"${mainIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"executeAction", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
@@ -262,7 +263,7 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
-def execute() {
+def executeAction() {
     log.debug "Executing Action"
 
     log.debug "Executing action state (" + device.state + ") next state (" + device.nextState ")"
