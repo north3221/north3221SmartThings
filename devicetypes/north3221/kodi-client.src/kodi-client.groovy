@@ -64,7 +64,7 @@ metadata {
             state "stopped", label:'Stopped', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ffffff"
             state "paused", label:'Paused', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#FFA500"
             state "shutdown", label:'Shutdown', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
-            state "test", label:'Shutdown', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "test", label:'Test', action:"executeAction", nextState:"test", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
