@@ -266,10 +266,10 @@ def getMinMovieRuntime(){
 def executeAction() {
     log.debug "Executing Action"
 
-    log.debug "Music Player state (" + device.currentState('musicPlayer').getValue() + ")"
-    log.debug  "Music Player next state (" + device.nextState('musicPlayer').getValue() ")"
-    log.debug "Media Controller Player state (" + device.currentState('mediaController').getValue() + ")"
-    log.debug  "Media Controller next state (" + device.nextState('mediaController').getValue() ")"
+    //log.debug "Music Player state (" + device.currentState('musicPlayer').getValue() + ")"
+    //log.debug  "Music Player next state (" + device.nextState('musicPlayer').getValue() ")"
+    //log.debug "Media Controller Player state (" + device.currentState('mediaController').getValue() + ")"
+    //log.debug  "Media Controller next state (" + device.nextState('mediaController').getValue() ")"
 
     log.debug "Status state (" + device.currentState('status').getValue() + ")"
     log.debug  "Status next state (" + device.nextState('status').getValue() ")"
