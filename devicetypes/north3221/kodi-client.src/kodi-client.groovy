@@ -75,32 +75,27 @@ metadata {
             state "shutdown", label:'Shutdown', action:"push", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
-        standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
+        standardTile("next", "device.status", width: 1, height: 1, decoration: "flat") {
             state "next", label:'', action:"music Player.nextTrack", icon:"st.sonos.next-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("previous", "device.status", width: 2, height: 2, decoration: "flat") {
+        standardTile("previous", "device.status", width: 1, height: 1, decoration: "flat") {
             state "previous", label:'', action:"music Player.previousTrack", icon:"st.sonos.previous-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("scanNewClients", "device.status", width: 2, height: 1, decoration: "flat") {
-            state "default", label:'', action:"scanNewClients", icon:"state.icon", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"scanNewClients", icon:"state.icon", backgroundColor:"#ffffff"
-        }
-
-        standardTile("fillerTile", "device.status", width: 2, height: 2, decoration: "flat") {
+        standardTile("fillerTile", "device.status", width: 1, height: 1, decoration: "flat") {
             state "default", label:'', action:"", icon:"", backgroundColor:"#ffffff"
             state "grouped", label:'', action:"", icon:"", backgroundColor:"#ffffff"
         }
 
-        standardTile("stop", "device.status", width: 2, height: 2, decoration: "flat") {
+        standardTile("stop", "device.status", width: 1, height: 1, decoration: "flat") {
             state "default", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
             state "grouped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("shutdown", "device.status", width: 2, height: 2) {
-            state "default", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+        standardTile("shutdown", "device.status", width: 1, height: 1) {
+            state "default", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/986/aeon/128/shutdown.png", backgroundColor:"#ffffff"
+            state "shutdown", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/128/shutdown.png", backgroundColor:"#ffffff"
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
@@ -109,7 +104,7 @@ metadata {
         valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
-        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
+        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
             state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
@@ -118,7 +113,12 @@ metadata {
         }
 
         main("appList")
-        details(["currentPlayingType", "currentPlayingCategory", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
+        details(["currentPlayingType", "currentPlayingCategory",
+                 "currentPlayingName",
+                 "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile",
+                 "fillerTile", "fillerTile", "main", "fillerTile", "fillerTile",
+                 "fillerTile", "previous", "fillerTile", "next", "stop", "shutdown",
+                 "levelSliderControl"])
     }
 
     preferences {
