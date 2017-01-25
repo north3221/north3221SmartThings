@@ -98,8 +98,8 @@ metadata {
         }
 
         standardTile("shutdown", "device.status", width: 2, height: 2) {
-            state "default", label:'', action:"execute", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"execute", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+            state "default", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
@@ -262,7 +262,7 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
-def execute(){
+def execute() {
 
     log.debug "Executing action state (" + state + ") next state (" + nextState ")"
     //sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
@@ -295,12 +295,12 @@ def stop() {
 }
 
 def shutdown() {
-    log.debug "Executing 'stop'"
+    log.debug "Executing 'shutdown'"
 
-    sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
+    //sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
     //sendEvent(name: "switch", value: "off");
     //sendEvent(name: "status", value: "shutdown");
-    //setPlaybackTitle("Shutdown");
+    setPlaybackTitle("Shutdown");
 }
 
 def previousTrack() {
