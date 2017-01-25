@@ -32,10 +32,10 @@ def getDefaultMinMovieRuntime() {
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
-        capability "Switch"
-        capability "musicPlayer"
-        capability "mediaController"
-        capability "Momentary"
+        capability "Switch"             //For switch on/off
+        capability "musicPlayer"        //For playback etc
+        capability "mediaController"    //Not sure I need this yet
+        capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
 
         command "scanNewClients"
         command "setPlaybackIcon", ["string"]
@@ -60,11 +60,11 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"music Player.play" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
@@ -147,16 +147,16 @@ def parse(evt) {
 
 
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":\"OK\"}"){
-        log.debug "recieved ok"
+        log.debug "received ok"
         return
     }
 
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":0}}"){
-        log.debug "recieved speed 0"
+        log.debug "received speed 0"
         return
     }
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":1}}"){
-        log.debug "recieved speed 1"
+        log.debug "received speed 1"
         return
     }
     if (msg.body == "{\"error\":{\"code\":-32100,\"message\":\"Failed to execute method.\"},\"id\":1,\"jsonrpc\":\"2.0\"}")
@@ -273,25 +273,7 @@ def push() {
 }
 
 def play() {
-    //switch (device.currentvalue("status")){
-        //if playing - pause
-        //if pause play
-        //delault select
-        //bla bla
-    //}
-    //executeAction("play")
-    log.debug "Play..."
-
-    def mySwitchCaps = device.switch.capabilities
-
-// log each capability supported by the "mySwitch" device, along
-// with all its supported attributes
-    mySwitchCaps.each {cap ->
-        log.debug "Capability name: ${cap.name}"
-        cap.attributes.each {attr ->
-            log.debug "-- Attribute name; ${attr.name}"
-        }
-    }
+    executeAction("select")
 }
 
 def pause() {
