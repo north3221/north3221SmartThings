@@ -272,7 +272,17 @@ def select() {
 }
 
 def play() {
-    executeAction("play")
+    //switch (device.currentvalue("status")){
+        //if playing - pause
+        //if pause play
+        //delault select
+        //bla bla
+    //}
+    //executeAction("play")
+
+    supportedCommands.each {
+        log.debug "arguments for swithLevel command ${it.name}: ${it.arguments}"
+    }
 }
 
 def pause() {
