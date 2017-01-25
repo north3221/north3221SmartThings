@@ -2,7 +2,7 @@
  *  KODI Manager
  *
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
- * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
+ * forked from a plex version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -381,7 +381,7 @@ def getPlayingtitle(){
 
 }
 // Added shutdown
-def shutdown(kodiIP){
+def shutdown(){
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
