@@ -101,15 +101,9 @@ def pgLights(){
 //END PAGES
 /////////////////////////
 
-
-
-
-
 def installed() {
-
     log.debug "Installed with settings: ${settings}"
     initialize()
-
 }
 
 def initialize() {
@@ -130,56 +124,30 @@ def initialize() {
 
 def updated() {
     unsubscribe();
-/*
-getChildDevices().each { childDevice ->
-def deviceNetID = childDevice.deviceNetworkId
-log.debug "my id: "+ NetworkDeviceId()
-log.debug "net id: " + deviceNetID
-if(deviceNetID != NetworkDeviceId()){
-log.debug "removing: " + deviceNetID
-deleteChildDevice(deviceNetID)
-}
-}*/
-
     initialize()
-
 }
 
 //Incoming state changes from kodi
-
 mappings {
 
     path("/play") {
-        action: [
-                GET: "stateIsPlay"
-        ]
+        action: [GET: "stateIsPlay"]
     }
     path("/stop") {
-        action: [
-                GET: "stateIsStop"
-        ]
+        action: [GET: "stateIsStop"]
     }
     path("/pause") {
-        action: [
-                GET: "stateIsPause"
-        ]
+        action: [GET: "stateIsPause"]
     }
     path("/resume") {
-        action: [
-                GET: "stateIsResume"
-        ]
+        action: [GET: "stateIsResume"]
     }
     path("/shutdown") {
-        action: [
-                GET: "stateIsShutdown"
-        ]
+        action: [GET: "stateIsShutdown"]
     }
     path("/startup") {
-        action: [
-                GET: "stateIsStartup"
-        ]
+        action: [GET: "stateIsStartup"]
     }
-
 }
 void stateIsPlay() {
     if("$settings.shouldControlLights" == "true"){
