@@ -271,8 +271,12 @@ def executeAction() {
     //log.debug "Media Controller Player state (" + device.currentState('mediaController').getValue() + ")"
     //log.debug  "Media Controller next state (" + device.nextState('mediaController').getValue() ")"
 
-    log.debug "Status state (" + device.currentState('status').getValue() + ")"
-    log.debug  "Status next state (" + device.nextState('status').getValue() ")"
+
+    //device.currentStatus
+    //device.currentValue("attributeName")
+    //device.latestValue("attributeName")
+    log.debug "Status status (" + device.currentValue('status') + ")"
+    log.debug  "Status latest status (" + device.latestValue('status').getValue() ")"
 
 
 
