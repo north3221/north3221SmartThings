@@ -42,7 +42,7 @@ metadata {
         command "setVolumeLevel", ["number"]
         command "shutdown"
         command "describeAttributes"
-        command "executeAction"
+        command "executeAction" , ["string"]
 
         //custom attributes
         attribute "currentPlayingType", "string"
@@ -263,76 +263,33 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
-def executeAction() {
-    log.debug "Executing Action"
-
-    //log.debug "Music Player state (" + device.currentState('musicPlayer').getValue() + ")"
-    //log.debug  "Music Player next state (" + device.nextState('musicPlayer').getValue() ")"
-    //log.debug "Media Controller Player state (" + device.currentState('mediaController').getValue() + ")"
-    //log.debug  "Media Controller next state (" + device.nextState('mediaController').getValue() ")"
-
-
-    //device.currentStatus
-    //device.currentValue("attributeName")
-    //device.latestValue("attributeName")
-    log.debug "Status (" + device.currentValue('status') + ")"
-    log.debug "Latest status (" + device.latestValue('status') + ")"
-    log.debug "State (" + device.currentValue('state') + ")"
-    log.debug "Next State (" + device.currentValue('nextState') + ")"
-    log.debug "Switch (" + device.currentValue('switch') + ")"
-
-
-
-    //sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
+def executeAction(action) {
+    log.debug "Executing Action :" + action
+    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
 }
 
 def play() {
-    log.debug "Executing 'play'"
-
-    sendEvent(name: "switch", value: device.deviceNetworkId + ".play");
-    //sendEvent(name: "switch", value: "on");
-    //sendEvent(name: "status", value: "playing");
-
+    executeAction("play")
 }
 
 def pause() {
-    log.debug "Executing 'pause'"
-
-    sendEvent(name: "switch", value: device.deviceNetworkId + ".pause");
-    //sendEvent(name: "switch", value: "off");
-    //sendEvent(name: "status", value: "paused");
+    executeAction("pause")
 }
 
 def stop() {
-    log.debug "Executing 'stop'"
-
-    sendEvent(name: "switch", value: device.deviceNetworkId + ".stop");
-    //sendEvent(name: "switch", value: "off");
-    //sendEvent(name: "status", value: "stopped");
-    //setPlaybackTitle("Stopped");
+    executeAction("stop")
 }
 
 def shutdown() {
-    log.debug "Executing 'shutdown'"
-
-    //sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
-    //sendEvent(name: "switch", value: "off");
-    //sendEvent(name: "status", value: "shutdown");
-    //setPlaybackTitle("Shutdown");
+    executeAction("shutdown")
 }
 
 def previousTrack() {
-    log.debug "Executing 'previous': "
-
-    //setPlaybackTitle("Skipping previous");
-    sendCommand("previous");
+    executeAction("previous")
 }
 
 def nextTrack() {
-    log.debug "Executing 'next'"
-
-    //setPlaybackTitle("Skipping next");
-    sendCommand("next");
+    executeAction("next")
 }
 
 def scanNewClients() {

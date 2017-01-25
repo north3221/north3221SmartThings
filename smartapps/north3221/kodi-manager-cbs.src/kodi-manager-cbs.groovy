@@ -281,6 +281,8 @@ def switchChange(evt) {
 
     //log.debug "state: " + state
 
+    executeAction(command)
+    /*
     switch(command) {
         case "next":
             log.debug "Sending command 'next' to " + kodiIP
@@ -315,6 +317,7 @@ def switchChange(evt) {
             shutdown(kodiIP);
             break;
     }
+    */
 
     return;
 }
