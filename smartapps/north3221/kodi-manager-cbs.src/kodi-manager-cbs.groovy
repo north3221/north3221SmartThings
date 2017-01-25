@@ -253,6 +253,9 @@ def switchChange(evt) {
             log.debug "Vol is: " + vol
             setVolume(kodiIP, vol);
             break;
+        case "shutdown":            //Cant be done with generic execute action
+            shutdown()
+            break;
         default:                    //Just execute command
             executeAction(command)
     }
@@ -291,6 +294,12 @@ def getPlayingtitle(){
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"track\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"runtime\", \"plot\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}"
     executeRequest("/jsonrpc", "POST",command);
 
+}
+
+// Added shutdown
+def shutdown(){
+    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
 }
 
 def executeAction (action){
