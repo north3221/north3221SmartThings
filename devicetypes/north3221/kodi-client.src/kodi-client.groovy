@@ -104,7 +104,7 @@ metadata {
         valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "default", label:'', backgroundColor:"#ffffff"
         }
-        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+        standardTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
             state "default", label:'', backgroundColor:"#ffffff"
         }
 
