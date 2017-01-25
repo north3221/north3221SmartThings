@@ -66,11 +66,11 @@ metadata {
         }
 
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"music Player.pause", icon:"${mainIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ff0000"
+            state "startup", label:'Startup', action:"executeAction", nextState:"test" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"executeAction", nextState:"test" , icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"executeAction", nextState:"test" , icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"executeAction", nextState:"test" , icon:"${mainIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"executeAction", nextState:"test" , icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
         standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
