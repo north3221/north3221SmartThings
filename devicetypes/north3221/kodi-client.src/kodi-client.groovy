@@ -281,14 +281,15 @@ def play() {
     //executeAction("play")
     log.debug "Play..."
 
-    capability.switch.supportedCommands.each {
-        log.debug "Arguments for 'Switch' command ${it.name}: ${it.arguments}"
-    }
-    capability.musicPlayer.supportedCommands.each {
-        log.debug "Arguments for 'musicPlayer' command ${it.name}: ${it.arguments}"
-    }
-    capability.mediaController.supportedCommands.each {
-        log.debug "Arguments for 'mediaController' command ${it.name}: ${it.arguments}"
+    def mySwitchCaps = device.capabilities
+
+// log each capability supported by the "mySwitch" device, along
+// with all its supported attributes
+    mySwitchCaps.each {cap ->
+        log.debug "Capability name: ${cap.name}"
+        cap.attributes.each {attr ->
+            log.debug "-- Attribute name; ${attr.name}"
+        }
     }
 }
 
