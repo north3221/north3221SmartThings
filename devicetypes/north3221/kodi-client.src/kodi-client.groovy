@@ -111,7 +111,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
+            state "playing", label:'shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
         }
 
@@ -133,8 +133,7 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "stop", "2x1", "2x1", "shutdown",
-                "2x1", "up", "2x1",
+                 "stop", "1x1", "up", "1x1", "shutdown",
                 "left", "2x1", "right", "2x1",
                  "2x1", "down", "2x1"
         ])
