@@ -135,7 +135,10 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "stop", "fillerTile1", "fillerTile1", "fillerTile1", "fillerTile1", "shutdown"
+                 "stop", "fillerTile1", "fillerTile1", "fillerTile1", "fillerTile1", "shutdown",
+                "fillerTile2", "up", "fillerTile2",
+                "left", "fillerTile2", "right",
+                 "fillerTile2", "down", "fillerTile2"
         ])
     }
 
