@@ -112,9 +112,9 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'Stop', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
-            state "playing", label:'Stop', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
-            state "paused", label:'Stop', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
+            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
+            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
+            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
         }
 
         standardTile("shutdown", "device.status", width: 1, height: 1) {
