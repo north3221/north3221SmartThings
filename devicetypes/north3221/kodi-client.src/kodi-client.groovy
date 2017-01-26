@@ -130,7 +130,7 @@ metadata {
             state "off", label:'Select', action:"push", icon:"", backgroundColor:"ffffff"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1) {
+        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
             state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:"#ffffff", defaultState: true
         }
 
@@ -174,11 +174,9 @@ def parse(evt) {
         }
     }
 
-
     if (!msg.body){
         return
     }
-
 
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":\"OK\"}"){
         log.debug "received ok"
