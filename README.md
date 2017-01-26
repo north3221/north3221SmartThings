@@ -40,8 +40,8 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  Branch:    beta  
  
  Manual (copy and paste the code into your IDE):  
- Device Handler:    <a href="ADD ONCE CREATED">Copy and paste this code into a new 'Device Handler'</a>  
- Smartapp:          <a href="ADD ONCE CREATED">Copy and paste this code into a new 'Smartapp'</a>
+ Device Handler:    <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/beta/devicetypes/north3221/kodi-client.src/kodi-client.groovy">Copy and paste this code into a new 'Device Handler'</a>  
+ Smartapp:          <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/beta/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">Copy and paste this code into a new 'Smartapp'</a>
  
 
 ####Version 1.0
