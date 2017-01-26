@@ -438,7 +438,7 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
-    sendEvent(name: "device.trackDescription", value: track)
+    sendEvent(name: "trackDescription", value: track)
 }
 
 def setPlaybackIcon(iconUrl) {
