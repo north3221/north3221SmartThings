@@ -167,7 +167,7 @@ metadata {
         main("main")
         details(["mediaMulti",
                  "back", "stop", "up", "info", "shutdown",
-                "left", "select", "right",
+                "left", "push", "right",
                  "2x1", "down", "2x1"
         ])
     }
