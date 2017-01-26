@@ -74,7 +74,7 @@ metadata {
                 attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing" backgroundColor:"#FFA500")
+                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing", backgroundColor:"#FFA500")
                 attributeState("playing", label:"Playing", action:"music Player.pause", nextState: "paused", backgroundColor:"#79b821")
                 attributeState("stopped", label:"Stopped", action:"push", nextState: "playing", backgroundColor:"#ffffff")
             }
