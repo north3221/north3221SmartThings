@@ -36,16 +36,18 @@ metadata {
         capability "musicPlayer"        //For playback etc
         capability "mediaController"    //Not sure I need this yet
         capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
-
-        //command "scanNewClients"
-        //command "setPlaybackIcon", ["string"]
-        //command "setPlaybackTitle", ["string"]
+        //Custom Commands
         command "setVolumeLevel", ["number"]
-        //command "shutdown"
+        command "shutdown"
         command "describeAttributes"
         command "executeAction" , ["string"]
-
-        //custom attributes
+        command "up"
+        command "down"
+        command "left"
+        command "right"
+        command "back"
+        command "info"
+        //Custom attributes
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
@@ -61,22 +63,22 @@ metadata {
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"#ff0000"
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"st.colors.green"
+            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"st.colors.orange"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.red"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
             tileAttribute("device.status", key: "PRIMARY_CONTROL") {
-                attributeState("paused", label:"Paused", backgroundColor:"#FFA500")
-                attributeState("playing", label:"Playing", backgroundColor:"#79b821")
-                attributeState("stopped", label:"Stopped", backgroundColor:"#ffffff")
+                attributeState("paused", label:"Paused")
+                attributeState("playing", label:"Playing")
+                attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing", backgroundColor:"#FFA500")
-                attributeState("playing", label:"Playing", action:"music Player.pause", nextState: "paused", backgroundColor:"#79b821")
-                attributeState("stopped", label:"Stopped", action:"push", nextState: "playing", backgroundColor:"#ffffff")
+                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing")
+                attributeState("playing", label:"Playing", action:"music Player.pause", nextState: "paused")
+                attributeState("stopped", label:"Stopped", action:"push", nextState: "playing")
             }
             tileAttribute("device.status", key: "PREVIOUS_TRACK") {
                 attributeState("status", action:"music Player.previousTrack", defaultState: true)
@@ -96,22 +98,14 @@ metadata {
             }
         }
 
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
-        }
-
-        standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
-        }
-
         standardTile("stop", "device.status", width: 1, height: 1) {
             state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
-            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ff0000"
-            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ff0000"
+            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"st.colors.red"
+            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"st.colors.red"
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
+            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"st.colors.red", defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
         }
 
@@ -132,12 +126,25 @@ metadata {
         }
 
         standardTile("select", "device.push", width: 2, height: 2) {
-            state "on", label:'Select', action:"push", icon:"", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'Select', action:"push", icon:"", backgroundColor:"st.colors.green", defaultState: true
+            state "off", label:'Select', action:"push", icon:"", backgroundColor:"ffffff"
+        }
+
+        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
+            state "on", label:'', action:"back", icon:"https://image.freepik.com/free-icon/back-arrow-ios-7-interface-symbol_318-33678.jpg", backgroundColor:"#ffffff", defaultState: true
+        }
+
+        standardTile("info", "device.info", width: 1, height: 1, decoration: "flat") {
+            state "on", label:'', action:"info", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png", backgroundColor:"#ffffff", defaultState: true
+        }
+
+        standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
+            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
 
         main("main")
         details(["mediaMulti",
-                 "stop", "1x1", "up", "1x1", "shutdown",
+                 "back", "stop", "up", "info", "shutdown",
                 "left", "select", "right",
                  "2x1", "down", "2x1"
         ])
@@ -153,6 +160,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
+    sendEvent(name: "device.trackDescription", value: "Installed")
 }
 
 // parse events into attributes
@@ -336,6 +344,14 @@ def left(){
 
 def right(){
     executeAction("right")
+}
+
+def back(){
+    executeAction("back")
+}
+
+def info(){
+    executeAction("info")
 }
 
 def setLevel(level) {
