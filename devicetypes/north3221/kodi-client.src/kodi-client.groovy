@@ -29,16 +29,16 @@ def getDefaultTVLabels() {
 def getDefaultMinMovieRuntime() {
     return 4200
 }
-def red(){
+def getTileRed(){
     return "#ff0000"
 }
-def green() {
+def getTileGreen() {
     return "#05ab8b"
 }
-def orange(){
+def getTileOrange(){
     return "#ff8800"
 }
-def blue(){
+def getTileBlue(){
     return "#0ba6d1"
 }
 metadata {
@@ -75,10 +75,10 @@ metadata {
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ffffff", defaultState: true
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be", nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue", nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:orange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:red, nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:tileGreen, nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:tileBlue, nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:tileOrange, nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:tileRed, nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
