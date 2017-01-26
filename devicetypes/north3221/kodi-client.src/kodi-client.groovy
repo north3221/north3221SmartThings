@@ -96,49 +96,47 @@ metadata {
             }
         }
 
-        standardTile("fillerTile1", "device.status", width: 1, height: 1, decoration: "flat") {
+        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
 
-        standardTile("fillerTile2", "device.status", width: 2, height: 2, decoration: "flat") {
+        standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
             state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
-            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
-            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
+            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ff0000"
+            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ff0000"
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff", defaultState: true
+            state "playing", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
         }
 
-        standardTile("up", "device.up", width: 2, height: 2, decoration: "flat") {
+        standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
             state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:"#ffffff", defaultState: true
         }
 
-        standardTile("down", "device.down", width: 2, height: 2, decoration: "flat") {
+        standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
             state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"st.samsung.da.oven_ic_left", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"st.samsung.da.oven_ic_right", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:"#ffffff", defaultState: true
         }
-
-
 
         main("main")
         details(["mediaMulti",
-                 "stop", "fillerTile1", "fillerTile1", "fillerTile1", "fillerTile1", "shutdown",
-                "fillerTile2", "up", "fillerTile2",
-                "left", "fillerTile2", "right",
-                 "fillerTile2", "down", "fillerTile2"
+                 "stop", "1x2", "1x2", "shutdown",
+                "1x2", "up", "1x2",
+                "left", "1x2", "right", "1x2",
+                 "1x2", "down", "1x2"
         ])
     }
 
