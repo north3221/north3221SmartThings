@@ -67,6 +67,35 @@ metadata {
             state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
+        multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
+            tileAttribute("device.status", key: "PRIMARY_CONTROL") {
+                attributeState("paused", label:"Paused",)
+                attributeState("playing", label:"Playing")
+                attributeState("stopped", label:"Stopped")
+            }
+            tileAttribute("device.status", key: "MEDIA_STATUS") {
+                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing")
+                attributeState("playing", label:"Playing", action:"music Player.pause", nextState: "paused")
+                attributeState("stopped", label:"Stopped", action:"music Player.play", nextState: "playing")
+            }
+            tileAttribute("device.status", key: "PREVIOUS_TRACK") {
+                attributeState("status", action:"music Player.previousTrack", defaultState: true)
+            }
+            tileAttribute("device.status", key: "NEXT_TRACK") {
+                attributeState("status", action:"music Player.nextTrack", defaultState: true)
+            }
+            tileAttribute ("device.level", key: "SLIDER_CONTROL") {
+                attributeState("level", action:"music Player.setLevel")
+            }
+            tileAttribute ("device.mute", key: "MEDIA_MUTED") {
+                attributeState("unmuted", action:"music Player.mute", nextState: "muted")
+                attributeState("muted", action:"music Player.unmute", nextState: "unmuted")
+            }
+            tileAttribute("device.trackDescription", key: "MARQUEE") {
+                attributeState("trackDescription", label:"${currentValue}", defaultState: true)
+            }
+        }
+
         standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
             state "startup", label:'Startup', action:"push" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"pause" , icon:"${mainIcon}", backgroundColor:"#79b821"
@@ -114,11 +143,14 @@ metadata {
 
         main("appList")
         details(["currentPlayingType", "currentPlayingCategory",
-                 "currentPlayingName",
-                 "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile",
-                 "fillerTile", "fillerTile", "main", "fillerTile", "fillerTile",
-                 "fillerTile", "previous", "fillerTile", "next", "stop", "shutdown",
-                 "levelSliderControl"])
+        //         "currentPlayingName",
+        //         "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile",
+        //         "fillerTile", "fillerTile", "main", "fillerTile", "fillerTile",
+        //         "fillerTile", "previous", "fillerTile", "next",
+                 "mediaMulti",
+                 "stop", "shutdown",
+        //         "levelSliderControl"
+        ])
     }
 
     preferences {
