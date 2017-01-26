@@ -99,13 +99,13 @@ metadata {
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaulValue: true
+            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
         }
         valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaulValue: true
+            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
         }
         valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaulValue: true
+            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
         }
 
         controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
