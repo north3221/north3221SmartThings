@@ -32,8 +32,12 @@ def getDefaultMinMovieRuntime() {
 def red(){
     return "#ff0000"
 }
-def green = "#069e33"
-def orange = "#ff8800"
+def green () {
+    return "#069e33"
+}
+def orange (){
+    return "#ff8800"
+}
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
         capability "Switch"             //For switch on/off
@@ -67,9 +71,9 @@ metadata {
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:'${green}'
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:'${orange}'
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:orange
             state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:red
         }
 
