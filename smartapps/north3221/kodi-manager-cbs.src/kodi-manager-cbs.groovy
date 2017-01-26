@@ -236,7 +236,7 @@ def response(evt) {
 
 //Incoming command handler
 def switchChange(evt) {
-
+log.debug "switch evt(" + evt
     // Ignore on/off
     if(evt.value == "on" || evt.value == "off") return;
 
@@ -257,6 +257,7 @@ def switchChange(evt) {
             shutdown()
             break;
         default:                    //Just execute command
+            log.debug "execute " + command
             executeAction(command)
     }
 }
