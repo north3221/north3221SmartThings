@@ -146,7 +146,7 @@ metadata {
             state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("select", "device.push", width: 2, height: 2) {
+        standardTile("select", "device.status", width: 2, height: 2) {
             state "stopped", label:'Select', action:"push", icon:"", backgroundColor:tileGreen, defaultState: true
             state "playing", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
             state "paused", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
@@ -440,7 +440,7 @@ def setPlaybackTitle(type, category, name) {
         if (track != ""){
             track = track + "\n"
         }
-        track = track + category
+        track = track + "Category: " + category
     }
     if (track != ""){
         track = track + "\n"
