@@ -91,7 +91,7 @@ metadata {
                 attributeState("unmuted", action:"music Player.mute", nextState: "muted")
                 attributeState("muted", action:"music Player.unmute", nextState: "unmuted")
             }
-            tileAttribute("device.currentPlayingName", key: "MARQUEE") {
+            tileAttribute("device.trackDescription", key: "MARQUEE") {
                 attributeState("trackDescription", label:"${currentValue}", defaultState: true)
             }
         }
@@ -403,7 +403,7 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
-    sendEvent(name: "trackDescription", value: "Kodi Type : " + type + "\nCategory : " + category + "\nName : " + name)
+    sendEvent(name: "device.trackDescription", value: "Kodi Type : " + type + "\nCategory : " + category + "\nName : " + name)
 }
 
 def setPlaybackIcon(iconUrl) {
