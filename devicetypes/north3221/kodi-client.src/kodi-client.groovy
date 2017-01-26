@@ -2,6 +2,9 @@
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
+ *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
+ *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
  *
@@ -11,8 +14,6 @@
  *  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
  *  for the specific language governing permissions and limitations under the License.
  *
- *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
- *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
  */
 
 //DEFAULTS
@@ -24,7 +25,7 @@ def getDefaultSportLabels() {
     return "sport"
 }
 def getDefaultTVLabels() {
-    return "bbc, itv, channel, sky"
+    return "bbc, itv, channel, sky, amc, fox"
 }
 def getDefaultMinMovieRuntime() {
     return 4200
