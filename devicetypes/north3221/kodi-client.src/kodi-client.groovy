@@ -147,8 +147,9 @@ metadata {
         }
 
         standardTile("select", "device.push", width: 2, height: 2) {
-            state "on", label:'Select', action:"push", icon:"", backgroundColor:tileGreen, defaultState: true
-            state "off", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
+            state "stopped", label:'Select', action:"push", icon:"", backgroundColor:tileGreen, defaultState: true
+            state "playing", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
+            state "paused", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
         }
 
         standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
