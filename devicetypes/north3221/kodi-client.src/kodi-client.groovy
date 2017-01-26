@@ -59,7 +59,7 @@ metadata {
         def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
         def mainIcon = "st.Electronics.electronics16"
 
-        valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
+        valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
             state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"#79b821"
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"#ffffff"
@@ -96,13 +96,6 @@ metadata {
             }
         }
 
-        standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
-            state "startup", label:'Startup', action:"push" , icon:"${mainIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause" , icon:"${mainIcon}", backgroundColor:"#79b821"
-            state "stopped", label:'Stopped', action:"push" , icon:"${mainIcon}", backgroundColor:"#ffffff"
-            state "paused", label:'Paused', action:"play", icon:"${mainIcon}", backgroundColor:"#FFA500"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${mainIcon}", backgroundColor:"#ff0000"
-        }
         standardTile("fillerTile1", "device.status", width: 1, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
@@ -117,13 +110,30 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010"
         }
 
-        standardTile("shutdown", "device.status", width: 1, height: 1) {
-            state "playing", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/986/aeon/128/shutdown.png", backgroundColor:"#ffffff", defaultState: true
-            state "shutdown", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/128/shutdown.png", backgroundColor:"#ffffff"
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
+            state "playing", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff", defaultState: true
+            state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
+        }
+
+        standardTile("up", "device.up", width: 2, height: 2, decoration: "flat") {
+            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:"#ffffff", defaultState: true
+        }
+
+        standardTile("down", "device.down", width: 2, height: 2, decoration: "flat") {
+            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:"#ffffff", defaultState: true
+        }
+
+        standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
+            state "on", label:'', action:"left", icon:"st.samsung.da.oven_ic_left", backgroundColor:"#ffffff", defaultState: true
+        }
+
+        standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
+            state "on", label:'', action:"right", icon:"st.samsung.da.oven_ic_right", backgroundColor:"#ffffff", defaultState: true
         }
 
 
-        main("appList")
+
+        main("main")
         details(["mediaMulti",
                  "stop", "fillerTile1", "fillerTile1", "fillerTile1", "fillerTile1", "shutdown"
         ])
@@ -311,13 +321,23 @@ def nextTrack() {
     executeAction("next")
 }
 
-def scanNewClients() {
-    log.debug "Executing 'scanNewClients'"
-    sendCommand("scanNewClients");
+def up(){
+    executeAction("up")
+}
+
+def down(){
+    executeAction("down")
+}
+
+def left(){
+    executeAction("left")
+}
+
+def right(){
+    executeAction("right")
 }
 
 def setLevel(level) {
-    log.debug "Executing 'setVolumeLevel(" + level + ")'"
     sendEvent(name: "level", value: level);
     sendCommand("setVolume." + level);
 }
