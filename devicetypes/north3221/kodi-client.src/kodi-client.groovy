@@ -130,11 +130,11 @@ metadata {
             state "off", label:'Select', action:"push", icon:"", backgroundColor:"ffffff"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
+        standardTile("back", "device.back", width: 1, height: 1) {
             state "on", label:'', action:"back", icon:"https://image.freepik.com/free-icon/back-arrow-ios-7-interface-symbol_318-33678.jpg", backgroundColor:"#ffffff", defaultState: true
         }
 
-        standardTile("info", "device.info", width: 1, height: 1, decoration: "flat") {
+        standardTile("info", "device.info", width: 1, height: 1) {
             state "on", label:'', action:"info", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png", backgroundColor:"#ffffff", defaultState: true
         }
 
@@ -160,7 +160,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
-    sendEvent(name: "device.trackDescription", value: "Installed")
+    sendEvent(name: "trackDescription", value: "Installed")
 }
 
 // parse events into attributes
