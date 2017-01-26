@@ -319,7 +319,7 @@ def getMinMovieRuntime(){
 
 def executeAction(action) {
     def lastState = device.currentState('switch').getValue();
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + command);
+    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
     sendEvent(name: "switch", value: lastState);
 }
 
