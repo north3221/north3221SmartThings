@@ -29,17 +29,26 @@ def getDefaultTVLabels() {
 def getDefaultMinMovieRuntime() {
     return 4200
 }
+//Colours
 def getTileRed(){
     return "#ff0000"
 }
 def getTileGreen() {
-    return "#05ab8b"
+    return "#79b821"
+}
+def getTileLightGreen(){
+    return "#90d2a7"
 }
 def getTileOrange(){
-    return "#ff8800"
+    //return "#ff8800"
+    //return  "#d04e00"
+    return "#e86d13"
 }
 def getTileBlue(){
-    return "#0ba6d1"
+    return "#153591"
+}
+def getTileWhite(){
+    return "#ffffff"
 }
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
@@ -70,11 +79,11 @@ metadata {
 
     tiles(scale: 2) {
         def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
-        def mainIcon = "st.Electronics.electronics16"
+        //def mainIcon = "st.Electronics.electronics16"
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ffffff", defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be", nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:tileWhite, defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:tileLightGreen, nextState: "waiting"
             state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:tileGreen, nextState: "waiting"
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:tileBlue, nextState: "waiting"
             state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:tileOrange, nextState: "waiting"
@@ -111,47 +120,48 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
-            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:'${red}'
-            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:'${red}'
+            state "val", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColors:[
+                    [value: "playing" , color: tileRed],
+                    [value: "stopped", color: tileWhite]
+            ]
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"st.colors.red", defaultState: true
-            state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
+            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("select", "device.push", width: 2, height: 2) {
-            state "on", label:'Select', action:"push", icon:"", backgroundColor:"st.colors.green", defaultState: true
-            state "off", label:'Select', action:"push", icon:"", backgroundColor:"ffffff"
+            state "on", label:'Select', action:"push", icon:"", backgroundColor:tileGreen, defaultState: true
+            state "off", label:'Select', action:"push", icon:"", backgroundColor:tileWhite
         }
 
         standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
-            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:"#ffffff", defaultState: true
+            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("info", "device.info", width: 1, height: 1) {
-            state "on", label:'', action:"info", icon:"http://www.iconsdb.com/icons/preview/gray/info-2-xxl.png", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"info", icon:"http://www.iconsdb.com/icons/preview/gray/info-2-xxl.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
         main("main")
@@ -309,7 +319,7 @@ def getMinMovieRuntime(){
 
 def executeAction(action) {
     log.debug "Executing Action :" + action
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
+    sendEvent(name: "kodi-client", value: device.deviceNetworkId + "." + action);
 }
 
 def push() {
@@ -373,7 +383,7 @@ def mute(){
 }
 
 def unmute(){
-    executeAction("unmute")
+    executeAction("mute")
 }
 
 def setLevel(level) {
