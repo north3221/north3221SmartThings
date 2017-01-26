@@ -104,7 +104,7 @@ metadata {
         valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
             state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
         }
-        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+        valueTile("currentPlayingName", "device.currentPlayingName", height:1, width:6, decoration: "flat") {
             state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
         }
 
