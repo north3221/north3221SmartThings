@@ -32,11 +32,14 @@ def getDefaultMinMovieRuntime() {
 def red(){
     return "#ff0000"
 }
-def green () {
+def green() {
     return "#05ab8b"
 }
-def orange (){
+def orange(){
     return "#ff8800"
+}
+def blue(){
+    return "#0ba6d1"
 }
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
@@ -70,11 +73,12 @@ metadata {
         def mainIcon = "st.Electronics.electronics16"
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"${orange}"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:red
+            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ffffff", defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be", nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green, nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue", nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:orange, nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:red, nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
