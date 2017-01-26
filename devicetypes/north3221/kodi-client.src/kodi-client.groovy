@@ -29,7 +29,9 @@ def getDefaultTVLabels() {
 def getDefaultMinMovieRuntime() {
     return 4200
 }
-
+def red = "#ff0000"
+def green = "#069e33"
+def orange = "#ff8800"
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
         capability "Switch"             //For switch on/off
@@ -63,10 +65,10 @@ metadata {
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:"st.colors.green"
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:"st.colors.orange"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.red"
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:${orange}
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"${red}"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
@@ -94,14 +96,14 @@ metadata {
                 attributeState("muted", action:"music Player.unmute", nextState: "unmuted")
             }
             tileAttribute("device.trackDescription", key: "MARQUEE") {
-                attributeState("trackDescription", label:"${currentValue}", defaultState: true)
+                attributeState("trackDescription", label:'${currentValue}', defaultState: true)
             }
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
             state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff", defaultState: true
-            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"st.colors.red"
-            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"st.colors.red"
+            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:'${red}'
+            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:'${red}'
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
@@ -329,18 +331,22 @@ def nextTrack() {
 }
 
 def up(){
+    log.debug "up"
     executeAction("up")
 }
 
 def down(){
+    log.debug "down"
     executeAction("down")
 }
 
 def left(){
+    log.debug "left"
     executeAction("left")
 }
 
 def right(){
+    log.debug "right"
     executeAction("right")
 }
 
