@@ -354,6 +354,14 @@ def info(){
     executeAction("info")
 }
 
+def mute(){
+    executeAction("mute")
+}
+
+def unmute(){
+    executeAction("unmute")
+}
+
 def setLevel(level) {
     sendEvent(name: "level", value: level);
     sendCommand("setVolume." + level);
