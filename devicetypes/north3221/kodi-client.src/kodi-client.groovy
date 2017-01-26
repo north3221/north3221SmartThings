@@ -131,11 +131,11 @@ metadata {
         }
 
         standardTile("back", "device.back", width: 1, height: 1) {
-            state "on", label:'', action:"back", icon:"https://image.freepik.com/free-icon/back-arrow-ios-7-interface-symbol_318-33678.jpg", backgroundColor:"#ffffff", defaultState: true
+            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("info", "device.info", width: 1, height: 1) {
-            state "on", label:'', action:"info", icon:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png", backgroundColor:"#ffffff", defaultState: true
+            state "on", label:'', action:"info", icon:"http://www.iconsdb.com/icons/preview/gray/info-2-xxl.png", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
