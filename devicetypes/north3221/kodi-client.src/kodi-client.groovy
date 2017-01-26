@@ -65,9 +65,9 @@ metadata {
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
             state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:"#ddf4be"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:green
+            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:'${green}'
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:${orange}
+            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:'${orange}'
             state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"${red}"
         }
 
