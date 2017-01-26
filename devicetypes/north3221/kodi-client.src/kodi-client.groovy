@@ -120,10 +120,9 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stop", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColors:[
-                    [value: "playing", color: tileRed],
-                    [value: "stopped", color: tileWhite]
-            ]
+            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileWhite, defaultState: true
+            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
+            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
