@@ -69,9 +69,9 @@ metadata {
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
             tileAttribute("device.status", key: "PRIMARY_CONTROL") {
-                attributeState("paused", label:"Paused",)
-                attributeState("playing", label:"Playing")
-                attributeState("stopped", label:"Stopped")
+                attributeState("paused", label:"Paused", backgroundColor:"#FFA500")
+                attributeState("playing", label:"Playing", backgroundColor:"#79b821")
+                attributeState("stopped", label:"Stopped", backgroundColor:"#ffffff")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
                 attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing", backgroundColor:"#FFA500")
