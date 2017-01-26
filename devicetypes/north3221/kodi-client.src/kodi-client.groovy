@@ -103,53 +103,27 @@ metadata {
             state "paused", label:'Paused', action:"play", icon:"${mainIcon}", backgroundColor:"#FFA500"
             state "shutdown", label:'Shutdown', action:"push", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
-
-        standardTile("next", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "next", label:'', action:"music Player.nextTrack", icon:"st.sonos.next-btn", backgroundColor:"#ffffff"
+        standardTile("fillerTile1", "device.status", width: 1, height: 1, decoration: "flat") {
+            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
 
-        standardTile("previous", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "previous", label:'', action:"music Player.previousTrack", icon:"st.sonos.previous-btn", backgroundColor:"#ffffff"
-        }
-
-        standardTile("fillerTile", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "default", label:'', action:"", icon:"", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"", icon:"", backgroundColor:"#ffffff"
+        standardTile("fillerTile2", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "on", label:'', action:"", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
 
         standardTile("stop", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "default", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
-            state "grouped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
+            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#f21010", defaultState: true
         }
 
         standardTile("shutdown", "device.status", width: 1, height: 1) {
-            state "default", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/986/aeon/128/shutdown.png", backgroundColor:"#ffffff"
+            state "playing", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/986/aeon/128/shutdown.png", backgroundColor:"#ffffff", defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/128/shutdown.png", backgroundColor:"#ffffff"
         }
 
-        valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
-        }
-        valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
-        }
-        valueTile("currentPlayingName", "device.currentPlayingName", height:1, width:6, decoration: "flat") {
-            state "on", label:'${currentValue}', backgroundColor:"#ffffff", defaultState: true
-        }
-
-        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
-            state "level", action:"setVolumeLevel", backgroundColor:"#ffffff"
-        }
 
         main("appList")
-        details(["currentPlayingType", "currentPlayingCategory",
-        //         "currentPlayingName",
-        //         "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile", "fillerTile",
-        //         "fillerTile", "fillerTile", "main", "fillerTile", "fillerTile",
-        //         "fillerTile", "previous", "fillerTile", "next",
-                 "mediaMulti",
-                 "stop", "shutdown",
-        //         "levelSliderControl"
+        details(["mediaMulti",
+                 "stop", "fillerTile1", "fillerTile1", "fillerTile1", "fillerTile1", "shutdown"
         ])
     }
 
@@ -340,7 +314,7 @@ def scanNewClients() {
     sendCommand("scanNewClients");
 }
 
-def setVolumeLevel(level) {
+def setLevel(level) {
     log.debug "Executing 'setVolumeLevel(" + level + ")'"
     sendEvent(name: "level", value: level);
     sendCommand("setVolume." + level);
@@ -388,22 +362,35 @@ def setPlaybackState(state) {
 }
 
 def setPlaybackTitle(type, category, name) {
+    def track = ""
 
     if(type == ""){
         type = 'None'
+    } else {
+        track = "Kodi Type: " + type
     }
     if(category == ""){
         category = 'None'
+    } else {
+        if (track.length > 1){
+            track = track + "\n"
+        }
+        track = track + category
     }
+    if (track.length > 1){
+        track = track + "\n"
+    }
+    track = track + name
     if(name == ""){
         name = 'Nothing Playing'
+        track = name
     }
 
     log.debug "Setting title to :" + name
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
-    sendEvent(name: "device.trackDescription", value: "Kodi Type : " + type + "\nCategory : " + category + "\nName : " + name)
+    sendEvent(name: "device.trackDescription", value: track)
 }
 
 def setPlaybackIcon(iconUrl) {
