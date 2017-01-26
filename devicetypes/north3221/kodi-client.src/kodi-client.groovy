@@ -29,7 +29,9 @@ def getDefaultTVLabels() {
 def getDefaultMinMovieRuntime() {
     return 4200
 }
-def red = "#ff0000"
+def red(){
+    return "#ff0000"
+}
 def green = "#069e33"
 def orange = "#ff8800"
 metadata {
@@ -68,7 +70,7 @@ metadata {
             state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:'${green}'
             state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:"st.colors.blue"
             state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:'${orange}'
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:"${red}"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:red
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
