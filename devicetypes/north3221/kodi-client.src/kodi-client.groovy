@@ -131,11 +131,9 @@ metadata {
             state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:"#ffffff", defaultState: true
         }
 
-        standardTile("select", "device.select", width: 2, height: 2) {
-            state "on", label:'Select', action:"select", icon:"", backgroundColor:"#ffffff", defaultState: true
+        standardTile("select", "device.push", width: 2, height: 2) {
+            state "on", label:'Select', action:"push", icon:"", backgroundColor:"#ffffff", defaultState: true
         }
-
-
 
         main("main")
         details(["mediaMulti",
