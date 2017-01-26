@@ -403,6 +403,7 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
+    sendEvent(name: "trackDescription", value: "Kodi Type : " + type + "\nCategory : " + category + "\nName : " + name)
 }
 
 def setPlaybackIcon(iconUrl) {
