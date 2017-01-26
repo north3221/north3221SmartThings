@@ -157,7 +157,7 @@ metadata {
         }
 
         standardTile("info", "device.info", width: 1, height: 1) {
-            state "on", label:'', action:"info", icon:"http://www.iconsdb.com/icons/preview/gray/info-2-xxl.png", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
