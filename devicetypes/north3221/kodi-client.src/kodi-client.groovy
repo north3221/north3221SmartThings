@@ -434,6 +434,7 @@ def setPlaybackTitle(type, category, name) {
     }
 
     log.debug "Setting title to :" + name
+    log.debug "Track = " + track
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
