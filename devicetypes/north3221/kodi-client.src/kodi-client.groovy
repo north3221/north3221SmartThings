@@ -318,8 +318,9 @@ def getMinMovieRuntime(){
 }
 
 def executeAction(action) {
-    log.debug "Executing Action :" + action
-    sendEvent(name: "kodi-client", value: device.deviceNetworkId + "." + action);
+    def lastState = device.currentState('switch').getValue();
+    sendEvent(name: "switch", value: device.deviceNetworkId + "." + command);
+    sendEvent(name: "switch", value: lastState);
 }
 
 def push() {
@@ -388,14 +389,7 @@ def unmute(){
 
 def setLevel(level) {
     sendEvent(name: "level", value: level);
-    sendCommand("setVolume." + level);
-}
-
-def sendCommand(command) {
-
-    def lastState = device.currentState('switch').getValue();
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + command);
-    sendEvent(name: "switch", value: lastState);
+    executeAction("setVolume." + level);
 }
 
 def setPlaybackState(state) {
