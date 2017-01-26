@@ -99,13 +99,13 @@ metadata {
         }
 
         valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "default", label:'', backgroundColor:"#ffffff"
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
         valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
-            state "default", label:'', backgroundColor:"#ffffff"
+            state "default", label:'${currentVal', backgroundColor:"#ffffff"
         }
-        standardTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
-            state "default", label:'', backgroundColor:"#ffffff"
+        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:1, width:6, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
         controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
@@ -127,6 +127,13 @@ metadata {
         input "inputTVLabel", "text", required: true, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: true, title: "Minimum Runtime to be classed as Move (seconds):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
     }
+}
+
+def installed() {
+    sendEvent(name: "currentPlayingType", value: "None")
+    sendEvent(name: "currentPlayingCategory", value: "None")
+    sendEvent(name: "currentPlayingName", value: "Nothing Playing")
+
 }
 
 // parse events into attributes
