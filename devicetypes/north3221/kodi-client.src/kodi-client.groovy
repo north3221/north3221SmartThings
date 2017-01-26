@@ -37,11 +37,11 @@ metadata {
         capability "mediaController"    //Not sure I need this yet
         capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
 
-        command "scanNewClients"
-        command "setPlaybackIcon", ["string"]
-        command "setPlaybackTitle", ["string"]
+        //command "scanNewClients"
+        //command "setPlaybackIcon", ["string"]
+        //command "setPlaybackTitle", ["string"]
         command "setVolumeLevel", ["number"]
-        command "shutdown"
+        //command "shutdown"
         command "describeAttributes"
         command "executeAction" , ["string"]
 
@@ -111,7 +111,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
+            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ff0000", defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:"#ffffff"
         }
 
@@ -131,10 +131,16 @@ metadata {
             state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:"#ffffff", defaultState: true
         }
 
+        standardTile("select", "device.select", width: 2, height: 2) {
+            state "on", label:'Select', action:"select", icon:"", backgroundColor:"#ffffff", defaultState: true
+        }
+
+
+
         main("main")
         details(["mediaMulti",
                  "stop", "1x1", "up", "1x1", "shutdown",
-                "left", "2x1", "right", "2x1",
+                "left", "select", "right",
                  "2x1", "down", "2x1"
         ])
     }
