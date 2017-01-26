@@ -91,7 +91,7 @@ metadata {
                 attributeState("unmuted", action:"music Player.mute", nextState: "muted")
                 attributeState("muted", action:"music Player.unmute", nextState: "unmuted")
             }
-            tileAttribute("device.trackDescription", key: "MARQUEE") {
+            tileAttribute("device.currentPlayingName", key: "MARQUEE") {
                 attributeState("trackDescription", label:"${currentValue}", defaultState: true)
             }
         }
@@ -312,7 +312,7 @@ def push() {
 }
 
 def play() {
-    executeAction("select")
+    executeAction("play")
 }
 
 def pause() {
