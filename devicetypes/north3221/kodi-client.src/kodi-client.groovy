@@ -133,10 +133,10 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "stop", "1x2", "1x2", "shutdown",
-                "1x2", "up", "1x2",
-                "left", "1x2", "right", "1x2",
-                 "1x2", "down", "1x2"
+                 "stop", "2x1", "2x1", "shutdown",
+                "2x1", "up", "2x1",
+                "left", "2x1", "right", "2x1",
+                 "2x1", "down", "2x1"
         ])
     }
 
@@ -149,10 +149,7 @@ metadata {
 }
 
 def installed() {
-    sendEvent(name: "currentPlayingType", value: "None")
-    sendEvent(name: "currentPlayingCategory", value: "None")
-    sendEvent(name: "currentPlayingName", value: "Nothing Playing")
-
+    setPlaybackTitle("","","")
 }
 
 // parse events into attributes
