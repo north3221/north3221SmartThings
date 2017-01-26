@@ -160,7 +160,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
-    sendEvent(name: "trackDescription", value: "Installed")
+    //sendEvent(name: "trackDescription", value: "Installed")
 }
 
 // parse events into attributes
@@ -419,12 +419,12 @@ def setPlaybackTitle(type, category, name) {
     if(category == ""){
         category = 'None'
     } else {
-        if (track.length > 1){
+        if (track != ""){
             track = track + "\n"
         }
         track = track + category
     }
-    if (track.length > 1){
+    if (track != ""){
         track = track + "\n"
     }
     track = track + name
