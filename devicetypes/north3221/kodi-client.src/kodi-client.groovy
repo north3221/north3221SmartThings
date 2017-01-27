@@ -65,6 +65,8 @@ metadata {
         command "right"
         command "back"
         command "info"
+        command "fastforward"
+        command "rewind"
 
         //Custom attributes
         attribute "currentPlayingType", "string"
