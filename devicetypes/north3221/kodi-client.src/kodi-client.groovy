@@ -41,8 +41,6 @@ def getTileLightGreen(){
     return "#90d2a7"
 }
 def getTileOrange(){
-    //return "#ff8800"
-    //return  "#d04e00"
     return "#e86d13"
 }
 def getTileBlue(){
@@ -58,16 +56,16 @@ metadata {
         capability "mediaController"    //Not sure I need this yet
         capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
         //Custom Commands
-        command "setVolumeLevel", ["number"]
-        command "shutdown"
         command "describeAttributes"
         command "executeAction" , ["string"]
+        command "shutdown"
         command "up"
         command "down"
         command "left"
         command "right"
         command "back"
         command "info"
+
         //Custom attributes
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
@@ -98,22 +96,22 @@ metadata {
                 attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"music Player.play", nextState: "playing")
-                attributeState("playing", label:"Playing", action:"music Player.pause", nextState: "paused")
-                attributeState("stopped", label:"Stopped", action:"push", nextState: "playing")
+                attributeState("paused", label:"Paused", action:"play", nextState: "playing")
+                attributeState("playing", label:"Playing", action:"play", nextState: "paused")
+                attributeState("stopped", label:"Stopped", action:"play", nextState: "playing")
             }
             tileAttribute("device.status", key: "PREVIOUS_TRACK") {
-                attributeState("status", action:"music Player.previousTrack", defaultState: true)
+                attributeState("status", action:"rewind", defaultState: true)
             }
             tileAttribute("device.status", key: "NEXT_TRACK") {
-                attributeState("status", action:"music Player.nextTrack", defaultState: true)
+                attributeState("status", action:"fastforward", defaultState: true)
             }
             tileAttribute ("device.level", key: "SLIDER_CONTROL") {
                 attributeState("level", action:"music Player.setLevel")
             }
             tileAttribute ("device.mute", key: "MEDIA_MUTED") {
                 attributeState("unmuted", action:"music Player.mute", nextState: "muted")
-                attributeState("muted", action:"music Player.unmute", nextState: "unmuted")
+                attributeState("muted", action:"music Player.mute", nextState: "unmuted")
             }
             tileAttribute("device.trackDescription", key: "MARQUEE") {
                 attributeState("trackDescription", label:'${currentValue}', defaultState: true)
@@ -127,7 +125,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "playing", label:shutdownType, action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
@@ -174,10 +172,11 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: true, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
-        input "inputSportLabel", "text", required: true, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
-        input "inputTVLabel", "text", required: true, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
-        input "inputMinMovieRuntime", "number", required: true, title: "Minimum Runtime to be classed as Move (seconds):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
+        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
+        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
+        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
+        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
+        input "inputShutdownAsQuit", "bool", required: false, title: "If you want to 'Quit' Kodi instead of 'Shutdown':", defaultValue: false, displayDuringSetup: false
     }
 }
 
@@ -318,6 +317,16 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
+def getShutdownAsQuit(){
+    return inputShutDownAsQuit ?: false
+}
+def getShutdownType(){
+    if (shutdownAsQuit){
+        return "Quit"
+    }
+    return "Shutdown"
+}
+
 def executeAction(action) {
     def lastState = device.currentState('switch').getValue();
     sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
@@ -327,13 +336,9 @@ def executeAction(action) {
 def push() {
     executeAction("select")
 }
-
+//Play pause for action button
 def play() {
-    executeAction("play")
-}
-
-def pause() {
-    executeAction("pause")
+    executeAction("playpause")
 }
 
 def stop() {
@@ -341,34 +346,30 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction("shutdown")
+    executeAction(shutdownType.toLowercase)
 }
 
-def previousTrack() {
-    executeAction("previous")
+def fastforward(){
+    executeAction("fastforward")
 }
 
-def nextTrack() {
-    executeAction("next")
+def rewind(){
+    executeAction("rewind")
 }
 
 def up(){
-    log.debug "up"
     executeAction("up")
 }
 
 def down(){
-    log.debug "down"
     executeAction("down")
 }
 
 def left(){
-    log.debug "left"
     executeAction("left")
 }
 
 def right(){
-    log.debug "right"
     executeAction("right")
 }
 
@@ -381,10 +382,6 @@ def info(){
 }
 
 def mute(){
-    executeAction("mute")
-}
-
-def unmute(){
     executeAction("mute")
 }
 

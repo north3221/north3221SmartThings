@@ -244,9 +244,7 @@ def switchChange(evt) {
     def command = getKodiCommand(evt.value);
 
     switch(command) {
-        case "scanNewClients":      //Bespoke command
-            getClients();
-            break;
+        //Case any bespoke actions and default teh generic actions
         case "setVolume":           //Cant be done with generic execute action
             def vol = getKodiVolume(evt.value);
             log.debug "Vol is: " + vol
@@ -254,6 +252,9 @@ def switchChange(evt) {
             break;
         case "shutdown":            //Cant be done with generic execute action
             shutdown()
+            break;
+        case "quit":                //Cant be done with generic execute action
+            quit()
             break;
         default:                    //Just execute command
             log.debug "execute " + command
@@ -299,6 +300,12 @@ def getPlayingtitle(){
 // Added shutdown
 def shutdown(){
     def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+// Added quit
+def quit(){
+    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Application.Quit\", \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
