@@ -320,7 +320,9 @@ def getMinMovieRuntime(){
 }
 
 def getShutdownAsQuit(){
-    return inputShutDownAsQuit ?: false
+    def test = inputShutDownAsQuit ?: false
+    log.debug "Shutdown as quit = " + test.toString()
+    return
 }
 def getShutdownType(){
     if (shutdownAsQuit){
