@@ -44,7 +44,7 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  Smartapp:          <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/beta/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">Copy and paste this code into a new 'Smartapp'</a>
  
 
-####Version 1.0
+###Version 1.0
 
 Initial release with a few bits added on top of the forked version I took.  
 I've also added some custom attributes:
@@ -90,7 +90,7 @@ This allows you to call the shutdown command from Smartthings, which will shutdo
 
 
 
-####Beta Release (Target Release 1.1)
+###Beta Release (Target Release 1.1)
 I've done quite an overhaul to the both smartapp and device handler. I've updated all the tiles to create a media player and Kodi remote, inside your smarthings mobile app, and unlocked full capability for interaction with Kodi.
 
 Preference changes: I've made them all optional, so you can just update one you want to and not have to update the rest
