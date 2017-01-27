@@ -336,7 +336,11 @@ def executeAction(action) {
 }
 
 def push() {
-    executeAction("select")
+    log.debug "inputShutdownAsQuit" + inputShutdownAsQuit.toString
+    def test = inputShutdownAsQuit ?: false
+    log.debug "test" + test.toString()
+
+    //executeAction("select")
 }
 //Play pause for action button
 def play() {
