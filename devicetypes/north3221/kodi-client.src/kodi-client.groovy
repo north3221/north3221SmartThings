@@ -336,7 +336,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "inputShutdownAsQuit : " + inputShutdownAsQuit.toString
+    log.debug "inputShutdownAsQuit : " + inputShutdownAsQuit.toString()
     def test = inputShutdownAsQuit ?: false
     def java = inputShutdownAsQuit ? inputShutdownAsQuit : false
     log.debug "test : " + test.toString()
