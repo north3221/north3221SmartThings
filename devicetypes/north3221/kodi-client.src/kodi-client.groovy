@@ -336,9 +336,11 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "inputShutdownAsQuit" + inputShutdownAsQuit.toString
+    log.debug "inputShutdownAsQuit : " + inputShutdownAsQuit.toString
     def test = inputShutdownAsQuit ?: false
-    log.debug "test" + test.toString()
+    def java = inputShutdownAsQuit ? inputShutdownAsQuit : false
+    log.debug "test : " + test.toString()
+    log.debug "java : " + java.toString()
 
     //executeAction("select")
 }
