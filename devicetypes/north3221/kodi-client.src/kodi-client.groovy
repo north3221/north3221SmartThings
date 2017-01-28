@@ -340,6 +340,8 @@ def push() {
                     ]
             ]
 
+    log.debug "HTTP Request = " + params.toString()
+
     httpGet(params) { resp ->
         log.debug "response data: ${resp.data}"
     }
