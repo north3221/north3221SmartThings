@@ -166,9 +166,9 @@ metadata {
             state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("info", "device.info", width: 1, height: 1, decoration: flat) {
+        standardTile("info", "device.info", width: 1, height: 1) {
             //state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
-            state "info", label:'', action:"info", icon:"http://files.softicons.com/download/social-media-icons/brushed-metal-icons-by-mebaze/png/512x512/Info-01.png", backgroundColor:tileWhite, defaultState: true
+            state "info", label:'', action:"info", icon:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-alphanumeric/068021-3d-transparent-glass-icon-alphanumeric-information2-ps.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
