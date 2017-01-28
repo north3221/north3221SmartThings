@@ -135,7 +135,7 @@ metadata {
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "default", label:'${currentValue}', action:"shutdown", icon:"https://www.iconfinder.com/icons/32118/bye_shutdown_icon#size=64", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'${currentValue}', action:"shutdown", icon:"https://cdn3.iconfinder.com/data/icons/ginux/Png/Shutdown-64.png", backgroundColor:tileWhite, defaultState: true
 
 
         }
