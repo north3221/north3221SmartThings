@@ -335,6 +335,7 @@ def executeAction(action) {
 }
 
 def push() {
+    log.debug "Current shutdown typpe = " + "${currentShutdownType}"
     executeAction("select")
 }
 //Play pause for action button
