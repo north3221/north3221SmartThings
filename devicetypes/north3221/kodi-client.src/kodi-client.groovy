@@ -136,7 +136,7 @@ metadata {
         }
 
         standardTile("shutdownType", "device.shutdownType", width: 1, height: 1) {
-            state "playing", label:device.currentState('shutdownType').getValue(), action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "playing", label:'device.currentState("shutdownType").getValue()', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'none', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
