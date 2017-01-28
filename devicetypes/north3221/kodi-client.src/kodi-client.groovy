@@ -339,6 +339,7 @@ def executeAction(action) {
 def push() {
     //log.debug "Current shutdown type = " + ${currentShutdownType}
     def sdType = shutdownAsQuit ? "Quit" : "Shutdown"
+    log.debug "Send type = " + sdType
     sendEvent(name: "shutdownType", value: sdType)
     log.debug "shutdown type State = " + shutdownTypeState
     executeAction("select")
