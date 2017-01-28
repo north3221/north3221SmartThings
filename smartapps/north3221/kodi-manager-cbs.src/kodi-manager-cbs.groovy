@@ -242,6 +242,7 @@ def switchChange(evt) {
     def kodiIP = getKodiAddress(evt.value);
     // Parse out the new switch state from the event data
     def command = getKodiCommand(evt.value);
+    log.debug "command recieved : " + command
 
     switch(command) {
         //Case any bespoke actions and default teh generic actions
