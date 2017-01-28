@@ -137,9 +137,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
-
-
+            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-button-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
