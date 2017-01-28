@@ -334,8 +334,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "label : " + shutdownType
-    //executeAction("select")
+    executeAction("select")
 }
 //Play pause for action button
 def play() {
