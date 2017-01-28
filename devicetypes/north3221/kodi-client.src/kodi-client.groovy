@@ -53,7 +53,7 @@ def getTileWhite(){
 def getShutdownAsQuit(){
     return inputShutdownAsQuit ?: false
 }
-def getShutdownType(){
+def StopgetShutdownType(){
     return shutdownAsQuit ? "Quit" : "Shutdown"
 }
 
