@@ -192,13 +192,6 @@ metadata {
     }
 }
 
-def installed() {
-    log.info "Installed"
-    setPlaybackTitle("","","")
-    def sdType = shutdownAsQuit ? "Quit" : "Shutdown"
-    sendEvent(name: "shutdownType", value: sdType)
-}
-
 // parse events into attributes
 def parse(evt) {
     def msg = parseLanMessage(evt);
