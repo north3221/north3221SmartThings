@@ -334,9 +334,9 @@ def push() {
             contentType: 'application/json',
 
             query: [
-                    "jsonrpc": "2.0",
-                    "method": "Player.GetActivePlayers",
-                    "id": 1
+                    """jsonrpc""": """2.0""",
+                    """method""": """Player.GetActivePlayers""",
+                    """id""": """1"""
                     ]
             ]
 
