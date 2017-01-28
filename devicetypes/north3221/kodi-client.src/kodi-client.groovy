@@ -338,13 +338,6 @@ def executeAction(action) {
 }
 
 def push() {
-    //log.debug "Current shutdown type = " + ${currentShutdownType}
-    def sdType = shutdownAsQuit ? "Quit" : "Shutdown"
-    log.debug "Send type = " + sdType
-    sendEvent(name: "shutdownType", value: sdType)
-    log.debug "shutdown type State getting val = " + device.currentValue("shutdownType")
-    log.debug "shutdown type State getting att = " + device.currentShutdownType
-
     executeAction("select")
 }
 //Play pause for action button
