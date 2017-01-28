@@ -49,6 +49,17 @@ def getTileBlue(){
 def getTileWhite(){
     return "#ffffff"
 }
+
+def getShutdownAsQuit(){
+    return inputShutdownAsQuit ?: false
+}
+def getShutdownType(){
+    if (shutdownAsQuit){
+        return "Quit"
+    }
+    return "Shutdown"
+}
+
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
         capability "Switch"             //For switch on/off
@@ -127,7 +138,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'${shutdownType}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "playing", label:"${shutdownType}", action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
@@ -317,16 +328,6 @@ def getMinMovieRuntime(){
         return inputMinMovieRuntime
     }
     return defaultMinMovieRuntime
-}
-
-def getShutdownAsQuit(){
-    return inputShutdownAsQuit ?: false
-}
-def getShutdownType(){
-    if (shutdownAsQuit){
-        return "Quit"
-    }
-    return "Shutdown"
 }
 
 def executeAction(action) {
