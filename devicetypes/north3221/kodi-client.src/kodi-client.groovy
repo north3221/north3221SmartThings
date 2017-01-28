@@ -135,7 +135,7 @@ metadata {
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/quit-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'', action:"shutdown", icon:"http://st.depositphotos.com/2036511/4218/v/170/depositphotos_42189215-stock-illustration-start-icon.jpg", backgroundColor:tileWhite, defaultState: true
 
 
         }
