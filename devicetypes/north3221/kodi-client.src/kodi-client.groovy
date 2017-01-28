@@ -175,15 +175,15 @@ metadata {
 
         }
 
-        standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
+        standardTile("1x1", "device.status", width: 2, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
         main("main")
         details(["mediaMulti",
-                 "back", "stop", "up", "info", "shutdown",
-                "left", "push", "right",
-                 "2x1", "down", "2x1"
+                 "1x1", "stop", "up", "info",
+                 "left", "push", "right",
+                 "shutdown", "1x1", "down", "1x1","back"
         ])
     }
 
