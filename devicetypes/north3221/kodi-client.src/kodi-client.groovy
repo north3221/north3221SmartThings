@@ -50,11 +50,8 @@ def getTileWhite(){
     return "#ffffff"
 }
 
-def getShutdownAsQuit(){
-    return inputShutdownAsQuit ?: false
-}
-def StopgetShutdownType(){
-    return shutdownAsQuit ? "Quit" : "Shutdown"
+def getShutdownType(){
+    return inputShutdownAsQuit ? "Quit" : "Shutdown"
 }
 
 metadata {
@@ -135,9 +132,8 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdownType", "device.shutdownType", width: 1, height: 1, decoration: "flat") {
-            //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "shutdown", label:'${currentValue}', action:"shutdown", icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYD-Cm4wZIThjXQq6SXJgH6CI-iUS8j3vILxQ7dF4K7BKnvfXr", backgroundColor:tileRed, defaultState: true
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "flat") {
+            state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
