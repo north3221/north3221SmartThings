@@ -129,7 +129,7 @@ metadata {
 
         standardTile("stop", "device.status", width: 1, height: 1) {
             //state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileWhite, defaultState: true
-            state "stopped", label:'', action:"music Player.stop", icon:"https://cdn2.iconfinder.com/data/icons/iconslandplayer/PNG/128x128/CircleBordered/Stop1NormalRed.png", backgroundColor:tileWhite, defaultState: true
+            state "stopped", label:'', action:"music Player.stop", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-icon.png", backgroundColor:tileWhite, defaultState: true
 
 
             //state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
