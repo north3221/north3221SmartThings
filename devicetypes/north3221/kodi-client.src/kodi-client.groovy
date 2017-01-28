@@ -136,8 +136,9 @@ metadata {
         }
 
         standardTile("shutdownType", "device.shutdownType", width: 1, height: 1) {
-            state "default", label:'${currentShutdownType}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "shutdown", label:'none', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
+            //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "default", label:'${currentValue}', action:"shutdown", icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYD-Cm4wZIThjXQq6SXJgH6CI-iUS8j3vILxQ7dF4K7BKnvfXr", backgroundColor:tileRed, defaultState: true
+
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
