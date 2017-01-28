@@ -326,9 +326,16 @@ def executeAction(action) {
 
 def push() {
 
-    def activePlayer = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D".toURL().text
+    def activePlayerRequest = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D"
 
-    log.debug "Active Player = " + activePlayer
+    def params = [
+            uri: activePlayerRequest
+
+            ]
+
+    httpGet(params) { resp ->
+        log.debug "response data: ${resp.data}"
+    }
 
     //executeAction("select")
 }
