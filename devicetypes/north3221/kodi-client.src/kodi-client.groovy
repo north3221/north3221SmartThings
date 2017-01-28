@@ -175,7 +175,7 @@ metadata {
 
         }
 
-        standardTile("1x1", "device.status", width: 2, height: 1, decoration: "flat") {
+        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
@@ -347,8 +347,7 @@ def stop() {
 }
 
 def shutdown() {
-    log.debug "Shutdown called = " + device.currentValue("shutdownType")
-    //executeAction(shutdownTypeState)
+    executeAction(shutdownType)
 }
 
 def fastforward(){
