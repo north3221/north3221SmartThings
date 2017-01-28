@@ -134,7 +134,7 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
+        standardTile("shutdown", "device.status", width: 1, height: 1) {
             state "playing", label:"${shutdownType}", action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
@@ -346,7 +346,7 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction(shutdownType.toLowercase)
+    executeAction(shutdownType.toLowerCase())
 }
 
 def fastforward(){
