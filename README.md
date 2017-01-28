@@ -93,7 +93,7 @@ This allows you to call the shutdown command from Smartthings, which will shutdo
 ###Beta Release (Target Release 1.1)
 I've done quite an overhaul to the both smartapp and device handler. I've updated all the tiles to create a media player and Kodi remote, inside your smarthings mobile app, and unlocked full capability for interaction with Kodi.
 
-Preference changes: I've made them all optional, so you can just update one you want to and not have to update the rest
+Preference changes: I've made them all optional, so you can just update one you want to and not have to update the rest  
 Also added new preference:  
 Shutdown as Quit - If you change this to true the shutdown command will quit Kodi instead of shutting down system 
 
