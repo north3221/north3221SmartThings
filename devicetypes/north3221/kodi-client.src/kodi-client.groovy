@@ -169,7 +169,7 @@ metadata {
         standardTile("info", "device.info", width: 1, height: 1) {
             //state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
             //state "info", label:'', action:"info", icon:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/glossy-silver-icons-alphanumeric/070981-glossy-silver-icon-alphanumeric-information2-ps.png", backgroundColor:tileWhite, defaultState: true
-            state "info", label:'', action:"info", icon:"https://github.com/north3221/north3221SmartThings/blob/master/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "info", label:'', action:"info", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
 
 
 
