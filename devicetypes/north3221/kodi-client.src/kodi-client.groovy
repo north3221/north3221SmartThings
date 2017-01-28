@@ -325,7 +325,12 @@ def executeAction(action) {
 }
 
 def push() {
-    executeAction("select")
+
+    def activePlayerRequest = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D"
+    activePlayerRequestURL = activePlayerRequest.toURL()
+    log.debug "Active Player = " + activePlayerRequestURL.text()
+
+    //executeAction("select")
 }
 //Play pause for action button
 def play() {
