@@ -133,9 +133,9 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "flat") {
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "default", label:'${currentValue}', action:"shutdown", icon:"https://cdn3.iconfinder.com/data/icons/basic-colored/1024/shutdown-128.png", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'${currentValue}', action:"shutdown", icon:"http://www.iconsplace.com/icons/preview/red/shutdown-256.png", backgroundColor:tileWhite, defaultState: true
 
 
         }
