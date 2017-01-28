@@ -53,7 +53,7 @@ def getTileWhite(){
 def getShutdownAsQuit(){
     return inputShutdownAsQuit ?: false
 }
-def getShutdownType(){
+def currentShutdownType(){
     return shutdownAsQuit ? "Quit" : "Shutdown"
 }
 
@@ -135,7 +135,7 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
+        standardTile("shutdown", "device.shutdownType", width: 1, height: 1) {
             state "playing", label:'Shutdown', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'none', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
@@ -193,7 +193,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
-    sendEvent(name: "shutdownType", value: getShutdownType)
+    sendEvent(name: "shutdownType", value: '${currentShutdownType}')
 }
 
 // parse events into attributes
