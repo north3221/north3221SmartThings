@@ -136,7 +136,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdownType", width: 1, height: 1) {
-            state "playing", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "playing", label:'${shutdownTypeState}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'none', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
@@ -337,7 +337,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "Current shutdown type = " + ${currentShutdownType}
+    //log.debug "Current shutdown type = " + ${currentShutdownType}
     log.debug "shutdown type State = " + shutdownTypeState
     executeAction("select")
 }
