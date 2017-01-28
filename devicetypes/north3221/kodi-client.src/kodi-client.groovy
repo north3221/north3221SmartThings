@@ -176,7 +176,7 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "back", "stop", "up", "info", "shutdown",
+                 "back", "stop", "up", "info", "shutdownType",
                 "left", "push", "right",
                  "2x1", "down", "2x1"
         ])
@@ -341,7 +341,7 @@ def push() {
     def sdType = shutdownAsQuit ? "Quit" : "Shutdown"
     log.debug "Send type = " + sdType
     sendEvent(name: "shutdownType", value: sdType)
-    log.debug "shutdown type State = " + shutdownType.currentValue()
+    log.debug "shutdown type State = " + device.currentState('shutdownType').getValue()
     executeAction("select")
 }
 //Play pause for action button
