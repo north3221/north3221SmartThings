@@ -53,7 +53,7 @@ def getTileWhite(){
 def getShutdownAsQuit(){
     return inputShutdownAsQuit ?: false
 }
-def currentShutdownType(){
+def getShutdownType(){
     return shutdownAsQuit ? "Quit" : "Shutdown"
 }
 
@@ -192,8 +192,10 @@ metadata {
 }
 
 def installed() {
+    log.info "Installed"
     setPlaybackTitle("","","")
-    sendEvent(name: "shutdownType", value: "${currentShutdownType}")
+    def sdType = shutdownAsQuit ? "Quit" : "Shutdown"
+    sendEvent(name: "shutdownType", value: sdType)
 }
 
 // parse events into attributes
@@ -335,7 +337,8 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "Current shutdown typpe = " + ${currentShutdownType}
+    log.debug "Current shutdown type = " + ${currentShutdownType}
+    log.debug "shutdown type State = " + shutdownTypeState
     executeAction("select")
 }
 //Play pause for action button
@@ -348,7 +351,8 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction(shutdownType.toLowerCase())
+    log.debug "Shutdown called = " shutdownTypeState
+    //executeAction(shutdownTypeState)
 }
 
 def fastforward(){
