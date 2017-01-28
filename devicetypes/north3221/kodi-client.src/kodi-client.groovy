@@ -342,7 +342,7 @@ def push() {
     log.debug "Send type = " + sdType
     sendEvent(name: "shutdownType", value: sdType)
     log.debug "shutdown type State getting val = " + device.currentState('shutdownType').getValue()
-    log.debug "shutdown type State getting att = " + device.shutdownTypeState
+    log.debug "shutdown type State getting att = " + device.shutdownTypeState.value
 
     executeAction("select")
 }
