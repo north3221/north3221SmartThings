@@ -326,11 +326,18 @@ def executeAction(action) {
 
 def push() {
 
-    def activePlayerRequest = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D"
+    //def activePlayerRequest = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D"
 
     def params = [
-            uri: activePlayerRequest
+            uri: "http://192.168.0.100:80",
+            path: "/jsonrpc",
+            contentType: 'application/json',
 
+            query: [
+                    "jsonrpc": "2.0",
+                    "method": "Player.GetActivePlayers",
+                    "id": 1
+                    ]
             ]
 
     httpGet(params) { resp ->
