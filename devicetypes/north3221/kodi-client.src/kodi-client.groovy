@@ -128,14 +128,16 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileWhite, defaultState: true
+            //state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileWhite, defaultState: true
+            state "stopped", label:'', action:"music Player.stop", icon:"https://cdn2.iconfinder.com/data/icons/iconslandplayer/PNG/128x128/CircleBordered/Stop1NormalRed.png", backgroundColor:tileWhite, defaultState: true
+
+
             //state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
             //state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "default", label:'', action:"shutdown", icon:"http://st.depositphotos.com/2036511/4218/v/170/depositphotos_42189215-stock-illustration-start-icon.jpg", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
 
 
         }
