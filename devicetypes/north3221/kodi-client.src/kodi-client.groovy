@@ -346,7 +346,7 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction(shutdownType.toLowerCase)
+    executeAction(shutdownType.toLowerCase())
 }
 
 def fastforward(){
