@@ -342,6 +342,7 @@ def push() {
     log.debug "test : " + test.toString()
     log.debug "java : " + java.toString()
     log.debug "function : " + shutdownAsQuit
+    log.debug "label : " + shutdownType
 
     //executeAction("select")
 }
