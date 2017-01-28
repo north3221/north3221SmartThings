@@ -193,7 +193,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
-    sendEvent(name: "shutdownType", value: '${currentShutdownType}')
+    sendEvent(name: "shutdownType", value: "${currentShutdownType}")
 }
 
 // parse events into attributes
