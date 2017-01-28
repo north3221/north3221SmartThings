@@ -135,7 +135,7 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdownType", "device.shutdownType", width: 1, height: 1) {
+        standardTile("shutdownType", "device.shutdownType", width: 1, height: 1, decoration: "flat") {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "default", label:'${currentValue}', action:"shutdown", icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYD-Cm4wZIThjXQq6SXJgH6CI-iUS8j3vILxQ7dF4K7BKnvfXr", backgroundColor:tileRed, defaultState: true
 
