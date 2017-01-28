@@ -133,7 +133,7 @@ metadata {
             state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "default", label:'${currentValue}', action:"shutdown", icon:"http://www.iconsplace.com/icons/preview/red/shutdown-16.png", backgroundColor:tileWhite, defaultState: true
 
