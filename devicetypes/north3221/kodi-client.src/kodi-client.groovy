@@ -54,10 +54,9 @@ def getShutdownAsQuit(){
     return inputShutdownAsQuit ?: false
 }
 def getShutdownType(){
-    if (shutdownAsQuit){
-        return "Quit"
-    }
-    return "Shutdown"
+    def test = shutdownAsQuit ? "Quit" : "Shutdown"
+    log.debug = "returning : " + test
+    return shutdownAsQuit ? "Quit" : "Shutdown"
 }
 
 metadata {
@@ -138,7 +137,7 @@ metadata {
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1) {
-            state "playing", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
+            state "playing", label:"${shutdownType}", action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
             state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
         }
 
