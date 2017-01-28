@@ -137,8 +137,7 @@ metadata {
 
         standardTile("shutdownType", "device.shutdownType", width: 1, height: 1, decoration: "flat") {
             //state "default", label:'${currentValue}', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "default", label:'${currentValue}', action:"shutdown", icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYD-Cm4wZIThjXQq6SXJgH6CI-iUS8j3vILxQ7dF4K7BKnvfXr", backgroundColor:tileRed, defaultState: true
-
+            state "shutdown", label:'${currentValue}', action:"shutdown", icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYD-Cm4wZIThjXQq6SXJgH6CI-iUS8j3vILxQ7dF4K7BKnvfXr", backgroundColor:tileRed, defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
@@ -167,8 +166,9 @@ metadata {
             state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("info", "device.info", width: 1, height: 1) {
-            state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("info", "device.info", width: 1, height: 1, decoration: flat) {
+            //state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
+            state "info", label:'', action:"info", icon:"http://files.softicons.com/download/social-media-icons/brushed-metal-icons-by-mebaze/png/512x512/Info-01.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
