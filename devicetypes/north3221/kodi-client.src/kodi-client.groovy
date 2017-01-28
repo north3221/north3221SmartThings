@@ -80,6 +80,7 @@ metadata {
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
+        attribute "shutdownType", "string"
     }
 
     /*simulator {
@@ -192,7 +193,7 @@ metadata {
 
 def installed() {
     setPlaybackTitle("","","")
-    //sendEvent(name: "trackDescription", value: "Installed")
+    sendEvent(name: "shutdownType", value: getShutdownType)
 }
 
 // parse events into attributes
