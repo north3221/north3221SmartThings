@@ -54,8 +54,6 @@ def getShutdownAsQuit(){
     return inputShutdownAsQuit ?: false
 }
 def getShutdownType(){
-    def test = shutdownAsQuit ? "Quit" : "Shutdown"
-    log.debug = "returning : " + test
     return shutdownAsQuit ? "Quit" : "Shutdown"
 }
 
@@ -336,14 +334,7 @@ def executeAction(action) {
 }
 
 def push() {
-    //log.debug "inputShutdownAsQuit : " + inputShutdownAsQuit
-    def test = inputShutdownAsQuit ?: false
-    def java = inputShutdownAsQuit ? inputShutdownAsQuit : false
-    log.debug "test : " + test.toString()
-    log.debug "java : " + java.toString()
-    log.debug "function : " + shutdownAsQuit
     log.debug "label : " + shutdownType
-
     //executeAction("select")
 }
 //Play pause for action button
