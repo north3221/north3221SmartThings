@@ -32,7 +32,8 @@ def getDefaultMinMovieRuntime() {
 }
 //Colours
 def getTileRed(){
-    return "#ff0000"
+    //return "#ff0000"
+    return "#e84e4e"
 }
 def getTileGreen() {
     return "#79b821"
@@ -177,7 +178,7 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "back", "stop", "up", "info", "shutdownType",
+                 "back", "stop", "up", "info", "shutdown",
                 "left", "push", "right",
                  "2x1", "down", "2x1"
         ])
