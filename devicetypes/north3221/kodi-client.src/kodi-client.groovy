@@ -341,6 +341,7 @@ def push() {
     def java = inputShutdownAsQuit ? inputShutdownAsQuit : false
     log.debug "test : " + test.toString()
     log.debug "java : " + java.toString()
+    log.debug "function : " + shutdownAsQuit
 
     //executeAction("select")
 }
