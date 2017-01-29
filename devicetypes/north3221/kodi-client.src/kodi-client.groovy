@@ -356,15 +356,11 @@ def rewind(){
 }
 
 def skipbackward(){
-    def skipType = inputBigSkip ? "skip.bigbackward" : "skip.smallbackward"
-    log.debug "skip backward = " + skipType
-    executeAction(skipType)
+    executeAction(inputBigSkip ? "skip.bigbackward" : "skip.smallbackward")
 }
 
 def skipforward(){
-    def skipType = inputBigSkip ? "skip.bigforward" : "skip.smallforward"
-    log.debug "skip forward = " + skipType
-    executeAction(skipType)
+    executeAction(inputBigSkip ? "skip.bigforward" : "skip.smallforward")
 }
 
 def up(){
