@@ -70,7 +70,7 @@ metadata {
         command "fastforward"
         command "rewind"
         command "skipforward"
-        command "skipbackwards"
+        command "skipbackward"
 
         //Custom attributes
         attribute "currentPlayingType", "string"
@@ -166,17 +166,17 @@ metadata {
             state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("skipforwards", "device.skipforwards", width: 1, height: 1) {
-            state "skipforwards", label:'', action:"skipforwrds", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
+            state "skipforward", label:'', action:"skipforwrd", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("skipbackwards", "device.skipbackwards", width: 1, height: 1) {
-            state "skipbackwards", label:'', action:"skipbackwards", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
+            state "skipbackward", label:'', action:"skipbackward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
         main("main")
         details(["mediaMulti",
-                 "skipbackwards", "stop", "up", "info", "skipforwards",
+                 "skipbackward", "stop", "up", "info", "skipforward",
                  "left", "push", "right",
                  "shutdown", "1x1", "down", "1x1","back"
         ])
@@ -188,7 +188,7 @@ metadata {
         input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
-        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big = 10 mins - Small = 30 secs", defaultValue: false, displayDuringSetup: false
+        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big (10 mins) Small (30secs)", defaultValue: false, displayDuringSetup: false
     }
 }
 
@@ -354,11 +354,13 @@ def rewind(){
     executeAction("rewind")
 }
 
-def skipbackwards(){
+def skipbackward(){
+    log.debug "skip backward"
     executeAction(inputBigSkip ? "skip.bigbackward" : "skip.smallbackward")
 }
 
-def skipforwards(){
+def skipforward(){
+    log.debug "skip forward"
     executeAction(inputBigSkip ? "skip.bigforward" : "skip.smallforward")
 }
 
