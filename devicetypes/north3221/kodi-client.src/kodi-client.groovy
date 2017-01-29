@@ -167,7 +167,7 @@ metadata {
         }
 
         standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
-            state "skipforward", label:'', action:"skipforwrd", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "skipforward", label:'', action:"skipforward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
@@ -355,13 +355,15 @@ def rewind(){
 }
 
 def skipbackward(){
-    log.debug "skip backward"
-    executeAction(inputBigSkip ? "skip.bigbackward" : "skip.smallbackward")
+    def skipType = inputBigSkip ? "skip.bigbackward" : "skip.smallbackward"
+    log.debug "skip backward = " + skipType
+    executeAction(skipType)
 }
 
 def skipforward(){
-    log.debug "skip forward"
-    executeAction(inputBigSkip ? "skip.bigforward" : "skip.smallforward")
+    def skipType = inputBigSkip ? "skip.bigforward" : "skip.smallforward"
+    log.debug "skip forward = " + skipType
+    executeAction(skipType)
 }
 
 def up(){
