@@ -344,6 +344,8 @@ def executeRequest(Path, method, command) {
                 body: command,
                 headers: headers)
 
+        log.debug "Hub Command: " + actualAction.toSrring
+
         sendHubCommand(actualAction)
     }
     catch (Exception e) {
