@@ -325,23 +325,7 @@ def executeAction(action) {
 }
 
 def push() {
-
-    //def activePlayerRequest = "http://192.168.0.100:80/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D"
-
-    def params = [
-            uri: "http://192.168.0.100:80",
-            path: "/jsonrpc?request=%7B%22jsonrpc%22%3A%20%222.0%22%2C%20%22method%22%3A%20%22Player.GetActivePlayers%22%2C%20%22id%22%3A%201%7D",
-            contentType: 'application/json'
-            ]
-
-
-    log.debug "HTTP Request = " + params.toString()
-
-    httpGet(params) { resp ->
-        log.debug "response data: ${resp.data}"
-    }
-
-    //executeAction("select")
+    executeAction("select")
 }
 //Play pause for action button
 def play() {
