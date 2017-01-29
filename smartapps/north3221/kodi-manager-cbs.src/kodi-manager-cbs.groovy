@@ -315,7 +315,7 @@ def quit(){
 
 // Added skip
 def skip(skipType){
-    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" skipType + "\"}, \"id\": 1}"
+    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" + skipType + "\"}, \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
