@@ -32,7 +32,8 @@ def getDefaultMinMovieRuntime() {
 }
 //Colours
 def getTileRed(){
-    return "#ff0000"
+    //return "#ff0000"
+    return "#e84e4e"
 }
 def getTileGreen() {
     return "#79b821"
@@ -50,11 +51,8 @@ def getTileWhite(){
     return "#ffffff"
 }
 
-def getShutdownAsQuit(){
-    return inputShutdownAsQuit ?: false
-}
 def getShutdownType(){
-    return shutdownAsQuit ? "Quit" : "Shutdown"
+    return inputShutdownAsQuit ? "Quit" : "Shutdown"
 }
 
 metadata {
@@ -80,6 +78,7 @@ metadata {
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
+        attribute "shutdownType", "string"
     }
 
     /*simulator {
@@ -129,14 +128,11 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileWhite, defaultState: true
-            state "playing", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
-            state "paused", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:tileRed
+            state "stopped", label:'', action:"music Player.stop", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("shutdown", "device.status", width: 1, height: 1) {
-            state "playing", label:"${shutdownType}", action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileRed, defaultState: true
-            state "shutdown", label:'', action:"shutdown", icon:"st.samsung.da.RC_ic_power", backgroundColor:tileWhite
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
+            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
@@ -166,18 +162,18 @@ metadata {
         }
 
         standardTile("info", "device.info", width: 1, height: 1) {
-            state "on", label:'', action:"info", icon:"https://cdn2.iconfinder.com/data/icons/iconza/iconza_32x32_808080/info.png", backgroundColor:tileWhite, defaultState: true
+            state "info", label:'', action:"info", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
         }
 
-        standardTile("2x1", "device.status", width: 2, height: 1, decoration: "flat") {
+        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
         main("main")
         details(["mediaMulti",
-                 "back", "stop", "up", "info", "shutdown",
-                "left", "push", "right",
-                 "2x1", "down", "2x1"
+                 "1x1", "stop", "up", "info", "1x1",
+                 "left", "push", "right",
+                 "shutdown", "1x1", "down", "1x1","back"
         ])
     }
 
@@ -188,11 +184,6 @@ metadata {
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
     }
-}
-
-def installed() {
-    setPlaybackTitle("","","")
-    //sendEvent(name: "trackDescription", value: "Installed")
 }
 
 // parse events into attributes
@@ -346,7 +337,7 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction(shutdownType.toLowerCase())
+    executeAction(shutdownType)
 }
 
 def fastforward(){
