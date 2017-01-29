@@ -245,7 +245,7 @@ def switchChange(evt) {
     log.debug "command recieved : " + command
 
     switch(command) {
-        //Case any bespoke actions and default teh generic actions
+        //Case any bespoke actions and default the generic actions
         case "setVolume":           //Cant be done with generic execute action
             def vol = getKodiVolume(evt.value);
             log.debug "Vol is: " + vol
@@ -256,6 +256,9 @@ def switchChange(evt) {
             break;
         case "quit":                //Cant be done with generic execute action
             quit()
+            break;
+        case "skip":                //Cant be done with generic execute action
+            skip(evt.value.tokenize('.')[2])
             break;
         default:                    //Just execute command
             log.debug "execute " + command
@@ -307,6 +310,12 @@ def shutdown(){
 // Added quit
 def quit(){
     def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Application.Quit\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+// Added skip
+def skip(skipType){
+    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" skipType + "\"}, \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
