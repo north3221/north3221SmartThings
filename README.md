@@ -14,7 +14,7 @@ All above configurable in preferences within the DTH
 Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from events on Kodi i.e. When a 'Movie' plays turn on Movie Lights. Alternatively, when the doorbell rings, pause Kodi. One of the key things I wanted was to switch off my TV when I leave the house. This is why I added the shutdown capability, I have Kodi running on a RPi and set CEC apater to turn the TV off when Kodi shuts down, perfect. There is no startup capability, as once off there is no way to start up. So I use a smart outlet to re power the RPi, which fires up Kodi and the TV.
  NB if you are using a different system to run Kodi (i.e. media centre) you may be able to use WOL to wake it.
  
- ###Installation
+###Installation  
  Kodi needs to be enabled for control over HTTP. So enable the following:  
  system>services>Web Server>Allow remote control via HTTP  
  **NB** You will need to know the port (required), username (if set) and password (if set) from this screen to set up Kodi Manager
@@ -22,6 +22,7 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  You will also need to set up the <a href="http://kodi.wiki/view/Add-on:Kodi_Callbacks">Callbacks</a> plugin. This is how Kodi talks to Smartthings, meaning you get real time updates. Once installed you need to create the tasks for play, pause, stop, resume, shutdown, startup and then add them to the appropriate events (read the Wiki in the link for help)  
  **NB** You only need this for two way comms and you can install this after installing the smartthings app & device handler
  
+ **OAuth**: You must enable OAth for the smartapp for any release
  
  For current stable release: 
  
