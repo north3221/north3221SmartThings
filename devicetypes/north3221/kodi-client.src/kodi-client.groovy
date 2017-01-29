@@ -51,10 +51,6 @@ def getTileWhite(){
     return "#ffffff"
 }
 
-def getShutdownType(){
-    return inputShutdownAsQuit ? "Quit" : "Shutdown"
-}
-
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
         capability "Switch"             //For switch on/off
@@ -73,12 +69,13 @@ metadata {
         command "info"
         command "fastforward"
         command "rewind"
+        command "skipforward"
+        command "skipbackward"
 
         //Custom attributes
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
-        attribute "shutdownType", "string"
     }
 
     /*simulator {
@@ -169,9 +166,17 @@ metadata {
             state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
         }
 
+        standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
+            state "skipforward", label:'', action:"skipforward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        }
+
+        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
+            state "skipbackward", label:'', action:"skipbackward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        }
+
         main("main")
         details(["mediaMulti",
-                 "1x1", "stop", "up", "info", "1x1",
+                 "skipbackward", "stop", "up", "info", "skipforward",
                  "left", "push", "right",
                  "shutdown", "1x1", "down", "1x1","back"
         ])
@@ -183,6 +188,7 @@ metadata {
         input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
+        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
     }
 }
 
@@ -319,6 +325,7 @@ def getMinMovieRuntime(){
 }
 
 def executeAction(action) {
+    log.debug "Execute Action Request = " + action
     def lastState = device.currentState('switch').getValue();
     sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
     sendEvent(name: "switch", value: lastState);
@@ -337,7 +344,7 @@ def stop() {
 }
 
 def shutdown() {
-    executeAction(shutdownType)
+    executeAction(inputShutdownAsQuit ? "quit" : "shutdown")
 }
 
 def fastforward(){
@@ -346,6 +353,14 @@ def fastforward(){
 
 def rewind(){
     executeAction("rewind")
+}
+
+def skipbackward(){
+    executeAction(inputBigSkip ? "skip.bigbackward" : "skip.smallbackward")
+}
+
+def skipforward(){
+    executeAction(inputBigSkip ? "skip.bigforward" : "skip.smallforward")
 }
 
 def up(){

@@ -95,7 +95,8 @@ I've done quite an overhaul to the both smartapp and device handler. I've update
 
 Preference changes: I've made them all optional, so you can just update one you want to and not have to update the rest  
 Also added new preference:  
-Shutdown as Quit - If you change this to true the shutdown command will quit Kodi instead of shutting down system 
+**Shutdown as Quit**:   If you change this to true the shutdown command will quit Kodi instead of shutting down system  
+**Big Skip**:           If true then skip is 10 mins if left false then skip is 30 secs
 
 Because I made the app into a remote control, I've exposed all the commands it uses:
 ```groovy
@@ -108,6 +109,8 @@ command "back"
 command "info"
 command "fastforward"
 command "rewind"
+command "skipforward"
+command "skipbackward"
 ```
 So you can call any of these from Smartthings
 
