@@ -27,7 +27,7 @@ def getUserPrefs(){
 }
 
 def getUserPref(String type){
-    return userPrefs(type)
+    return userPrefs.get(type)
 }
 
 def getTestMovieLabels(){
@@ -351,7 +351,7 @@ def executeAction(action) {
 
 def push() {
     log.debug "push"
-    log.debug "Test New User Prefs: " + getTestMovieLabels
+    log.debug "Test New User Prefs: " + testMovieLabels
 
     //executeAction("select")
 }
