@@ -18,19 +18,23 @@
 //User preferences - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
 def getUserPrefs(){
+    log.debug "User prefs called"
     HashMap<String, String> userPrefsHash = new HashMap<String, String>();
     //V 1.2
     userPrefsHash.put("movieLabels", "cinema, movie, film")
+    log.debug "Prefs hash = " + userPrefsHash.toString()
 
     //Return
     return userPrefs
 }
 
 def getUserPref(String type){
+    log.debug "User pref called"
     return userPrefs.get(type)
 }
 
 def getTestMovieLabels(){
+    log.debug "Test user pref called"
     return getUserPref("movieLabels")
 }
 //DEFAULTS
