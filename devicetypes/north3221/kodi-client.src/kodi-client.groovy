@@ -22,10 +22,8 @@ def getUserPrefs(){
     //v1.2 START
     userPrefsHash.put("movieLabels", "cinema, movie, film")
     //v1.2 END
-    //******************
     //v1.3 START
     //v1.3 END
-    //******************
     //Return
     return userPrefsHash
 }
@@ -37,7 +35,7 @@ def getUserPref(String type){
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    return gteUserPref("movieLabels")
+    return getUserPref("movieLabels")
 }
 def getDefaultSportLabels() {
     return "sport"
