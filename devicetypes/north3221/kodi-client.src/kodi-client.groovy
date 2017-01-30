@@ -2,9 +2,6 @@
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
  * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
- *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
- *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
- *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
  *
@@ -14,6 +11,8 @@
  *  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
  *  for the specific language governing permissions and limitations under the License.
  *
+ *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
+ *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
  */
 
 //DEFAULTS
@@ -25,54 +24,26 @@ def getDefaultSportLabels() {
     return "sport"
 }
 def getDefaultTVLabels() {
-    return "bbc, itv, channel, sky, amc, fox"
+    return "bbc, itv, channel, sky"
 }
 def getDefaultMinMovieRuntime() {
     return 4200
 }
-//Colours
-def getTileRed(){
-    //return "#ff0000"
-    return "#e84e4e"
-}
-def getTileGreen() {
-    return "#79b821"
-}
-def getTileLightGreen(){
-    return "#90d2a7"
-}
-def getTileOrange(){
-    return "#e86d13"
-}
-def getTileBlue(){
-    return "#153591"
-}
-def getTileWhite(){
-    return "#ffffff"
-}
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
-        capability "Switch"             //For switch on/off
-        capability "musicPlayer"        //For playback etc
-        capability "mediaController"    //Not sure I need this yet
-        capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
-        //Custom Commands
-        command "describeAttributes"
-        command "executeAction" , ["string"]
-        command "shutdown"
-        command "up"
-        command "down"
-        command "left"
-        command "right"
-        command "back"
-        command "info"
-        command "fastforward"
-        command "rewind"
-        command "skipforward"
-        command "skipbackward"
+        capability "Switch"
+        capability "musicPlayer"
+        capability "mediaController"
 
-        //Custom attributes
+        command "scanNewClients"
+        command "setPlaybackIcon", ["string"]
+        command "setPlaybackTitle", ["string"]
+        command "setVolumeLevel", ["number"]
+        command "shutdown"
+        command "describeAttributes"
+
+        //custom attributes
         attribute "currentPlayingType", "string"
         attribute "currentPlayingCategory", "enum", ["Movie", "TV Show", "Sports", "None", "Unknown"]
         attribute "currentPlayingName", "string"
@@ -84,111 +55,75 @@ metadata {
 
     tiles(scale: 2) {
         def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
-        //def mainIcon = "st.Electronics.electronics16"
+        def mainIcon = "st.Electronics.electronics16"
 
-        valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:tileRed, nextState: "waiting"
+        valueTile("appList", "device.status", width: 6, height: 2, canChangeIcon: false) {
+            state "startup", label:'Startup', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"music Player.pause", icon:"${appListIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${appListIcon}", backgroundColor:"#ff0000"
         }
 
-        multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
-            tileAttribute("device.status", key: "PRIMARY_CONTROL") {
-                attributeState("paused", label:"Paused")
-                attributeState("playing", label:"Playing")
-                attributeState("stopped", label:"Stopped")
-            }
-            tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"play", nextState: "playing")
-                attributeState("playing", label:"Playing", action:"play", nextState: "paused")
-                attributeState("stopped", label:"Stopped", action:"play", nextState: "playing")
-            }
-            tileAttribute("device.status", key: "PREVIOUS_TRACK") {
-                attributeState("status", action:"rewind", defaultState: true)
-            }
-            tileAttribute("device.status", key: "NEXT_TRACK") {
-                attributeState("status", action:"fastforward", defaultState: true)
-            }
-            tileAttribute ("device.level", key: "SLIDER_CONTROL") {
-                attributeState("level", action:"music Player.setLevel")
-            }
-            tileAttribute ("device.mute", key: "MEDIA_MUTED") {
-                attributeState("unmuted", action:"music Player.mute", nextState: "muted")
-                attributeState("muted", action:"music Player.mute", nextState: "unmuted")
-            }
-            tileAttribute("device.trackDescription", key: "MARQUEE") {
-                attributeState("trackDescription", label:'${currentValue}', defaultState: true)
-            }
+        standardTile("main", "device.status", width: 2, height: 2, canChangeIcon: true) {
+            state "startup", label:'Startup', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ddf4be"
+            state "playing", label:'Playing', action:"music Player.pause", icon:"${mainIcon}", backgroundColor:"#79b821"
+            state "stopped", label:'Stopped', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ffffff"
+            state "paused", label:'Paused', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#FFA500"
+            state "shutdown", label:'Shutdown', action:"music Player.play", icon:"${mainIcon}", backgroundColor:"#ff0000"
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("next", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "next", label:'', action:"music Player.nextTrack", icon:"st.sonos.next-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
+        standardTile("previous", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "previous", label:'', action:"music Player.previousTrack", icon:"st.sonos.previous-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:tileWhite, defaultState: true
+        standardTile("scanNewClients", "device.status", width: 2, height: 1, decoration: "flat") {
+            state "default", label:'', action:"scanNewClients", icon:"state.icon", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"scanNewClients", icon:"state.icon", backgroundColor:"#ffffff"
         }
 
-        standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:tileWhite, defaultState: true
+        standardTile("fillerTile", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "default", label:'', action:"", icon:"", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"", icon:"", backgroundColor:"#ffffff"
         }
 
-        standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:tileWhite, defaultState: true
+        standardTile("stop", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "default", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"music Player.stop", icon:"st.sonos.stop-btn", backgroundColor:"#ffffff"
         }
 
-        standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:tileWhite, defaultState: true
+        standardTile("shutdown", "device.status", width: 2, height: 2, decoration: "flat") {
+            state "default", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
+            state "grouped", label:'', action:"shutdown", icon:"http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/LH2-Shutdown-icon.png", backgroundColor:"#ffffff"
         }
 
-        standardTile("push", "device.status", width: 2, height: 2) {
-            state "stopped", label:'Select', action:"push", backgroundColor:tileGreen, defaultState: true
-            state "playing", label:'Select', action:"push", backgroundColor:tileWhite
-            state "paused", label:'Select', action:"push", backgroundColor:tileWhite
+        valueTile("currentPlayingType", "device.currentPlayingType", inactiveLabel: true, height:1, width:3, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
+        }
+        valueTile("currentPlayingCategory", "device.currentPlayingCategory", inactiveLabel: true, height:1, width:3, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
+        }
+        valueTile("currentPlayingName", "device.currentPlayingName", inactiveLabel: true, height:2, width:6, decoration: "flat") {
+            state "default", label:'${currentValue}', backgroundColor:"#ffffff"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
-            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
+        controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
+            state "level", action:"setVolumeLevel", backgroundColor:"#ffffff"
         }
 
-        standardTile("info", "device.info", width: 1, height: 1) {
-            state "info", label:'', action:"info", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
-        }
-
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
-        }
-
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
-            state "skipforward", label:'', action:"skipforward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
-        }
-
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
-            state "skipbackward", label:'', action:"skipbackward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
-        }
-
-        main("main")
-        details(["mediaMulti",
-                 "skipbackward", "stop", "up", "info", "skipforward",
-                 "left", "push", "right",
-                 "shutdown", "1x1", "down", "1x1","back"
-        ])
+        main("appList")
+        details(["currentPlayingType", "currentPlayingCategory", "currentPlayingName", "previous", "main", "next", "fillerTile", "stop", "shutdown", "levelSliderControl"])
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
-        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
-        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
-        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
-        input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
-        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
+        input "inputMovieLabel", "text", required: true, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
+        input "inputSportLabel", "text", required: true, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
+        input "inputTVLabel", "text", required: true, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
+        input "inputMinMovieRuntime", "number", required: true, title: "Minimum Runtime to be classed as Move (seconds):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
     }
 }
 
@@ -203,21 +138,23 @@ def parse(evt) {
         }
     }
 
+
     if (!msg.body){
         return
     }
 
+
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":\"OK\"}"){
-        log.debug "received ok"
+        log.debug "recieved ok"
         return
     }
 
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":0}}"){
-        log.debug "received speed 0"
+        log.debug "recieved ok"
         return
     }
     if( msg.body == "{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"speed\":1}}"){
-        log.debug "received speed 1"
+        log.debug "recieved ok"
         return
     }
     if (msg.body == "{\"error\":{\"code\":-32100,\"message\":\"Failed to execute method.\"},\"id\":1,\"jsonrpc\":\"2.0\"}")
@@ -324,77 +261,70 @@ def getMinMovieRuntime(){
     return defaultMinMovieRuntime
 }
 
-def executeAction(action) {
-    log.debug "Execute Action Request = " + action
-    def lastState = "off"
-    lastState = device.currentState('switch')?.getValue();
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
-    sendEvent(name: "switch", value: lastState);
+def play() {
+    log.debug "Executing 'play'"
+
+    sendEvent(name: "switch", value: device.deviceNetworkId + ".play");
+    sendEvent(name: "switch", value: "on");
+    sendEvent(name: "status", value: "playing");
 }
 
-def push() {
-    executeAction("select")
-}
-//Play pause for action button
-def play() {
-    executeAction("playpause")
+def pause() {
+    log.debug "Executing 'pause'"
+
+    sendEvent(name: "switch", value: device.deviceNetworkId + ".pause");
+    sendEvent(name: "switch", value: "off");
+    sendEvent(name: "status", value: "paused");
 }
 
 def stop() {
-    executeAction("stop")
+    log.debug "Executing 'stop'"
+
+    sendEvent(name: "switch", value: device.deviceNetworkId + ".stop");
+    sendEvent(name: "switch", value: "off");
+    sendEvent(name: "status", value: "stopped");
+    //setPlaybackTitle("Stopped");
 }
 
 def shutdown() {
-    executeAction(inputShutdownAsQuit ? "quit" : "shutdown")
+    log.debug "Executing 'stop'"
+
+    sendEvent(name: "switch", value: device.deviceNetworkId + ".shutdown");
+    sendEvent(name: "switch", value: "off");
+    sendEvent(name: "status", value: "shutdown");
+    //setPlaybackTitle("Shutdown");
 }
 
-def fastforward(){
-    executeAction("fastforward")
+def previousTrack() {
+    log.debug "Executing 'previous': "
+
+    //setPlaybackTitle("Skipping previous");
+    sendCommand("previous");
 }
 
-def rewind(){
-    executeAction("rewind")
+def nextTrack() {
+    log.debug "Executing 'next'"
+
+    //setPlaybackTitle("Skipping next");
+    sendCommand("next");
 }
 
-def skipbackward(){
-    executeAction(inputBigSkip ? "skip.bigbackward" : "skip.smallbackward")
+def scanNewClients() {
+    log.debug "Executing 'scanNewClients'"
+    sendCommand("scanNewClients");
 }
 
-def skipforward(){
-    executeAction(inputBigSkip ? "skip.bigforward" : "skip.smallforward")
-}
-
-def up(){
-    executeAction("up")
-}
-
-def down(){
-    executeAction("down")
-}
-
-def left(){
-    executeAction("left")
-}
-
-def right(){
-    executeAction("right")
-}
-
-def back(){
-    executeAction("back")
-}
-
-def info(){
-    executeAction("info")
-}
-
-def mute(){
-    executeAction("mute")
-}
-
-def setLevel(level) {
+def setVolumeLevel(level) {
+    log.debug "Executing 'setVolumeLevel(" + level + ")'"
     sendEvent(name: "level", value: level);
-    executeAction("setVolume." + level);
+    sendCommand("setVolume." + level);
+}
+
+def sendCommand(command) {
+
+    def lastState = device.currentState('switch').getValue();
+    sendEvent(name: "switch", value: device.deviceNetworkId + "." + command);
+    sendEvent(name: "switch", value: lastState);
 }
 
 def setPlaybackState(state) {
@@ -432,36 +362,21 @@ def setPlaybackState(state) {
 }
 
 def setPlaybackTitle(type, category, name) {
-    def track = ""
 
     if(type == ""){
         type = 'None'
-    } else {
-        track = "Kodi Type: " + type
     }
     if(category == ""){
         category = 'None'
-    } else {
-        if (track != ""){
-            track = track + "\n"
-        }
-        track = track + "Category: " + category
     }
-    if (track != ""){
-        track = track + "\n"
-    }
-    track = track + name
     if(name == ""){
         name = 'Nothing Playing'
-        track = name
     }
 
     log.debug "Setting title to :" + name
-    log.debug "Track = " + track
     sendEvent(name: "currentPlayingType", value: type)
     sendEvent(name: "currentPlayingCategory", value: category)
     sendEvent(name: "currentPlayingName", value: name)
-    sendEvent(name: "trackDescription", value: track)
 }
 
 def setPlaybackIcon(iconUrl) {
