@@ -1,7 +1,7 @@
 Repo created to store smartthings smartapps and device handlers I find. Also to play with and create my own
 
 #Kodi Manager (Smartapp) & Kodi Client (Device Handler)
-I wanted the ability to interact with and trigger events from Kodi. Having looked round, there did not seem to be many options that did what I was looking to do. The closest was <a href="https://github.com/Toliver182/SmartThings-Kodi">Toliver182's</a>, but doesn't seem to be in active development. So I forked it.
+I wanted the ability to interact with and trigger events from Kodi. Having looked round, there did not seem to be many options that did what I was looking to do. The closest was <a href="https://github.com/Toliver182/SmartThings-Kodi">Toliver182's</a>, but there is a lot more I wanted and doesn't seem to be in active development. So I forked it and have re-written and added a lot to it.
 
 ##Key Features
 
@@ -10,6 +10,14 @@ Get current state (Playing, Paused, Stopped, Shutdown, Startup)
 Get current type - this is taken directly from Kodi  
 Get current category (Movie, TV Show, Sports)  
 All above configurable in preferences within the DTH
+A fully functioning remote control right within your Smartthings App  
+
+
+<img src="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/screenshot%201%20kodi-client%20v1.1.png" width="256">
+<img src="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/screenshot%202%20kodi-client%20v1.1.png" width="256">
+<img src="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/screenshot%203%20kodi-client%20v1.1.png" width="256">
+
+
 
 Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from events on Kodi i.e. When a 'Movie' plays turn on Movie Lights. Alternatively, when the doorbell rings, pause Kodi. One of the key things I wanted was to switch off my TV when I leave the house. This is why I added the shutdown capability, I have Kodi running on a RPi and set CEC apater to turn the TV off when Kodi shuts down, perfect. There is no startup capability, as once off there is no way to start up. So I use a smart outlet to re power the RPi, which fires up Kodi and the TV.
  NB if you are using a different system to run Kodi (i.e. media centre) you may be able to use WOL to wake it.
@@ -22,10 +30,9 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  You will also need to set up the <a href="http://kodi.wiki/view/Add-on:Kodi_Callbacks">Callbacks</a> plugin. This is how Kodi talks to Smartthings, meaning you get real time updates. Once installed you need to create the tasks for play, pause, stop, resume, shutdown, startup and then add them to the appropriate events (read the Wiki in the link for help)  
  **NB** You only need this for two way comms and you can install this after installing the smartthings app & device handler
  
- **OAuth**: You must enable OAth for the smartapp for any release
- 
- For current stable release: 
- 
+ Choose below what version you want (stable or beta) and the install method, I recommend adding the git repo to your IDE to enable you to get any updates easily.
+  
+ **For current stable release:**  
  Add the following to your IDE:  
  Owner:     north3221  
  Name:      north3221SmartThings  
@@ -35,7 +42,7 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  Device Handler:    <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/devicetypes/north3221/kodi-client.src/kodi-client.groovy">Copy and paste this code into a new 'Device Handler'</a>  
  Smartapp:          <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">Copy and paste this code into a new 'Smartapp'</a>
  
- For the Beta version add the following to your IDE:  
+ **For the Beta version add the following to your IDE:**  
  Owner:     north3221  
  Name:      north3221SmartThings  
  Branch:    beta  
@@ -44,6 +51,13 @@ Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from 
  Device Handler:    <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/beta/devicetypes/north3221/kodi-client.src/kodi-client.groovy">Copy and paste this code into a new 'Device Handler'</a>  
  Smartapp:          <a href="https://raw.githubusercontent.com/north3221/north3221SmartThings/beta/smartapps/north3221/kodi-manager-cbs.src/kodi-manager-cbs.groovy">Copy and paste this code into a new 'Smartapp'</a>
  
+ **OAuth**: You must enable OAuth for the smartapp for any release  
+  
+ Once you have the smartapp and device handler then go to the smartthings mobile app  
+ Marketplace>SmartApps>My Apps>KODI Manager CBs  
+ Enter the details for your Kodi (you need the IP, port, username etc discussed above)  
+ Client Name = Smartapp and Assign a name = Device Handler  
+ Repeat for any Kodi instances you want to create. You will have a smartapp and device handler for each (named as per above step)
 
 ###Version 1.0
 
@@ -91,7 +105,7 @@ This allows you to call the shutdown command from Smartthings, which will shutdo
 
 
 
-###Beta Release (Target Release 1.1)
+###Version 1.1
 I've done quite an overhaul to the both smartapp and device handler. I've updated all the tiles to create a media player and Kodi remote, inside your smarthings mobile app, and unlocked full capability for interaction with Kodi.
 
 Preference changes: I've made them all optional, so you can just update one you want to and not have to update the rest  
