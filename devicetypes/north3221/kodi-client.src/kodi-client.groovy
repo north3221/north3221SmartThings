@@ -25,7 +25,7 @@ def getUserPrefs(){
     log.debug "Prefs hash = " + userPrefsHash.toString()
 
     //Return
-    return userPrefs
+    return userPrefsHash
 }
 
 def getUserPref(String type){
