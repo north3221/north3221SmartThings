@@ -287,8 +287,12 @@ def checkKodi() {
         log.debug "Device Already Added"
     }
     subscribe(KodiClient, "switch", switchChange)
+    subscribe(KodiClient, "mediaController", controlEvents)
 }
 
+def controlEvents(evt){
+    log.debug "Media Controller Event = " + evt.value
+}
 
 def setVolume(kodiIP, level) {
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.SetVolume\", \"params\": { \"volume\": "+ level + "}, \"id\": 1}"
