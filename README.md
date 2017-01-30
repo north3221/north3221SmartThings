@@ -20,7 +20,8 @@ A fully functioning remote control right within your Smartthings App
 
 
 Interact with Kodi, both ways, to and from Smartthings. Trigger lights etc from events on Kodi i.e. When a 'Movie' plays turn on Movie Lights. Alternatively, when the doorbell rings, pause Kodi. One of the key things I wanted was to switch off my TV when I leave the house. This is why I added the shutdown capability, I have Kodi running on a RPi and set CEC apater to turn the TV off when Kodi shuts down, perfect. There is no startup capability, as once off there is no way to start up. So I use a smart outlet to re power the RPi, which fires up Kodi and the TV.
- NB if you are using a different system to run Kodi (i.e. media centre) you may be able to use WOL to wake it.
+ NB if you are using a different system to run Kodi (i.e. media centre) you may be able to use WOL to wake it.  
+ I recommend using <a href="http://thingsthataresmart.wiki/index.php?title=CoRE">CoRE</a> to do the automation, I have ensured that the attributes are exposed to CoRE for easy integration. It can also handle the WOL for you if needed
  
 ###Installation  
  Kodi needs to be enabled for control over HTTP. So enable the following:  
@@ -97,7 +98,7 @@ With these attributes please also be aware that kodi tells the device handler th
  guess a few ms to a couple of secs). Therefore, don't trigger on a state change then expect to be able to read
  the attribute, it may not be updated yet, I think I can fix this as part of many improvements I want to make, but
  for now be careful.
- I have got round this by adding the custom attribute as the trigger in my CoRE Poston. **NB** you need to turn on
+ I have got round this by adding the custom attribute as the trigger in my <a href="http://thingsthataresmart.wiki/index.php?title=CoRE">CoRE</a> Poston. **NB** you need to turn on
  'expert mode' in CoRE to do that.
 
 **Custom Command - Shutdown**  
