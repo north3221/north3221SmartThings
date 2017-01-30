@@ -31,7 +31,7 @@ def getUserPref(String type){
 }
 
 def getTestMovieLabels(){
-    return userPref("movieLabels")
+    return getUserPref("movieLabels")
 }
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
