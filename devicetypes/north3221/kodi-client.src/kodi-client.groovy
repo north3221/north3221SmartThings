@@ -347,7 +347,7 @@ def executeAction(action) {
     //log.debug "Execute action check: Last State = " + lastState + " - Check = " + device.currentState('switch').getValue()
     sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
     sendEvent(name: "switch", value: lastState);
-    sendEvent(name: "mediaController", value: "TestMediaController");
+    sendEvent(name: "currentActivity", value: "TestMediaController");
 }
 
 def push() {

@@ -288,7 +288,7 @@ def checkKodi() {
     }
     log.debug "subscribe"
     subscribe(KodiClient, "switch", switchChange)
-    subscribe(KodiClient, "mediaController", controlEvents)
+    subscribe(KodiClient, "currentActivity", controlEvents)
     log.debug "subscribed"
 
 }
