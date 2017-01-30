@@ -18,29 +18,26 @@
 //User preferences - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
 def getUserPrefs(){
-    log.debug "User prefs called"
     HashMap<String, String> userPrefsHash = new HashMap<String, String>();
-    //V 1.2
+    //v1.2 START
     userPrefsHash.put("movieLabels", "cinema, movie, film")
-    log.debug "Prefs hash = " + userPrefsHash.toString()
-
+    //v1.2 END
+    //******************
+    //v1.3 START
+    //v1.3 END
+    //******************
     //Return
     return userPrefsHash
 }
 
 def getUserPref(String type){
-    log.debug "User pref called"
     return userPrefs.get(type)
 }
 
-def getTestMovieLabels(){
-    log.debug "Test user pref called"
-    return userPref("movieLabels")
-}
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    return "cinema, movie, film"
+    return gteUserPref("movieLabels")
 }
 def getDefaultSportLabels() {
     return "sport"
@@ -354,10 +351,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "push"
-    log.debug "Test New User Prefs: " + testMovieLabels
-
-    //executeAction("select")
+    executeAction("select")
 }
 //Play pause for action button
 def play() {
