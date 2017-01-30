@@ -2,7 +2,7 @@
  *  KODI Manager
  *
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
- * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
+ * forked from a plex version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -101,15 +101,9 @@ def pgLights(){
 //END PAGES
 /////////////////////////
 
-
-
-
-
 def installed() {
-
     log.debug "Installed with settings: ${settings}"
     initialize()
-
 }
 
 def initialize() {
@@ -130,56 +124,30 @@ def initialize() {
 
 def updated() {
     unsubscribe();
-/*
-getChildDevices().each { childDevice ->
-def deviceNetID = childDevice.deviceNetworkId
-log.debug "my id: "+ NetworkDeviceId()
-log.debug "net id: " + deviceNetID
-if(deviceNetID != NetworkDeviceId()){
-log.debug "removing: " + deviceNetID
-deleteChildDevice(deviceNetID)
-}
-}*/
-
     initialize()
-
 }
 
 //Incoming state changes from kodi
-
 mappings {
 
     path("/play") {
-        action: [
-                GET: "stateIsPlay"
-        ]
+        action: [GET: "stateIsPlay"]
     }
     path("/stop") {
-        action: [
-                GET: "stateIsStop"
-        ]
+        action: [GET: "stateIsStop"]
     }
     path("/pause") {
-        action: [
-                GET: "stateIsPause"
-        ]
+        action: [GET: "stateIsPause"]
     }
     path("/resume") {
-        action: [
-                GET: "stateIsResume"
-        ]
+        action: [GET: "stateIsResume"]
     }
     path("/shutdown") {
-        action: [
-                GET: "stateIsShutdown"
-        ]
+        action: [GET: "stateIsShutdown"]
     }
     path("/startup") {
-        action: [
-                GET: "stateIsStartup"
-        ]
+        action: [GET: "stateIsStartup"]
     }
-
 }
 void stateIsPlay() {
     if("$settings.shouldControlLights" == "true"){
@@ -268,55 +236,35 @@ def response(evt) {
 
 //Incoming command handler
 def switchChange(evt) {
-
-    // We are only interested in event data which contains
+    // Ignore on/off
     if(evt.value == "on" || evt.value == "off") return;
 
-    //log.debug "Kodi event received: " + evt.value;
-
     def kodiIP = getKodiAddress(evt.value);
-
     // Parse out the new switch state from the event data
     def command = getKodiCommand(evt.value);
-
-    //log.debug "state: " + state
+    log.debug "command recieved : " + command
 
     switch(command) {
-        case "next":
-            log.debug "Sending command 'next' to " + kodiIP
-            next(kodiIP);
-            break;
-
-        case "previous":
-            log.debug "Sending command 'previous' to " + kodiIP
-            previous(kodiIP);
-            break;
-
-        case "play":
-        case "pause":
-            playpause(kodiIP);
-            break;
-        case "stop":
-            stop(kodiIP);
-            break;
-        case "scanNewClients":
-            getClients();
-            break;
-        case "setVolume":
+        //Case any bespoke actions and default the generic actions
+        case "setVolume":           //Cant be done with generic execute action
             def vol = getKodiVolume(evt.value);
             log.debug "Vol is: " + vol
             setVolume(kodiIP, vol);
             break;
-        case "shutdown":
-            log.debug "Shutting Down Kodi at IP:" + kodiIP
-            shutdown(kodiIP);
+        case "shutdown":            //Cant be done with generic execute action
+            shutdown()
             break;
+        case "quit":                //Cant be done with generic execute action
+            quit()
+            break;
+        case "skip":                //Cant be done with generic execute action
+            skip(evt.value.tokenize('.')[2])
+            break;
+        default:                    //Just execute command
+            log.debug "execute " + command
+            executeAction(command)
     }
-
-    return;
 }
-
-
 
 //Child device setup
 def checkKodi() {
@@ -342,44 +290,37 @@ def checkKodi() {
 }
 
 
-
-//Commands to kodi
-def playpause(kodiIP) {
-    log.debug "playpausehere"
-    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.PlayPause\", \"params\": { \"playerid\": 1 }, \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command);
-}
-
-def next(kodiIP) {
-    log.debug "Executing 'next'"
-    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GoTo\", \"params\": { \"playerid\": 1, \"to\": \"next\" }, \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-def stop(kodiIP){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Player.Stop\", \"params\": { \"playerid\": 1 } }"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-def previous(kodiIP) {
-    log.debug "Executing 'next'"
-    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GoTo\", \"params\": { \"playerid\": 1, \"to\": \"previous\" }, \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
 def setVolume(kodiIP, level) {
-//TODO
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.SetVolume\", \"params\": { \"volume\": "+ level + "}, \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
+
 def getPlayingtitle(){
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"track\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"runtime\", \"plot\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}"
     executeRequest("/jsonrpc", "POST",command);
 
 }
+
 // Added shutdown
-def shutdown(kodiIP){
+def shutdown(){
     def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+// Added quit
+def quit(){
+    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Application.Quit\", \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+// Added skip
+def skip(skipType){
+    def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" + skipType + "\"}, \"id\": 1}"
+    executeRequest("/jsonrpc", "POST",command)
+}
+
+def executeAction (action){
+    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"Input.ExecuteAction\",\"params\": { \"action\": \"" + action + "\"},\"id\":1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
@@ -403,15 +344,14 @@ def executeRequest(Path, method, command) {
                 body: command,
                 headers: headers)
 
+        log.debug "Hub Command: " + actualAction.toSrring
+
         sendHubCommand(actualAction)
     }
     catch (Exception e) {
         log.debug "Hit Exception $e on $hubAction"
     }
 }
-
-
-
 
 // Helpers
 private String convertIPtoHex(ipAddress) {
