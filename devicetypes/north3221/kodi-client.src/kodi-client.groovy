@@ -351,7 +351,7 @@ def executeAction(action) {
 
 def push() {
     log.debug "push"
-    log.debug "Test New User Prefs: " + testMovieLabels
+    log.debug "Test New User Prefs: " + getTestMovieLabels
 
     //executeAction("select")
 }
