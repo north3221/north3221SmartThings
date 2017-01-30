@@ -15,7 +15,24 @@
  *  for the specific language governing permissions and limitations under the License.
  *
  */
+//User preferences - update this method with your own preferences if you want.
+//I will keep the preferences in order, so you can copy and past over them
+def getUserPrefs(){
+    HashMap<String, String> userPrefsHash = new HashMap<String, String>();
+    //V 1.2
+    userPrefsHash.put("movieLabels", "cinema, movie, film")
 
+    //Return
+    return userPrefs
+}
+
+def getUserPref(String type){
+    return userPrefs(type)
+}
+
+def getTestMovieLabels(){
+    return userPref("movieLabels")
+}
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
@@ -333,7 +350,9 @@ def executeAction(action) {
 }
 
 def push() {
-    executeAction("select")
+    log.debug "Test New User Prefs: " + testMovieLabels
+
+    //executeAction("select")
 }
 //Play pause for action button
 def play() {
