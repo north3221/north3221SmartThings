@@ -233,11 +233,10 @@ def response(evt) {
     def msg = parseLanMessage(evt.description);
 }
 
-
-//Incoming command handler
-def switchChange(evt) {
-    // Ignore on/off
-    if(evt.value == "on" || evt.value == "off") return;
+//Handle the requested actions to media controller
+def controlEvents(evt){
+    // Ignore RESETACTION as this is used between button presses to allow multiple same actions
+    if(evt.value == "RESETACTION") return;
 
     def kodiIP = getKodiAddress(evt.value);
     // Parse out the new switch state from the event data
@@ -287,14 +286,9 @@ def checkKodi() {
         log.debug "Device Already Added"
     }
     log.debug "subscribe"
-    subscribe(KodiClient, "switch", switchChange)
     subscribe(KodiClient, "currentActivity", controlEvents)
     log.debug "subscribed"
 
-}
-
-def controlEvents(evt){
-    log.debug "Media Controller Event = " + evt.value
 }
 
 def setVolume(kodiIP, level) {

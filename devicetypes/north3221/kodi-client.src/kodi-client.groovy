@@ -69,9 +69,8 @@ def getTileWhite(){
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
-        capability "Switch"             //For switch on/off
         capability "musicPlayer"        //For playback etc
-        capability "mediaController"    //Not sure I need this yet
+        capability "mediaController"    //Used for handling the action requests
         capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
         //Custom Commands
         command "describeAttributes"
@@ -342,12 +341,9 @@ def getMinMovieRuntime(){
 
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
-    def lastState = "on"
-    //lastState = device.currentState('switch')?.getValue();
-    //log.debug "Execute action check: Last State = " + lastState + " - Check = " + device.currentState('switch').getValue()
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
-    sendEvent(name: "switch", value: lastState);
-    sendEvent(name: "currentActivity", value: "TestMediaController");
+    sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
+    //Need to reset the command as hib wont accept duplicates
+    sendEvent(name: "currentActivity", value: "RESETACTION");
 }
 
 def push() {
@@ -420,29 +416,24 @@ def setPlaybackState(state) {
     log.debug "Setting playback state to: " + state
     switch(state) {
         case "stopped":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "stopped");
             setPlaybackTitle("","","")
             break;
 
         case "playing":
-            sendEvent(name: "switch", value: "on");
             sendEvent(name: "status", value: "playing");
             break;
 
         case "paused":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "paused");
             break;
 
         case "shutdown":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "shutdown");
             setPlaybackTitle("","", "")
             break;
 
         case "startup":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "startup");
             setPlaybackTitle("","", "")
             break;
