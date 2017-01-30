@@ -286,8 +286,11 @@ def checkKodi() {
     {
         log.debug "Device Already Added"
     }
+    log.debug "subscribe"
     subscribe(KodiClient, "switch", switchChange)
     subscribe(KodiClient, "mediaController", controlEvents)
+    log.debug "subscribed"
+
 }
 
 def controlEvents(evt){
