@@ -22,7 +22,13 @@ def getUserPref(type){
     def userPrefsMap = [:]
     //v1.2 START
     //ICONS
-    userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    userPrefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    userPrefsMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png"
+    userPrefsMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg"
+    userPrefsMap.iconUp = "st.samsung.da.oven_ic_up"
+    userPrefsMap.iconDown ="st.samsung.da.oven_ic_down"
+    userPrefsMap.iconleft = "st.samsung.da.RAC_4line_03_ic_left"
+    userPrefsMap.iconRight = "st.samsung.da.RAC_4line_03_ic_right"
     //COLOURS
     userPrefsMap.colMainWaiting = "#ffffff"     //White
     userPrefsMap.colMainStartup = "#90d2a7"     //Light Green
@@ -93,12 +99,12 @@ metadata {
 
     tiles(scale: 2) {
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainWaiting')}", defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainStartup')}", nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainPlaying')}", nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainStopped')}", nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainPaused')}", nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainShutdown')}", nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainWaiting')}", defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainStartup')}", nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainPlaying')}", nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainStopped')}", nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainPaused')}", nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainShutdown')}", nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
@@ -108,9 +114,7 @@ metadata {
                 attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"play", nextState: "playing")
-                attributeState("playing", label:"Playing", action:"play", nextState: "paused")
-                attributeState("stopped", label:"Stopped", action:"play", nextState: "playing")
+                attributeState("playing", label:"Paused", action:"play", defaultState: true)
             }
             tileAttribute("device.status", key: "PREVIOUS_TRACK") {
                 attributeState("status", action:"rewind", defaultState: true)
@@ -131,27 +135,27 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", backgroundColor:tileWhite, defaultState: true
         }
 
         standardTile("push", "device.status", width: 2, height: 2) {
