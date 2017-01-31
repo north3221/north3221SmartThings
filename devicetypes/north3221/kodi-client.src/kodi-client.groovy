@@ -27,7 +27,7 @@ def getUserPref(type){
     userPrefsMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg"
     userPrefsMap.iconUp = "st.samsung.da.oven_ic_up"
     userPrefsMap.iconDown ="st.samsung.da.oven_ic_down"
-    userPrefsMap.iconLeft = "st.samsung.da.RAC_4line_03_ic_left"
+    userPrefsMap.iconLeft = "st.samsung.da.RAC_4line_01_ic_left"
     userPrefsMap.iconRight = "st.samsung.da.RAC_4line_03_ic_right"
     //COLOURS
     userPrefsMap.colMainWaiting = "#ffffff"     //White
