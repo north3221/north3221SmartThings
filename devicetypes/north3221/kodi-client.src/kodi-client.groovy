@@ -447,7 +447,7 @@ def getSportLabels() {
 }
 
 def getTvLabels() {
-    return (inputTVLabel ?: userPref.tvLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputTVLabel ?: getUserPref().tvLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getMinMovieRuntime(){
