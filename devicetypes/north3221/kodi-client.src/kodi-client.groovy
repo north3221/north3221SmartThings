@@ -439,7 +439,7 @@ def setPlaybackIcon(iconUrl) {
 
 //Getters
 def getMovieLabels() {
-    return (inputMovieLabel ?: userPref.movieLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputMovieLabel ?: ${userPref.movieLabels}).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getSportLabels() {
