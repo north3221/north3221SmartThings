@@ -33,6 +33,9 @@ def getUserPref(pref){
     userPrefsMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png"
     userPrefsMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png"
     userPrefsMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png"
+    userPrefsMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/next-icon.png"
+    userPrefsMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/previous-icon.png"
+
     //COLOURS
     userPrefsMap.colMainWaiting = "#ffffff"     //White
     userPrefsMap.colMainStartup = "#90d2a7"     //Light Green
@@ -155,10 +158,6 @@ metadata {
             state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
         }
 
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", defaultState: true
-        }
-
         standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
             state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
         }
@@ -167,11 +166,24 @@ metadata {
             state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
         }
 
+        standardTile("next", "device.next", width: 1, height: 1) {
+            state "next", label:'', action:"${executeAction('next')}", icon:"${getUserPref('iconNext')}", defaultState: true
+        }
+
+        standardTile("previous", "device.previous", width: 1, height: 1) {
+            state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
+        }
+
+
+        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
+            state "on", label:'', action:"", icon:"", defaultState: true
+        }
+
         main("main")
         details(["mediaMulti",
                  "skipbackward", "stop", "up", "info", "skipforward",
                  "left", "push", "right",
-                 "shutdown", "1x1", "down", "1x1","back"
+                 "shutdown", "1x1", "down", "next","back"
         ])
     }
 
@@ -286,9 +298,9 @@ def parseNowPlaying(msgBody){
 
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
-    sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
+    //sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
     //Need to reset the command as hib wont accept duplicates
-    sendEvent(name: "currentActivity", value: "RESETACTION");
+    //sendEvent(name: "currentActivity", value: "RESETACTION");
 }
 
 def push() {
