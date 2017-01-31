@@ -206,7 +206,7 @@ metadata {
                  "skipbackward", "previous", "up", "next", "skipforward",
                  "info", "left", "push", "right", "pgUp",
                 "menu", "pgDown",
-                 "shutdown", "stoop", "down", "home","back"
+                 "shutdown", "stop", "down", "home","back"
         ])
     }
 

@@ -305,6 +305,7 @@ def executeAction (method, action){
         command = command + ",\"params\": { \"action\": \"" + action + "\"}"
     }
     command = command + ",\"id\":1}"
+    log.debug "Kodi Command : " + command
     executeRequest("/jsonrpc", "POST",command)
 }
 
