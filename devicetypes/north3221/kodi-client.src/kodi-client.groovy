@@ -443,7 +443,7 @@ def getMovieLabels() {
 }
 
 def getSportLabels() {
-    return (inputSportsLabel ?: userPref.sportLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputSportsLabel ?: getUserPref.sportLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getTvLabels() {
