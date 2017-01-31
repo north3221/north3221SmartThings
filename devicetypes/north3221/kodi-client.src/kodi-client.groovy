@@ -29,6 +29,10 @@ def getUserPref(type){
     userPrefsMap.iconDown ="st.samsung.da.oven_ic_down"
     userPrefsMap.iconLeft = "st.samsung.da.RAC_4line_01_ic_left"
     userPrefsMap.iconRight = "st.samsung.da.RAC_4line_03_ic_right"
+    userPrefsMap.iconBack = "http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png"
+    userPrefsMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png"
+    userPrefsMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png"
+    userPrefsMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png"
     //COLOURS
     userPrefsMap.colMainWaiting = "#ffffff"     //White
     userPrefsMap.colMainStartup = "#90d2a7"     //Light Green
@@ -36,8 +40,8 @@ def getUserPref(type){
     userPrefsMap.colMainStopped = "#153591"     //Blue
     userPrefsMap.colMainPaused = "#e86d13"      //Orange
     userPrefsMap.colMainShutdown = "#e84e4e"    //Red
-
-
+    userPrefsMap.colSelectActive = "#79b821"    //Green
+    userPrefsMap.colSelectInactive = "#ffffff"  //White
     //CATEGORY SETTINGS
     userPrefsMap.movieLabels = "cinema, movie, film"
     userPrefsMap.sportLabels = "sport"
@@ -159,29 +163,29 @@ metadata {
         }
 
         standardTile("push", "device.status", width: 2, height: 2) {
-            state "stopped", label:'Select', action:"push", backgroundColor:tileGreen, defaultState: true
-            state "playing", label:'Select', action:"push", backgroundColor:tileWhite
-            state "paused", label:'Select', action:"push", backgroundColor:tileWhite
+            state "stopped", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectActive')}", defaultState: true
+            state "playing", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
+            state "paused", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
         }
 
         standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
-            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
+            state "back", label:'', action:"back", icon:"${getUserPref('iconBack')}", defaultState: true
         }
 
         standardTile("info", "device.info", width: 1, height: 1) {
-            state "info", label:'', action:"info", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
         }
 
         standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"", icon:"", defaultState: true
         }
 
         standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
-            state "skipforward", label:'', action:"skipforward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
         }
 
         standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
-            state "skipbackward", label:'', action:"skipbackward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
+            state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
         }
 
         main("main")
