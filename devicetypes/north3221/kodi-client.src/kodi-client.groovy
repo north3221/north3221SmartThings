@@ -38,25 +38,6 @@ def getAppListIcon(){
     return getUserPref("appListIcon")
 }
 
-
-//DEFAULTS
-//Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
-def getDefaultMovieLabels() {
-    //return "movie"
-    return getUserPref("movieLabels")
-}
-def getDefaultSportLabels() {
-    //return "sport"
-    return getUserPref("sportLabels")
-}
-def getDefaultTVLabels() {
-    //return "bbc, itv, channel, sky, amc, fox"
-    return getUserPref("tvLabels")
-}
-def getDefaultMinMovieRuntime() {
-    //return 4200
-    return getUserPref("minMovieRuntime")
-}
 //Colours
 def getTileRed(){
     //return "#ff0000"
@@ -309,22 +290,6 @@ def parseNowPlaying(msgBody){
     log.info "Current Playing type (" + type + ") category (" + category + ") title (" + playingTitle + ")"
 }
 
-def getMovieLabels() {
-    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getSportLabels() {
-    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getTvLabels() {
-    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getMinMovieRuntime(){
-    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
-}
-
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
     sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
@@ -333,8 +298,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "user pref movie = " + getUserPref("movieLabels")
-    //executeAction("select")
+    executeAction("select")
 }
 //Play pause for action button
 def play() {
@@ -469,6 +433,25 @@ def setPlaybackIcon(iconUrl) {
     //sendEvent(name: "scanNewClients", icon: iconUrl)
 
     log.debug "Icon set to " + state.icon
+}
+
+//Tools
+
+//Getters
+def getMovieLabels() {
+    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getSportLabels() {
+    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getTvLabels() {
+    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getMinMovieRuntime(){
+    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
 
 //define attributes for CoRE
