@@ -34,7 +34,9 @@ def getUserPref(type){
 }
 
 //ICONS
-
+def getAppListIcon(){
+    return getUserPref("appListIcon")
+}
 
 
 //DEFAULTS
@@ -107,12 +109,12 @@ metadata {
         //def mainIcon = "st.Electronics.electronics16"
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:'${getUserPref("appListIcon")', backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:'${getUserPref("appListIcon")', backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:'${getUserPref("appListIcon")', backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:'${getUserPref("appListIcon")', backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:'${getUserPref("appListIcon")', backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:'${getUserPref("appListIcon")', backgroundColor:tileRed, nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:appListIcon, backgroundColor:tileWhite, defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:appListIcon, backgroundColor:tileLightGreen, nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:appListIcon, backgroundColor:tileGreen, nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:appListIcon, backgroundColor:tileBlue, nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:appListIcon, backgroundColor:tileOrange, nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:appListIcon, backgroundColor:tileRed, nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
