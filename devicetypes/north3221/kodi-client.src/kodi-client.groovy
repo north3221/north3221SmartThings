@@ -167,7 +167,7 @@ metadata {
         }
 
         standardTile("next", "device.next", width: 1, height: 1) {
-            state "next", label:'', action:"${executeAction('next')}", icon:"${getUserPref('iconNext')}", defaultState: true
+            state "next", label:'', action:${executeAction('next')}, icon:"${getUserPref('iconNext')}", defaultState: true
         }
 
         standardTile("previous", "device.previous", width: 1, height: 1) {
