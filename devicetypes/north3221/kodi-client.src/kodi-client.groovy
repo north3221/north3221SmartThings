@@ -15,22 +15,27 @@
  *  for the specific language governing permissions and limitations under the License.
  *
  */
-//User preferences - update this method with your own preferences if you want.
+//User customisation - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
-def getUserPrefs(){
-    HashMap<String, String> userPrefsHash = new HashMap<String, String>();
+//NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
+def getUserPref(type){
+    userPrefsMap = [:]
     //v1.2 START
-    userPrefsHash.put("movieLabels", "cinema, movie, film")
+    userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    userPrefsMap.movieLabels = "cinema, movie, film"
+    userPrefsMap.sportLabels = "sport"
+    userPrefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
+    userPrefsMap.minMovieRuntime = 4200
     //v1.2 END
     //v1.3 START
     //v1.3 END
     //Return
-    return userPrefsHash
+    return userPrefsMap[type]
 }
 
-def getUserPref(String type){
-    return userPrefs.get(type)
-}
+//ICONS
+
+
 
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
@@ -38,13 +43,13 @@ def getDefaultMovieLabels() {
     return getUserPref("movieLabels")
 }
 def getDefaultSportLabels() {
-    return "sport"
+    return getUserPref("sportLabels")
 }
 def getDefaultTVLabels() {
-    return "bbc, itv, channel, sky, amc, fox"
+    return getUserPref("tvLabels")
 }
 def getDefaultMinMovieRuntime() {
-    return 4200
+    return getUserPref("minMovieRuntime").toInteger
 }
 //Colours
 def getTileRed(){
@@ -98,16 +103,16 @@ metadata {
     }*/
 
     tiles(scale: 2) {
-        def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
+
         //def mainIcon = "st.Electronics.electronics16"
 
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:tileRed, nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:'${getUserPref("appListIcon")', backgroundColor:tileWhite, defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:'${getUserPref("appListIcon")', backgroundColor:tileLightGreen, nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:'${getUserPref("appListIcon")', backgroundColor:tileGreen, nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:'${getUserPref("appListIcon")', backgroundColor:tileBlue, nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:'${getUserPref("appListIcon")', backgroundColor:tileOrange, nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:'${getUserPref("appListIcon")', backgroundColor:tileRed, nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
