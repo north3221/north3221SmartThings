@@ -318,7 +318,7 @@ def getMovieLabels() {
     returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
     return returnList
     */
-    return (inputMovieLabel ?: defaultMovieLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getSportLabels() {
