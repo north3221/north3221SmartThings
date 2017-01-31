@@ -35,6 +35,10 @@ def getUserPref(pref){
     userPrefsMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png"
     userPrefsMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/next-icon.png"
     userPrefsMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/previous-icon.png"
+    userPrefsMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/menu-icon.png"
+    userPrefsMap.iconHome= "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/home-icon.png"
+    userPrefsMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/pg-up-icon.png"
+    userPrefsMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/pg-down-icon.png"
 
     //COLOURS
     userPrefsMap.colMainWaiting = "#ffffff"     //White
@@ -76,6 +80,10 @@ metadata {
         command "rewind"
         command "skipforward"
         command "skipbackward"
+        command "pageUp"
+        command "pageDown"
+        command "menu"
+        command "home"
 
         //Custom attributes
         attribute "currentPlayingType", "string"
@@ -136,11 +144,11 @@ metadata {
             state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
         }
 
-        standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
+        standardTile("left", "device.left", width: 1, height: 2, decoration: "flat") {
             state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
         }
 
-        standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
+        standardTile("right", "device.right", width: 1, height: 2, decoration: "flat") {
             state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
         }
 
@@ -167,13 +175,27 @@ metadata {
         }
 
         standardTile("next", "device.next", width: 1, height: 1) {
-            state "next", label:'', action:"${executeAction('next')}", icon:"${getUserPref('iconNext')}", defaultState: true
+            state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
         }
 
         standardTile("previous", "device.previous", width: 1, height: 1) {
             state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
         }
 
+        standardTile("menu", "device.menu", width: 1, height: 1) {
+            state "menu", label:'', action:"menu", icon:"${getUserPref('iconMenu')}", defaultState: true
+        }
+
+        standardTile("home", "device.home", width: 1, height: 1) {
+            state "home", label:'', action:"home", icon:"${getUserPref('iconHome')}", defaultState: true
+        }
+
+        standardTile("pgUp", "device.pgUp", width: 1, height: 1) {
+            state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
+        }
+        standardTile("pgDown", "device.pgDown", width: 1, height: 1) {
+            state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
+        }
 
         standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
             state "on", label:'', action:"", icon:"", defaultState: true
@@ -181,9 +203,10 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "skipbackward", "stop", "up", "info", "skipforward",
-                 "left", "push", "right",
-                 "shutdown", "1x1", "down", "next","back"
+                 "skipbackward", "previous", "up", "next", "skipforward",
+                 "info", "left", "push", "right", "pgUp",
+                "menu", "pgDown",
+                 "shutdown", "stoop", "down", "home","back"
         ])
     }
 
@@ -298,9 +321,9 @@ def parseNowPlaying(msgBody){
 
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
-    //sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
+    sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
     //Need to reset the command as hib wont accept duplicates
-    //sendEvent(name: "currentActivity", value: "RESETACTION");
+    sendEvent(name: "currentActivity", value: "RESETACTION");
 }
 
 def push() {
@@ -362,6 +385,31 @@ def info(){
 def mute(){
     executeAction("mute")
 }
+
+def nextTrack(){
+    executeAction("skipnext")
+}
+
+def previousTrack(){
+    executeAction("skipprevious")
+}
+
+def pageUp(){
+    executeAction("pageup")
+}
+
+def pageDown(){
+    executeAction("pagedown")
+}
+
+def menu(){
+    executeAction("contextmenu")
+}
+
+def home(){
+    executeAction("home")
+}
+
 
 def setLevel(level) {
     sendEvent(name: "level", value: level);

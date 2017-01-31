@@ -249,17 +249,20 @@ def controlEvents(evt){
             setVolume(kodiIP, vol);
             break;
         case "shutdown":            //Cant be done with generic execute action
-            shutdown()
+            executeAction("System.Shutdown")
             break;
         case "quit":                //Cant be done with generic execute action
-            quit()
+            executeAction("Application.Quit")
             break;
         case "skip":                //Cant be done with generic execute action
             skip(evt.value.tokenize('.')[2])
             break;
+        case "home":
+            executeAction("Input.Home")
+            break;
         default:                    //Just execute command
             log.debug "execute " + command
-            executeAction(command)
+            executeAction("Input.ExecuteAction", command)
     }
 }
 
@@ -291,26 +294,17 @@ def getPlayingtitle(){
 
 }
 
-// Added shutdown
-def shutdown(){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-// Added quit
-def quit(){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Application.Quit\", \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-// Added skip
 def skip(skipType){
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" + skipType + "\"}, \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
-def executeAction (action){
-    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"Input.ExecuteAction\",\"params\": { \"action\": \"" + action + "\"},\"id\":1}"
+def executeAction (method, action){
+    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"" + method + "\""
+    if (params) {
+        command = command + ",\"params\": { \"action\": \"" + action + "\"}"
+    }
+    command = command + ",\"id\":1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
