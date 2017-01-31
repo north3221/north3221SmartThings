@@ -310,12 +310,15 @@ def parseNowPlaying(msgBody){
 }
 
 def getMovieLabels() {
+    /*
     def returnList = defaultMovieLabels
     if (inputMovieLabel) {
         returnList = inputMovieLabel
     }
     returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
     return returnList
+    */
+    return (inputMovieLabel ?: defaultMovieLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getSportLabels() {
