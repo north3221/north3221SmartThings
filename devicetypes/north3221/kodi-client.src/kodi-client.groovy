@@ -18,7 +18,7 @@
 //User customisation - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
-def getUserPref(){
+Map getUserPref(){
     def userPrefsMap = [:]
     //v1.2 START
     userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
