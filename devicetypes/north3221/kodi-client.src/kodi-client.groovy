@@ -145,11 +145,11 @@ metadata {
         }
 
         standardTile("left", "device.left", width: 1, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
+            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", backgroundColor: "#22a3ec", defaultState: true
         }
 
         standardTile("right", "device.right", width: 1, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
+            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", backgroundColor: "#22a3ec", defaultState: true
         }
 
         standardTile("push", "device.status", width: 2, height: 2) {
