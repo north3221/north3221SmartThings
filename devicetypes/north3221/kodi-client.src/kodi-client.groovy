@@ -316,7 +316,7 @@ def executeAction(action) {
 
 def push() {
     log.debug "defaultValue: " + getUserPref("movieLabels")
-    log.debug "defaultValue: " + ${getUserPref("sportLabels")}
+    //log.debug "defaultValue: " + ${getUserPref("sportLabels")}
     log.debug "defaultValue: " + '${getUserPref{"tvLabels")'
     log.debug "defaultValue: " +  "${getUserPref('minMovieRuntime')}"
 
