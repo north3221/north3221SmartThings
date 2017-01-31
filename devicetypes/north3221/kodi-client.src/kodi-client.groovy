@@ -310,40 +310,19 @@ def parseNowPlaying(msgBody){
 }
 
 def getMovieLabels() {
-    /*
-    def returnList = defaultMovieLabels
-    if (inputMovieLabel) {
-        returnList = inputMovieLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
-    */
     return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getSportLabels() {
-    def returnList = defaultSportLabels
-    if (inputSportsLabel) {
-        returnList = inputSportsLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
+    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getTvLabels() {
-    def returnList = defaultTVLabels
-    if (inputTVLabel) {
-        returnList = inputTVLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
+    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getMinMovieRuntime(){
-    if (inputMinMovieRuntime){
-        return inputMinMovieRuntime
-    }
-    return defaultMinMovieRuntime
+    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
 
 def executeAction(action) {
