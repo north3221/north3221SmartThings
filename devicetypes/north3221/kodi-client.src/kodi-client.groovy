@@ -19,7 +19,7 @@
 //I will keep the preferences in order, so you can copy and past over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
 def getUserPref(type){
-    userPrefsMap = [:]
+    def userPrefsMap = [:]
     //v1.2 START
     userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
     userPrefsMap.movieLabels = "cinema, movie, film"
@@ -42,20 +42,20 @@ def getAppListIcon(){
 //DEFAULTS
 //Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
 def getDefaultMovieLabels() {
-    return "movie"
-    //return getUserPref("movieLabels")
+    //return "movie"
+    return getUserPref("movieLabels")
 }
 def getDefaultSportLabels() {
-    return "sport"
-    //return getUserPref("sportLabels")
+    //return "sport"
+    return getUserPref("sportLabels")
 }
 def getDefaultTVLabels() {
-    return "bbc, itv, channel, sky, amc, fox"
-    //return getUserPref("tvLabels")
+    //return "bbc, itv, channel, sky, amc, fox"
+    return getUserPref("tvLabels")
 }
 def getDefaultMinMovieRuntime() {
-    return 4200
-    //return getUserPref("minMovieRuntime")
+    //return 4200
+    return getUserPref("minMovieRuntime")
 }
 //Colours
 def getTileRed(){
