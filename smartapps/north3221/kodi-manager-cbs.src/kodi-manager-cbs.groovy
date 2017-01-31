@@ -227,8 +227,6 @@ void stateIsStartup() {
     KodiClient.setPlaybackState("startup")
 }
 
-
-
 def response(evt) {
     def msg = parseLanMessage(evt.description);
 }
@@ -267,28 +265,19 @@ def controlEvents(evt){
 
 //Child device setup
 def checkKodi() {
-
     log.debug "Checking to see if the client has been added"
 
     def children = getChildDevices()  ;
-    def childrenEmpty = children.isEmpty();
-
-
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
 
     if(!KodiClient){
         log.debug "No Devices found, adding device"
         KodiClient = addChildDevice("north3221", "Kodi-Client", NetworkDeviceId() , theHub.id, [label:"$settings.clientName", name:"$settings.clientName"])
         log.debug "Added Device"
-    }
-    else
-    {
+    } else {
         log.debug "Device Already Added"
     }
-    log.debug "subscribe"
     subscribe(KodiClient, "currentActivity", controlEvents)
-    log.debug "subscribed"
-
 }
 
 def setVolume(kodiIP, level) {

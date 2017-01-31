@@ -18,7 +18,7 @@
 //User customisation - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
-def getUserPref(type){
+def getUserPref(pref){
     def userPrefsMap = [:]
     //v1.2 START
     //ICONS
@@ -51,28 +51,7 @@ def getUserPref(type){
     //v1.3 START
     //v1.3 END
     //Return
-    return userPrefsMap[type]
-}
-
-//Colours
-def getTileRed(){
-    //return "#ff0000"
-    return "#e84e4e"
-}
-def getTileGreen() {
-    return "#79b821"
-}
-def getTileLightGreen(){
-    return "#90d2a7"
-}
-def getTileOrange(){
-    return "#e86d13"
-}
-def getTileBlue(){
-    return "#153591"
-}
-def getTileWhite(){
-    return "#ffffff"
+    return userPrefsMap[pref]
 }
 
 metadata {
@@ -378,27 +357,22 @@ def setLevel(level) {
 }
 
 def setPlaybackState(state) {
-
     log.debug "Setting playback state to: " + state
     switch(state) {
         case "stopped":
             sendEvent(name: "status", value: "stopped");
             setPlaybackTitle("","","")
             break;
-
         case "playing":
             sendEvent(name: "status", value: "playing");
             break;
-
         case "paused":
             sendEvent(name: "status", value: "paused");
             break;
-
         case "shutdown":
             sendEvent(name: "status", value: "shutdown");
             setPlaybackTitle("","", "")
             break;
-
         case "startup":
             sendEvent(name: "status", value: "startup");
             setPlaybackTitle("","", "")
