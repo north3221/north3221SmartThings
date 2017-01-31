@@ -18,7 +18,7 @@
 //User customisation - update this method with your own preferences if you want.
 //I will keep the preferences in order, so you can copy and past over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
-def getUserPref(type){
+def getUserPref(){
     def userPrefsMap = [:]
     //v1.2 START
     userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
@@ -30,7 +30,7 @@ def getUserPref(type){
     //v1.3 START
     //v1.3 END
     //Return
-    return userPrefsMap[type]
+    return userPrefsMap
 }
 
 //ICONS
@@ -439,19 +439,19 @@ def setPlaybackIcon(iconUrl) {
 
 //Getters
 def getMovieLabels() {
-    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputMovieLabel ?: userPref.movieLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getSportLabels() {
-    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputSportsLabel ?: userPref.sportLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getTvLabels() {
-    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+    return (inputTVLabel ?: userPref.tvLabels).replaceAll("\\s","").toLowerCase().split(',').toList()
 }
 
 def getMinMovieRuntime(){
-    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
+    return inputMinMovieRuntime ?: userPref.minMovieRuntime
 }
 
 //define attributes for CoRE
