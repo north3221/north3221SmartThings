@@ -351,7 +351,8 @@ def executeAction(action) {
 }
 
 def push() {
-    executeAction("select")
+    log.debug "user pref movie = " + getUserPref("movieLabels")
+    //executeAction("select")
 }
 //Play pause for action button
 def play() {
