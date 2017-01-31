@@ -21,7 +21,18 @@
 def getUserPref(type){
     def userPrefsMap = [:]
     //v1.2 START
+    //ICONS
     userPrefsMap.appListIcon = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    //COLOURS
+    userPrefsMap.colMainWaiting = "#ffffff"     //White
+    userPrefsMap.colMainStartup = "#90d2a7"     //Light Green
+    userPrefsMap.colMainPlaying = "#79b821"     //Green
+    userPrefsMap.colMainStopped = "#153591"     //Blue
+    userPrefsMap.colMainPaused = "#e86d13"      //Orange
+    userPrefsMap.colMainShutdown = "#e84e4e"    //Red
+
+
+    //CATEGORY SETTINGS
     userPrefsMap.movieLabels = "cinema, movie, film"
     userPrefsMap.sportLabels = "sport"
     userPrefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
@@ -31,11 +42,6 @@ def getUserPref(type){
     //v1.3 END
     //Return
     return userPrefsMap[type]
-}
-
-//ICONS
-def getAppListIcon(){
-    return getUserPref("appListIcon")
 }
 
 //Colours
@@ -87,12 +93,12 @@ metadata {
 
     tiles(scale: 2) {
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('appListIcon')}", backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${getUserPref('appListIcon')}", backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:tileRed, nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainWaiting')}", defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainStartup')}", nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainPlaying')}", nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainStopped')}", nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainPaused')}", nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:"${getUserPref('colMainShutdown')}", nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
@@ -291,22 +297,6 @@ def parseNowPlaying(msgBody){
     log.info "Current Playing type (" + type + ") category (" + category + ") title (" + playingTitle + ")"
 }
 
-def getMovieLabels() {
-    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getSportLabels() {
-    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getTvLabels() {
-    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
-}
-
-def getMinMovieRuntime(){
-    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
-}
-
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
     sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
@@ -315,15 +305,7 @@ def executeAction(action) {
 }
 
 def push() {
-    log.debug "defaultValue: " + getUserPref("movieLabels")
-    //log.debug "defaultValue: " + ${getUserPref("sportLabels")}
-    log.debug "defaultValue: " + '${getUserPref{"tvLabels")'
-    log.debug "defaultValue: " +  "${getUserPref('minMovieRuntime')}"
-
-
-
-    log.debug "user pref movie = " + getUserPref("movieLabels")
-    //executeAction("select")
+    executeAction("select")
 }
 //Play pause for action button
 def play() {
@@ -458,6 +440,24 @@ def setPlaybackIcon(iconUrl) {
     //sendEvent(name: "scanNewClients", icon: iconUrl)
 
     log.debug "Icon set to " + state.icon
+}
+
+//TOOLS
+//Getters
+def getMovieLabels() {
+    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getSportLabels() {
+    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getTvLabels() {
+    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+
+def getMinMovieRuntime(){
+    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
 
 //define attributes for CoRE
