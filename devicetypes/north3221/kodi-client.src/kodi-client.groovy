@@ -87,12 +87,12 @@ metadata {
 
     tiles(scale: 2) {
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png", backgroundColor:tileRed, nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:tileWhite, defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('appListIcon')}", backgroundColor:tileLightGreen, nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('appListIcon')}", backgroundColor:tileGreen, nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:tileBlue, nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${getUserPref('appListIcon')}", backgroundColor:tileOrange, nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('appListIcon')}", backgroundColor:tileRed, nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
@@ -183,9 +183,9 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: "test", displayDuringSetup: false
-        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: "test", displayDuringSetup: false
-        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: "test", displayDuringSetup: false
+        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: "${getUserPref('movieLabels')}", displayDuringSetup: false
+        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: "${getUserPref('sportLabels')}", displayDuringSetup: false
+        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: "${getUserPref('tvLabels')}", displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
