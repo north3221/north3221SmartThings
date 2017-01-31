@@ -51,7 +51,7 @@ def getDefaultTVLabels() {
     return getUserPref("tvLabels")
 }
 def getDefaultMinMovieRuntime() {
-    return getUserPref("minMovieRuntime").toInteger
+    return getUserPref("minMovieRuntime").toInteger()
 }
 //Colours
 def getTileRed(){
