@@ -38,25 +38,6 @@ def getAppListIcon(){
     return getUserPref("appListIcon")
 }
 
-
-//DEFAULTS
-//Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
-def getDefaultMovieLabels() {
-    //return "movie"
-    return getUserPref("movieLabels")
-}
-def getDefaultSportLabels() {
-    //return "sport"
-    return getUserPref("sportLabels")
-}
-def getDefaultTVLabels() {
-    //return "bbc, itv, channel, sky, amc, fox"
-    return getUserPref("tvLabels")
-}
-def getDefaultMinMovieRuntime() {
-    //return 4200
-    return getUserPref("minMovieRuntime")
-}
 //Colours
 def getTileRed(){
     //return "#ff0000"
