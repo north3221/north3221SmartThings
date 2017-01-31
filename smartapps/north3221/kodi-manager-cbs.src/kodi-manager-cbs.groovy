@@ -301,7 +301,7 @@ def skip(skipType){
 
 def executeAction (method, action){
     def command = "{\"jsonrpc\":\"2.0\",\"method\":\"" + method + "\""
-    if (params) {
+    if (action) {
         command = command + ",\"params\": { \"action\": \"" + action + "\"}"
     }
     command = command + ",\"id\":1}"
