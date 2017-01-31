@@ -135,27 +135,27 @@ metadata {
         }
 
         standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", backgroundColor:tileWhite, defaultState: true
+            state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", defaultState: true
         }
 
         standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", backgroundColor:tileWhite, defaultState: true
+            state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
         }
 
         standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", defaultState: true
         }
 
         standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
         }
 
         standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
         }
 
         standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", backgroundColor:tileWhite, defaultState: true
+            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
         }
 
         standardTile("push", "device.status", width: 2, height: 2) {
