@@ -183,10 +183,10 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: movieLabels, displayDuringSetup: false
-        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: sportLabels, displayDuringSetup: false
-        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: tvLabels, displayDuringSetup: false
-        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: minMovieRuntime, displayDuringSetup: false
+        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: getUserPref("movieLabels"), displayDuringSetup: false
+        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: ${getUserPref("sportLabels")}, displayDuringSetup: false
+        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: '${getUserPref{"tvLabels")', displayDuringSetup: false
+        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
     }
