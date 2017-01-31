@@ -144,7 +144,7 @@ metadata {
             state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
         }
 
-        standardTile("left", "device.left", width: 1, height: 2, decoration: "flat") {
+        standardTile("left", "device.left", width: 1, height: 2) {
             state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", backgroundColor: "#22a3ec", defaultState: true
         }
 
