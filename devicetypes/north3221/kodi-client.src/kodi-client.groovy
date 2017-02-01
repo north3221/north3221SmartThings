@@ -25,12 +25,12 @@ def getUserPref(pref){
     userPrefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
     userPrefsMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png"
     userPrefsMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg"
-    userPrefsMap.iconUp = "st.samsung.da.oven_ic_up"
-    userPrefsMap.iconDown ="st.samsung.da.oven_ic_down"
-    userPrefsMap.iconLeft = "st.samsung.da.RAC_4line_01_ic_left"
-    userPrefsMap.iconRight = "st.samsung.da.RAC_4line_03_ic_right"
-    userPrefsMap.iconBack = "http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png"
-    userPrefsMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png"
+    userPrefsMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/up-icon.png"
+    userPrefsMap.iconDown ="https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/down-icon.png"
+    userPrefsMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/left-icon.png"
+    userPrefsMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/right-icon.png"
+    userPrefsMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/back-icon.png"
+    userPrefsMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/info-icon.png"
     userPrefsMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png"
     userPrefsMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png"
     userPrefsMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/next-icon.png"
@@ -47,7 +47,7 @@ def getUserPref(pref){
     userPrefsMap.colMainStopped = "#153591"     //Blue
     userPrefsMap.colMainPaused = "#e86d13"      //Orange
     userPrefsMap.colMainShutdown = "#e84e4e"    //Red
-    userPrefsMap.colSelectActive = "#79b821"    //Green
+    userPrefsMap.colSelectActive = "##22a3ec"   //Blue
     userPrefsMap.colSelectInactive = "#ffffff"  //White
     //CATEGORY SETTINGS
     userPrefsMap.movieLabels = "cinema, movie, film"
@@ -132,7 +132,7 @@ metadata {
             state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", defaultState: true
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "flat") {
             state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
         }
 
@@ -144,12 +144,12 @@ metadata {
             state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
         }
 
-        standardTile("left", "device.left", width: 1, height: 2) {
-            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", backgroundColor: "#22a3ec", defaultState: true
+        standardTile("left", "device.left", width: 1, height: 2, decoration: "flat") {
+            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
         }
 
         standardTile("right", "device.right", width: 1, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", backgroundColor: "#22a3ec", defaultState: true
+            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
         }
 
         standardTile("push", "device.status", width: 2, height: 2) {
@@ -162,7 +162,7 @@ metadata {
             state "back", label:'', action:"back", icon:"${getUserPref('iconBack')}", defaultState: true
         }
 
-        standardTile("info", "device.info", width: 1, height: 1) {
+        standardTile("info", "device.info", width: 1, height: 1, decoration: "flat") {
             state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
         }
 
@@ -174,7 +174,7 @@ metadata {
             state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
         }
 
-        standardTile("next", "device.next", width: 1, height: 1) {
+        standardTile("next", "device.next", width: 1, height: 1, decoration: "flat") {
             state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
         }
 
@@ -182,18 +182,18 @@ metadata {
             state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
         }
 
-        standardTile("menu", "device.menu", width: 1, height: 1) {
+        standardTile("menu", "device.menu", width: 1, height: 1, decoration: "flat") {
             state "menu", label:'', action:"menu", icon:"${getUserPref('iconMenu')}", defaultState: true
         }
 
-        standardTile("home", "device.home", width: 1, height: 1) {
+        standardTile("home", "device.home", width: 1, height: 1, decoration: "flat") {
             state "home", label:'', action:"home", icon:"${getUserPref('iconHome')}", defaultState: true
         }
 
-        standardTile("pgUp", "device.pgUp", width: 1, height: 1) {
+        standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "flat") {
             state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
         }
-        standardTile("pgDown", "device.pgDown", width: 1, height: 1) {
+        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "flat") {
             state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
         }
 
