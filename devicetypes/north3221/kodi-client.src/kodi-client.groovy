@@ -117,9 +117,7 @@ metadata {
                 attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"play", nextState: "waiting", defaultState: true)
-                attributeState("playing", label:"Playing", action:"play", nextState: "waiting")
-                attributeState("stopped", label:"Stopped", action:"play", nextState: "waiting")
+                attributeState("playing", label:"Paused", action:"play", defaultState: true)
             }
             tileAttribute("device.status", key: "PREVIOUS_TRACK") {
                 attributeState("status", action:"rewind", defaultState: true)
@@ -579,5 +577,6 @@ def getUserPref(pref) {
     userDefaultThemeMap.sportLabels = "sport"
     userDefaultThemeMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
     userDefaultThemeMap.minMovieRuntime = 4200
+
     return userDefaultThemeMap[pref]
 }
