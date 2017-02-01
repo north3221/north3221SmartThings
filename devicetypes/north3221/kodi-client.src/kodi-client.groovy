@@ -41,7 +41,7 @@ def getDefaultTheme(){
     userDefaultThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/pg-down-icon.png"
     //DECORATION
     userDefaultThemeMap.decStop = "ring"
-    userDefaultThemeMap.decStop = "flat"
+    userDefaultThemeMap.decShutdown = "flat"
 
 
     //COLOURS
