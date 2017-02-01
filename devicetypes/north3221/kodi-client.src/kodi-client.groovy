@@ -520,7 +520,7 @@ def getMinMovieRuntime(){
     return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
 //Themes
-def getUserPref(pref){
+def TODOgetUserPref(pref){
     def userPrefsMap = [:]
     //Build prefs Map based on settings
     switch (inputTheme ?: "default"){
@@ -532,4 +532,52 @@ def getUserPref(pref){
     userPrefsMap = userPrefsMap + defaultPrefs
     //Return requested pref
     return userPrefsMap[pref]
+}
+
+def getUserPref(pref) {
+
+    def userDefaultThemeMap = [:]
+//v1.2 START
+//ICONS
+    userDefaultThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    userDefaultThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png"
+    userDefaultThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg"
+    userDefaultThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/up-icon.png"
+    userDefaultThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/down-icon.png"
+    userDefaultThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/left-icon.png"
+    userDefaultThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/right-icon.png"
+    userDefaultThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/back-icon.png"
+    userDefaultThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/info-icon.png"
+    userDefaultThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png"
+    userDefaultThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png"
+    userDefaultThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/next-icon.png"
+    userDefaultThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/previous-icon.png"
+    userDefaultThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/menu-icon.png"
+    userDefaultThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/home-icon.png"
+    userDefaultThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/pg-up-icon.png"
+    userDefaultThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/pg-down-icon.png"
+//DECORATION
+    userDefaultThemeMap.decStop = "ring"
+    userDefaultThemeMap.decShutdown = "flat"
+
+//COLOURS
+    userDefaultThemeMap.colMainWaiting = "#ffffff"     //White
+    userDefaultThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userDefaultThemeMap.colMainPlaying = "#79b821"     //Green
+    userDefaultThemeMap.colMainStopped = "#153591"     //Blue
+    userDefaultThemeMap.colMainPaused = "#e86d13"      //Orange
+    userDefaultThemeMap.colMainShutdown = "#e84e4e"    //Red
+    userDefaultThemeMap.colSelectActive = "#22a3ec"    //Blue
+    userDefaultThemeMap.colSelectInactive = "#ffffff"  //White
+//v1.2 END
+//v1.3 START
+//v1.3 END
+//Return
+
+    //CATEGORY SETTINGS
+    userDefaultThemeMap.movieLabels = "cinema, movie, film"
+    userDefaultThemeMap.sportLabels = "sport"
+    userDefaultThemeMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
+    userDefaultThemeMap.minMovieRuntime = 4200
+    return userDefaultThemeMap
 }
