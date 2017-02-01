@@ -139,11 +139,11 @@ metadata {
             }
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1, decoration: "${getUserPref('decStop')}") {
+        standardTile("stop", "device.status", width: 1, height: 1, decoration: "ring") {
             state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", defaultState: true
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, "${getUserPref('decShutdown')}") {
+        standardTile("shutdown", "device.shutdown", width: 1, height: 1, "flat") {
             state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
         }
 
