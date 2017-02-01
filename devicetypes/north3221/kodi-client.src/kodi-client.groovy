@@ -67,6 +67,7 @@ def getDefaultPrefs(){
     prefsMap.sportLabels = "sport"
     prefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
     prefsMap.minMovieRuntime = 4200
+    return prefsMap
 }
 
 metadata {
