@@ -228,6 +228,7 @@ metadata {
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
+        input "inputTheme", "enum", options:["default"], description: "Testing a descrioption", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: "default", displayDuringSetup: false
 
     }
 }
@@ -522,7 +523,7 @@ def getMinMovieRuntime(){
 def getUserPref(pref){
     def userPrefsMap = [:]
     //Build prefs Map based on settings
-    switch (inputTheme){
+    switch (inputTheme ?: "default"){
         default:
             userPrefsMap = defaultTheme
     }
