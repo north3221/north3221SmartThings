@@ -1,6 +1,6 @@
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
- * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
+ * forked from a plex version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
  *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
  *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
