@@ -42,9 +42,21 @@ def getDefaultTheme(){
     //DECORATION
     userDefaultThemeMap.decStop = "ring"
     userDefaultThemeMap.decShutdown = "flat"
-
-
-
+    userDefaultThemeMap.decUp = "flat"
+    userDefaultThemeMap.decDown = "flat"
+    userDefaultThemeMap.decLeft = "flat"
+    userDefaultThemeMap.decRight = "flat"
+    userDefaultThemeMap.decPush = "ring"
+    userDefaultThemeMap.decBack = "flat"
+    userDefaultThemeMap.decInfo = "ring"
+    userDefaultThemeMap.decSkipF = "flat"
+    userDefaultThemeMap.decSkipB = "flat"
+    userDefaultThemeMap.decNext = "flat"
+    userDefaultThemeMap.decPrev = "flat"
+    userDefaultThemeMap.decMenu = "flat"
+    userDefaultThemeMap.decHome = "flat"
+    userDefaultThemeMap.decPup = "flat"
+    userDefaultThemeMap.decPdown = "flat"
     //COLOURS
     userDefaultThemeMap.colMainWaiting = "#ffffff"     //White
     userDefaultThemeMap.colMainStartup = "#90d2a7"     //Light Green
@@ -148,64 +160,64 @@ metadata {
             state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
         }
 
-        standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
+        standardTile("up", "device.up", width: 2, height: 1, decoration: "${getUserPref('decUp')}") {
             state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", defaultState: true
         }
 
-        standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
+        standardTile("down", "device.down", width: 2, height: 1, decoration: "${getUserPref('decDown')}") {
             state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
         }
 
-        standardTile("left", "device.left", width: 1, height: 2, decoration: "flat") {
+        standardTile("left", "device.left", width: 1, height: 2, decoration: "${getUserPref('decLeft')}") {
             state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
         }
 
-        standardTile("right", "device.right", width: 1, height: 2, decoration: "flat") {
+        standardTile("right", "device.right", width: 1, height: 2, decoration: "${getUserPref('decRight')}") {
             state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
         }
 
-        standardTile("push", "device.status", width: 2, height: 2) {
+        standardTile("push", "device.status", width: 2, height: 2, decoration: "${getUserPref('decPush')}") {
             state "stopped", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectActive')}", defaultState: true
             state "playing", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
             state "paused", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
+        standardTile("back", "device.back", width: 1, height: 1, decoration: "${getUserPref('decBack')}") {
             state "back", label:'', action:"back", icon:"${getUserPref('iconBack')}", defaultState: true
         }
 
-        standardTile("info", "device.info", width: 1, height: 1, decoration: "flat") {
+        standardTile("info", "device.info", width: 1, height: 1, decoration: "${getUserPref('decInfo')}") {
             state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
         }
 
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1, decoration: "flat") {
+        standardTile("skipforward", "device.skipforward", width: 1, height: 1, decoration: "${getUserPref('decSkipF')}") {
             state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
         }
 
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1, decoration: "flat") {
+        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1, decoration: "${getUserPref('decSkipB')}") {
             state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
         }
 
-        standardTile("next", "device.next", width: 1, height: 1, decoration: "flat") {
+        standardTile("next", "device.next", width: 1, height: 1, decoration: "${getUserPref('decNext')}") {
             state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
         }
 
-        standardTile("previous", "device.previous", width: 1, height: 1, decoration: "flat") {
+        standardTile("previous", "device.previous", width: 1, height: 1, decoration: "${getUserPref('decPrev')}") {
             state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
         }
 
-        standardTile("menu", "device.menu", width: 1, height: 1, decoration: "flat") {
+        standardTile("menu", "device.menu", width: 1, height: 1, decoration: "${getUserPref('decMenu')}") {
             state "menu", label:'', action:"menu", icon:"${getUserPref('iconMenu')}", defaultState: true
         }
 
-        standardTile("home", "device.home", width: 1, height: 1, decoration: "flat") {
+        standardTile("home", "device.home", width: 1, height: 1, decoration: "${getUserPref('decHome')}") {
             state "home", label:'', action:"home", icon:"${getUserPref('iconHome')}", defaultState: true
         }
 
-        standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "flat") {
+        standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
             state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
         }
-        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "flat") {
+        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "${getUserPref('decPdown')}") {
             state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
         }
 
@@ -215,7 +227,7 @@ metadata {
 
         main("main")
         details(["mediaMulti",
-                 "skipbackward", "previous", "up", "next", "skipforward",
+                 "previous", "skipbackward", "up", "skipforward", "next",
                  "info", "left", "push", "right", "pgUp",
                  "menu", "pgDown",
                  "shutdown", "stop", "down", "home","back"
@@ -223,7 +235,7 @@ metadata {
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: "${getUserPref('movieLabels')}", displayDuringSetup: false
+        input "inputMovieLabel", "text", required: false, title: "Movie labels", description: "Search kodi label for what movie tags?", defaultValue: "${getUserPref('movieLabels')}", displayDuringSetup: false
         input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: "${getUserPref('sportLabels')}", displayDuringSetup: false
         input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: "${getUserPref('tvLabels')}", displayDuringSetup: false
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
