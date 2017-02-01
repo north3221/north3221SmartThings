@@ -47,7 +47,7 @@ def getUserPref(pref){
     userPrefsMap.colMainStopped = "#153591"     //Blue
     userPrefsMap.colMainPaused = "#e86d13"      //Orange
     userPrefsMap.colMainShutdown = "#e84e4e"    //Red
-    userPrefsMap.colSelectActive = "##22a3ec"   //Blue
+    userPrefsMap.colSelectActive = "#22a3ec"   //Blue
     userPrefsMap.colSelectInactive = "#ffffff"  //White
     //CATEGORY SETTINGS
     userPrefsMap.movieLabels = "cinema, movie, film"
@@ -166,11 +166,11 @@ metadata {
             state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
         }
 
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
+        standardTile("skipforward", "device.skipforward", width: 1, height: 1, decoration: "flat") {
             state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
         }
 
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
+        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1, decoration: "flat") {
             state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
         }
 
@@ -178,7 +178,7 @@ metadata {
             state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
         }
 
-        standardTile("previous", "device.previous", width: 1, height: 1) {
+        standardTile("previous", "device.previous", width: 1, height: 1, decoration: "flat") {
             state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
         }
 
