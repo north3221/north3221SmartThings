@@ -579,5 +579,5 @@ def getUserPref(pref) {
     userDefaultThemeMap.sportLabels = "sport"
     userDefaultThemeMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
     userDefaultThemeMap.minMovieRuntime = 4200
-    return userDefaultThemeMap
+    return userDefaultThemeMap[pref]
 }
