@@ -75,7 +75,7 @@ def getDefaultTheme(){
 def getDefaultPrefs(){
     def prefsMap = [:]
     //Main Icon
-    userDefaultThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
     //CATEGORY SETTINGS
     prefsMap.movieLabels = "cinema, movie, film"
     prefsMap.sportLabels = "sport"
