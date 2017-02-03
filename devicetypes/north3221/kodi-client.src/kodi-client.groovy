@@ -22,7 +22,6 @@ def getDefaultTheme(){
     def userDefaultThemeMap = [:]
     //v1.2 START
     //ICONS
-    userDefaultThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/main-icon.png"
     userDefaultThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/stop-icon.png"
     userDefaultThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/power-icon.png"
     userDefaultThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/up-icon.png"
@@ -75,6 +74,8 @@ def getDefaultTheme(){
 
 def getDefaultPrefs(){
     def prefsMap = [:]
+    //Main Icon
+    userDefaultThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
     //CATEGORY SETTINGS
     prefsMap.movieLabels = "cinema, movie, film"
     prefsMap.sportLabels = "sport"
@@ -538,6 +539,7 @@ def getUserPref(pref){
     switch (inputTheme){
         case "Glyphs":
             userPrefsMap = glyphsTheme
+            break
         default:
             userPrefsMap = defaultTheme
     }
