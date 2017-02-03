@@ -255,7 +255,7 @@ log.debug "Initialised"
 }
 
 def updated() {
-    log.debug "updated"
+    log.debug "updated - Theme = " inputTheme
     sendEvent(name: "updateUI", value: inputTheme);
 }
 
