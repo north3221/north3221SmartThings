@@ -544,7 +544,7 @@ def getUserPref(pref){
             break
         default:
             log.debug "Theme = Default"
-            userPrefsMap = defaultTheme
+            userPrefsMap = glyphsTheme
     }
 
     //Add settings into prefs
