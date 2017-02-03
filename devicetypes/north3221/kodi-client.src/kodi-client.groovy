@@ -242,7 +242,7 @@ metadata {
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big (10m) Small (30s)", defaultValue: false, displayDuringSetup: false
-        input "inputTheme", "enum", options:["Default", "Glyphs"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "default", displayDuringSetup: false
+        input "inputTheme", "enum", options:["Default", "Glyphs"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "default", displayDuringSetup: true
     }
 }
 
@@ -544,7 +544,7 @@ def getUserPref(pref){
             break
         default:
             log.debug "Theme = Default"
-            userPrefsMap = glyphsTheme
+            userPrefsMap = defaultTheme
     }
 
     //Add settings into prefs
@@ -574,7 +574,7 @@ def getGlyphsTheme(){
     userGlyphsThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-up-icon.png"
     userGlyphsThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-down-icon.png"
     //DECORATION
-    userGlyphsThemeMap.decStop = "ring"
+    userGlyphsThemeMap.decStop = "flat"
     userGlyphsThemeMap.decShutdown = "flat"
     userGlyphsThemeMap.decUp = "flat"
     userGlyphsThemeMap.decDown = "flat"
