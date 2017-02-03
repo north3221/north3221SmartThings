@@ -255,8 +255,7 @@ log.debug "Initialised"
 }
 
 def updated() {
-    log.debug "updated - Theme = " + "$inputTheme"
-    sendEvent(name: "updateUI", value: inputTheme);
+    //sendEvent(name: "updateUI", value: "$inputTheme");
 }
 
 // parse events into attributes
@@ -551,7 +550,7 @@ def getMinMovieRuntime(){
 def getUserPref(pref){
     def userPrefsMap = [:]
     //Build prefs Map based on settings
-    switch (inputTheme){
+    switch ("$inputTheme"){
         case "Glyphs":
             userPrefsMap = glyphsTheme
             break
