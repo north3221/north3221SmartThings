@@ -536,11 +536,14 @@ def getMinMovieRuntime(){
 def getUserPref(pref){
     def userPrefsMap = [:]
     //Build prefs Map based on settings
+    log.debug "inPitTheme = " + inputTheme
     switch (inputTheme){
         case "Glyphs":
+            log.debug "Theme = Glumphs"
             userPrefsMap = glyphsTheme
             break
         default:
+            log.debug "Theme = Default"
             userPrefsMap = defaultTheme
     }
 
