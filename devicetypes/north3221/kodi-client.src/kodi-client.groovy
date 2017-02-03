@@ -258,10 +258,10 @@ def updated() {
     log.debug "updated"
 }
 
-
-
 // parse events into attributes
 def parse(evt) {
+    log.debug "Event :" + evt.value
+
     def msg = parseLanMessage(evt);
 
     if(msg.header){
