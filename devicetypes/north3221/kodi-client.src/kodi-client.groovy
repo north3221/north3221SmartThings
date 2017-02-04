@@ -22,6 +22,7 @@ def getDefaultTheme(){
     def userDefaultThemeMap = [:]
     //v1.2 START
     //ICONS
+    userDefaultThemeMap.themeName = "Default"
     userDefaultThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/stop-icon.png"
     userDefaultThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/power-icon.png"
     userDefaultThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/up-icon.png"
@@ -218,7 +219,7 @@ metadata {
         standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
             state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
         }
-        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "${getUserPref('decPdown')}") {
+        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "${state.userPref('decPdown')}") {
             state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
         }
 
@@ -251,11 +252,13 @@ def installed() {
 }
 
 def initialize() {
-log.debug "Initialised"
+    log.debug "Initialised"
+    state.userPrefz = userPrefs
 }
 
 def updated() {
-    //sendEvent(name: "updateUI", value: "$inputTheme");
+    log.debug = "Updated"
+    initialize()
 }
 
 // parse events into attributes
@@ -567,6 +570,7 @@ def getUserPref(pref){
 def getGlyphsTheme(){
     def userGlyphsThemeMap = [:]
     //ICONS
+    userGlyphsThemeMap.themeName = "Glymphs"
     userGlyphsThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/main-icon.png"
     userGlyphsThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/stop-icon.png"
     userGlyphsThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/power-icon.png"
