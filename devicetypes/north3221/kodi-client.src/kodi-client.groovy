@@ -46,7 +46,6 @@ def getDefaultTheme(){
     userDefaultThemeMap.decDown = "flat"
     userDefaultThemeMap.decLeft = "flat"
     userDefaultThemeMap.decRight = "flat"
-    userDefaultThemeMap.decPush = "ring"
     userDefaultThemeMap.decBack = "flat"
     userDefaultThemeMap.decInfo = "ring"
     userDefaultThemeMap.decSkipF = "flat"
@@ -64,8 +63,6 @@ def getDefaultTheme(){
     userDefaultThemeMap.colMainStopped = "#153591"     //Blue
     userDefaultThemeMap.colMainPaused = "#e86d13"      //Orange
     userDefaultThemeMap.colMainShutdown = "#e84e4e"    //Red
-    userDefaultThemeMap.colSelectActive = "#22a3ec"    //Blue
-    userDefaultThemeMap.colSelectInactive = "#ffffff"  //White
     //v1.2 END
     //v1.3 START
     //v1.3 END
@@ -73,16 +70,21 @@ def getDefaultTheme(){
     return userDefaultThemeMap
 }
 
-def getDefaultPrefs(){
+def getUserPref(pref){
     def prefsMap = [:]
     //Main Icon
     prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    //Select Colour
+    prefsMap.colSelectActive = "#22a3ec"    //Blue
+    prefsMap.colSelectInactive = "#ffffff"  //White
+    //Select decoration
+    prefsMap.decPush = "ring"
     //CATEGORY SETTINGS
     prefsMap.movieLabels = "cinema, movie, film"
     prefsMap.sportLabels = "sport"
     prefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
     prefsMap.minMovieRuntime = 4200
-    return prefsMap
+    return prefsMap[pref]
 }
 
 metadata {
@@ -154,28 +156,34 @@ metadata {
             }
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1, decoration: "${getUserPref('decStop')}") {
-            state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", defaultState: true
+        standardTile("stop", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decStop')}") {
+            state "default", label:'', action:"music Player.stop", icon:"${getUserTheme('default','iconStop')}", defaultState: true
+            state "glyphs", label:'', action:"music Player.stop", icon:"${getUserTheme('glyphs','iconStop')}"
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "${getUserPref('decShutdown')}") {
-            state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
+        standardTile("shutdown", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decShutdown')}") {
+            state "default", label:'', action:"shutdown", icon:"${getUserTheme('default','iconShutdown')}", defaultState: true
+            state "glyphs", label:'', action:"shutdown", icon:"${getUserTheme('glyphs','iconShutdown')}"
         }
 
-        standardTile("up", "device.up", width: 2, height: 1, decoration: "${getUserPref('decUp')}") {
-            state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", defaultState: true
+        standardTile("up", "state.theme", width: 2, height: 1, decoration: "${getUserTheme('decUp')}") {
+            state "default", label:'', action:"up", icon:"${getUserTheme('default','iconUp')}", defaultState: true
+            state "glyphs", label:'', action:"up", icon:"${getUserTheme('glyphs','iconUp')}"
         }
 
-        standardTile("down", "device.down", width: 2, height: 1, decoration: "${getUserPref('decDown')}") {
-            state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
+        standardTile("down", "state.theme", width: 2, height: 1, decoration: "${getUserTheme('decDown')}") {
+            state "default", label:'', action:"down", icon:"${getUserTheme('default','iconDown')}", defaultState: true
+            state "glyphs", label:'', action:"down", icon:"${getUserTheme('glyphs','iconDown')}"
         }
 
-        standardTile("left", "device.left", width: 1, height: 2, decoration: "${getUserPref('decLeft')}") {
-            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
+        standardTile("left", "state.theme", width: 1, height: 2, decoration: "${getUserTheme('decLeft')}") {
+            state "default", label:'', action:"left", icon:"${getUserTheme('default','iconLeft')}", defaultState: true
+            state "glyphs", label:'', action:"left", icon:"${getUserTheme('glyphs','iconLeft')}"
         }
 
-        standardTile("right", "device.right", width: 1, height: 2, decoration: "${getUserPref('decRight')}") {
-            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
+        standardTile("right", "state.theme", width: 1, height: 2, decoration: "${getUserTheme('decRight')}") {
+            state "default", label:'', action:"right", icon:"${getUserTheme('default','iconRight')}", defaultState: true
+            state "glyphs", label:'', action:"right", icon:"${getUserTheme('glyphs','iconRight')}"
         }
 
         standardTile("push", "device.status", width: 2, height: 2, decoration: "${getUserPref('decPush')}") {
@@ -184,47 +192,52 @@ metadata {
             state "paused", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "${getUserPref('decBack')}") {
-            state "back", label:'', action:"back", icon:"${getUserPref('iconBack')}", defaultState: true
+        standardTile("back", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decBack')}") {
+            state "default", label:'', action:"back", icon:"${getUserTheme('default','iconBack')}", defaultState: true
+            state "glyphs", label:'', action:"back", icon:"${getUserTheme('glyphs','iconBack')}"
         }
 
-        standardTile("info", "device.info", width: 1, height: 1, decoration: "${getUserPref('decInfo')}") {
-            state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
+        standardTile("info", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decInfo')}") {
+            state "default", label:'', action:"info", icon:"${getUserTheme('default','iconInfo')}", defaultState: true
+            state "glyphs", label:'', action:"info", icon:"${getUserTheme('glyphs','iconInfo')}"
         }
 
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1, decoration: "${getUserPref('decSkipF')}") {
-            state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
+        standardTile("skipforward", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decSkipF')}") {
+            state "default", label:'', action:"skipforward", icon:"${getUserTheme('default','iconSkipFwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipforward", icon:"${getUserTheme('glyphs','iconSkipFwd')}"
         }
 
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1, decoration: "${getUserPref('decSkipB')}") {
-            state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
+        standardTile("skipbackward", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decSkipB')}") {
+            state "default", label:'', action:"skipbackward", icon:"${getUserTheme('default','iconSkipRwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipbackward", icon:"${getUserTheme('glyphs','iconSkipRwd')}"
         }
 
-        standardTile("next", "device.next", width: 1, height: 1, decoration: "${getUserPref('decNext')}") {
-            state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
+        standardTile("next", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decNext')}") {
+            state "default", label:'', action:"nextTrack", icon:"${getUserTheme('default','iconNext')}", defaultState: true
+            state "glyphs", label:'', action:"nextTrack", icon:"${getUserTheme('glyphs','iconNext')}"
         }
 
-        standardTile("previous", "device.previous", width: 1, height: 1, decoration: "${getUserPref('decPrev')}") {
-            state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
+        standardTile("previous", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPrev')}") {
+            state "default", label:'', action:"previousTrack", icon:"${getUserTheme('default','iconPrevious')}", defaultState: true
+            state "default", label:'', action:"previousTrack", icon:"${getUserTheme('glyphs','iconPrevious')}"
         }
 
-        standardTile("menu", "device.menu", width: 1, height: 1, decoration: "${getUserPref('decMenu')}") {
-            state "menu", label:'', action:"menu", icon:"${getUserPref('iconMenu')}", defaultState: true
+        standardTile("menu", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decMenu')}") {
+            state "default", label:'', action:"menu", icon:"${getUserTheme('default', 'iconMenu')}", defaultState: true
+            state "glyphs", label:'', action:"menu", icon:"${getUserTheme('glyphs', 'iconMenu')}"
         }
 
-        standardTile("home", "device.home", width: 1, height: 1, decoration: "${getUserPref('decHome')}") {
-            state "home", label:'', action:"home", icon:"${getUserPref('iconHome')}", defaultState: true
+        standardTile("home", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decHome')}") {
+            state "default", label:'', action:"home", icon:"${getUserTheme('default','iconHome')}", defaultState: true
+            state "glyphs", label:'', action:"home", icon:"${getUserTheme('glyphs','iconHome')}"
         }
 
-        standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
-            state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
+        standardTile("pgUp", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPup')}") {
+            state "pgUp", label:'', action:"pageUp", icon:"${getUserTheme('iconPgUp')}", defaultState: true
         }
-        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "${state.userPref('decPdown')}") {
-            state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
-        }
-
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", defaultState: true
+        standardTile("pgDown", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPdown')}") {
+            state "default", label:'', action:"pageDown", icon:"${getUserTheme('default','iconPgDown')}", defaultState: true
+            state "glyphs", label:'', action:"pageDown", icon:"${getUserTheme('glyphs','iconPgDown')}"
         }
 
         main("main")
@@ -243,21 +256,30 @@ metadata {
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big (10m) Small (30s)", defaultValue: false, displayDuringSetup: false
-        input name: "inputTheme", type: "enum", options:["Default", "Glyphs"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "Default", displayDuringSetup: false
+        input name: "inputTheme", type: "enum", options:["default", "glyphs"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "Default", displayDuringSetup: false
     }
 }
 
 def installed() {
     log.debug "Installed"
+    state.theme = inputTheme ?: "default"
 }
 
 def initialize() {
     log.debug "Initialised"
-    state.userPrefz = userPrefs
+    state.defaultTheme = defaultTheme
+    state.glyphsTheme = glyphsTheme
+
+    if ((inputTheme != null) && (state.theme != inputTheme)){
+        state.theme = inputTheme
+        //sendEvent(name: "theme", value: inputTheme)
+    }
 }
 
 def updated() {
-    log.debug = "Updated"
+    log.debug "Updated"
+    log.debug "Input quotes = " + "$inputTheme"
+    log.debug "Input noquote= " + inputTheme
     initialize()
 }
 
@@ -515,17 +537,6 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "trackDescription", value: track)
 }
 
-def setPlaybackIcon(iconUrl) {
-    log.debug "Executing 'setPlaybackIcon'"
-
-    state.icon = iconUrl;
-
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-
-    log.debug "Icon set to " + state.icon
-}
-
 //TOOLS
 //define attributes for CoRE
 def describeAttributes(payload) {
@@ -549,24 +560,26 @@ def getTvLabels() {
 def getMinMovieRuntime(){
     return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
-//User Prefs - Build maps based on settings
-def getUserPref(pref){
-    def userPrefsMap = [:]
-    //Build prefs Map based on settings
-    switch ("$inputTheme"){
-        case "Glyphs":
-            userPrefsMap = glyphsTheme
-            break
-        default:
-            userPrefsMap = defaultTheme
-    }
 
-    //Add settings into prefs
-    userPrefsMap = userPrefsMap + defaultPrefs
-    //Return requested pref
-    return userPrefsMap[pref]
-}
 //Themes
+def getUserTheme(theme, index){
+
+    switch (theme){
+        case "glyphs":
+            if (!state.glyphsTheme){
+                state.glyphsTheme = glyphsTheme
+            }
+            return state.glyphsTheme[index]
+        break;
+        default:
+            if (!state.defaultTheme){
+                state.defaultTheme = defaultTheme
+            }
+            return state.defaultTheme[index]
+    }
+}
+
+
 def getGlyphsTheme(){
     def userGlyphsThemeMap = [:]
     //ICONS
@@ -595,7 +608,6 @@ def getGlyphsTheme(){
     userGlyphsThemeMap.decDown = "flat"
     userGlyphsThemeMap.decLeft = "flat"
     userGlyphsThemeMap.decRight = "flat"
-    userGlyphsThemeMap.decPush = "ring"
     userGlyphsThemeMap.decBack = "flat"
     userGlyphsThemeMap.decInfo = "flat"
     userGlyphsThemeMap.decSkipF = "flat"
@@ -613,7 +625,5 @@ def getGlyphsTheme(){
     userGlyphsThemeMap.colMainStopped = "#153591"     //Blue
     userGlyphsThemeMap.colMainPaused = "#e86d13"      //Orange
     userGlyphsThemeMap.colMainShutdown = "#e84e4e"    //Red
-    userGlyphsThemeMap.colSelectActive = "#22a3ec"    //Blue
-    userGlyphsThemeMap.colSelectInactive = "#ffffff"  //White
     return userGlyphsThemeMap
 }
