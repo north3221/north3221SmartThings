@@ -561,6 +561,10 @@ def getMinMovieRuntime(){
     return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
 
+def getUserTheme(index){
+    return getUserTheme(inputTheme ?: state.theme ?: "default", index)
+}
+
 //Themes
 def getUserTheme(theme, index){
 
