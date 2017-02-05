@@ -219,7 +219,7 @@ metadata {
 
         standardTile("previous", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPrev')}") {
             state "default", label:'', action:"previousTrack", icon:"${getUserTheme('default','iconPrevious')}", defaultState: true
-            state "default", label:'', action:"previousTrack", icon:"${getUserTheme('glyphs','iconPrevious')}"
+            state "glyphs", label:'', action:"previousTrack", icon:"${getUserTheme('glyphs','iconPrevious')}"
         }
 
         standardTile("menu", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decMenu')}") {
@@ -233,7 +233,8 @@ metadata {
         }
 
         standardTile("pgUp", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPup')}") {
-            state "pgUp", label:'', action:"pageUp", icon:"${getUserTheme('iconPgUp')}", defaultState: true
+            state "default", label:'', action:"pageUp", icon:"${getUserTheme('default','iconPgUp')}", defaultState: true
+            state "glyphs", label:'', action:"pageUp", icon:"${getUserTheme('glyphs','iconPgUp')}"
         }
         standardTile("pgDown", "state.theme", width: 1, height: 1, decoration: "${getUserTheme('decPdown')}") {
             state "default", label:'', action:"pageDown", icon:"${getUserTheme('default','iconPgDown')}", defaultState: true
@@ -269,17 +270,13 @@ def initialize() {
     log.debug "Initialised"
     state.defaultTheme = defaultTheme
     state.glyphsTheme = glyphsTheme
-
     if ((inputTheme != null) && (state.theme != inputTheme)){
-        state.theme = inputTheme
-        //sendEvent(name: "theme", value: inputTheme)
+        sendEvent(name: "state.theme", value: inputTheme)
     }
 }
 
 def updated() {
-    log.debug "Updated"
-    log.debug "Input quotes = " + "$inputTheme"
-    log.debug "Input noquote= " + inputTheme
+    log.debug "Prefs Updated"
     initialize()
 }
 
@@ -562,22 +559,21 @@ def getMinMovieRuntime(){
 }
 
 def getUserTheme(index){
-    return getUserTheme(inputTheme ?: state.theme ?: "default", index)
+    return getUserTheme(inputTheme ?: state?.theme ?: "default", index)
 }
 
 //Themes
 def getUserTheme(theme, index){
-
     switch (theme){
         case "glyphs":
-            if (!state.glyphsTheme){
-                state.glyphsTheme = glyphsTheme
+            if (!state?.glyphsTheme){
+                return glyphsTheme[index]
             }
             return state.glyphsTheme[index]
-        break;
+            break;
         default:
-            if (!state.defaultTheme){
-                state.defaultTheme = defaultTheme
+            if (!state?.defaultTheme){
+                return defaultTheme[index]
             }
             return state.defaultTheme[index]
     }
