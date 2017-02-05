@@ -588,6 +588,12 @@ def getUserTheme(theme, index){
             }
             return state.glyphsTheme[index]
             break;
+        case "mayssam":
+            if (!state?.mayssamTheme){
+                return mayssamTheme[index]
+            }
+            return state.mayssamTheme[index]
+            break;
         default:
             if (!state?.defaultTheme){
                 return defaultTheme[index]
