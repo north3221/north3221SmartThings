@@ -39,24 +39,6 @@ def getDefaultTheme(){
     userDefaultThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/home-icon.png"
     userDefaultThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/pg-up-icon.png"
     userDefaultThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/pg-down-icon.png"
-    //DECORATION
-    userDefaultThemeMap.decStop = "ring"
-    userDefaultThemeMap.decShutdown = "flat"
-    userDefaultThemeMap.decUp = "flat"
-    userDefaultThemeMap.decDown = "flat"
-    userDefaultThemeMap.decLeft = "flat"
-    userDefaultThemeMap.decRight = "flat"
-    userDefaultThemeMap.decPush = "ring"
-    userDefaultThemeMap.decBack = "flat"
-    userDefaultThemeMap.decInfo = "ring"
-    userDefaultThemeMap.decSkipF = "flat"
-    userDefaultThemeMap.decSkipB = "flat"
-    userDefaultThemeMap.decNext = "flat"
-    userDefaultThemeMap.decPrev = "flat"
-    userDefaultThemeMap.decMenu = "flat"
-    userDefaultThemeMap.decHome = "flat"
-    userDefaultThemeMap.decPup = "flat"
-    userDefaultThemeMap.decPdown = "flat"
     //COLOURS
     userDefaultThemeMap.colMainWaiting = "#ffffff"     //White
     userDefaultThemeMap.colMainStartup = "#90d2a7"     //Light Green
@@ -74,7 +56,7 @@ def getDefaultTheme(){
 def getUserPref(pref){
     def prefsMap = [:]
     //Main Icon
-    prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/main-icon.png"
+    prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
     //Select Colour
     prefsMap.colSelectActive = "#22a3ec"    //Blue
     prefsMap.colSelectInactive = "#ffffff"  //White
@@ -177,7 +159,7 @@ metadata {
             state "default", label:'', action:"music Player.stop", icon:"${getUserTheme('default','iconStop')}", defaultState: true
             state "glyphs", label:'', action:"music Player.stop", icon:"${getUserTheme('glyphs','iconStop')}"
             state "mayssam", label:'', action:"music Player.stop", icon:"${getUserTheme('mayssam','iconStop')}"
-            
+
         }
 
         standardTile("shutdown", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decShutdown')}") {
