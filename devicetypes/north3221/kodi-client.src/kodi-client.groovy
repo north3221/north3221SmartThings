@@ -16,7 +16,7 @@
  *
  */
 //User customisation - update this method with your own preferences if you want.
-//I will keep the preferences in order, so you can copy and past over them
+//I will keep the preferences in order, so you can copy and paste over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
 def getDefaultTheme(){
     def userDefaultThemeMap = [:]
