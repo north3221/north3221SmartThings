@@ -16,12 +16,13 @@
  *
  */
 //User customisation - update this method with your own preferences if you want.
-//I will keep the preferences in order, so you can copy and past over them
+//I will keep the preferences in order, so you can copy and paste over them
 //NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
 def getDefaultTheme(){
     def userDefaultThemeMap = [:]
     //v1.2 START
     //ICONS
+    userDefaultThemeMap.themeName = "Default"
     userDefaultThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/stop-icon.png"
     userDefaultThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/power-icon.png"
     userDefaultThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/up-icon.png"
@@ -63,8 +64,6 @@ def getDefaultTheme(){
     userDefaultThemeMap.colMainStopped = "#153591"     //Blue
     userDefaultThemeMap.colMainPaused = "#e86d13"      //Orange
     userDefaultThemeMap.colMainShutdown = "#e84e4e"    //Red
-    userDefaultThemeMap.colSelectActive = "#22a3ec"    //Blue
-    userDefaultThemeMap.colSelectInactive = "#ffffff"  //White
     //v1.2 END
     //v1.3 START
     //v1.3 END
@@ -72,16 +71,37 @@ def getDefaultTheme(){
     return userDefaultThemeMap
 }
 
-def getDefaultPrefs(){
+def getUserPref(pref){
     def prefsMap = [:]
     //Main Icon
     prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/main-icon.png"
+    //Select Colour
+    prefsMap.colSelectActive = "#22a3ec"    //Blue
+    prefsMap.colSelectInactive = "#ffffff"  //White
+    //DECORATION
+    prefsMap.decPush = "ring"
+    prefsMap.decStop = "ring"
+    prefsMap.decShutdown = "flat"
+    prefsMap.decUp = "flat"
+    prefsMap.decDown = "flat"
+    prefsMap.decLeft = "flat"
+    prefsMap.decRight = "flat"
+    prefsMap.decBack = "flat"
+    prefsMap.decInfo = "ring"
+    prefsMap.decSkipF = "flat"
+    prefsMap.decSkipB = "flat"
+    prefsMap.decNext = "flat"
+    prefsMap.decPrev = "flat"
+    prefsMap.decMenu = "flat"
+    prefsMap.decHome = "flat"
+    prefsMap.decPup = "flat"
+    prefsMap.decPdown = "flat"
     //CATEGORY SETTINGS
     prefsMap.movieLabels = "cinema, movie, film"
     prefsMap.sportLabels = "sport"
     prefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
     prefsMap.minMovieRuntime = 4200
-    return prefsMap
+    return prefsMap[pref]
 }
 
 metadata {
@@ -153,28 +173,41 @@ metadata {
             }
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1, decoration: "${getUserPref('decStop')}") {
-            state "stopped", label:'', action:"music Player.stop", icon:"${getUserPref('iconStop')}", defaultState: true
+        standardTile("stop", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decStop')}") {
+            state "default", label:'', action:"music Player.stop", icon:"${getUserTheme('default','iconStop')}", defaultState: true
+            state "glyphs", label:'', action:"music Player.stop", icon:"${getUserTheme('glyphs','iconStop')}"
+            state "mayssam", label:'', action:"music Player.stop", icon:"${getUserTheme('mayssam','iconStop')}"
+            
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "${getUserPref('decShutdown')}") {
-            state "default", label:'', action:"shutdown", icon:"${getUserPref('iconShutdown')}", defaultState: true
+        standardTile("shutdown", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decShutdown')}") {
+            state "default", label:'', action:"shutdown", icon:"${getUserTheme('default','iconShutdown')}", defaultState: true
+            state "glyphs", label:'', action:"shutdown", icon:"${getUserTheme('glyphs','iconShutdown')}"
+            state "mayssam", label:'', action:"shutdown", icon:"${getUserTheme('mayssam','iconShutdown')}"
         }
 
-        standardTile("up", "device.up", width: 2, height: 1, decoration: "${getUserPref('decUp')}") {
-            state "on", label:'', action:"up", icon:"${getUserPref('iconUp')}", defaultState: true
+        standardTile("up", "state.theme", width: 2, height: 1, decoration: "${getUserPref('decUp')}") {
+            state "default", label:'', action:"up", icon:"${getUserTheme('default','iconUp')}", defaultState: true
+            state "glyphs", label:'', action:"up", icon:"${getUserTheme('glyphs','iconUp')}"
+            state "mayssam", label:'', action:"up", icon:"${getUserTheme('mayssam','iconUp')}"
         }
 
-        standardTile("down", "device.down", width: 2, height: 1, decoration: "${getUserPref('decDown')}") {
-            state "on", label:'', action:"down", icon:"${getUserPref('iconDown')}", defaultState: true
+        standardTile("down", "state.theme", width: 2, height: 1, decoration: "${getUserPref('decDown')}") {
+            state "default", label:'', action:"down", icon:"${getUserTheme('default','iconDown')}", defaultState: true
+            state "glyphs", label:'', action:"down", icon:"${getUserTheme('glyphs','iconDown')}"
+            state "mayssam", label:'', action:"down", icon:"${getUserTheme('mayssam','iconDown')}"
         }
 
-        standardTile("left", "device.left", width: 1, height: 2, decoration: "${getUserPref('decLeft')}") {
-            state "on", label:'', action:"left", icon:"${getUserPref('iconLeft')}", defaultState: true
+        standardTile("left", "state.theme", width: 1, height: 2, decoration: "${getUserPref('decLeft')}") {
+            state "default", label:'', action:"left", icon:"${getUserTheme('default','iconLeft')}", defaultState: true
+            state "glyphs", label:'', action:"left", icon:"${getUserTheme('glyphs','iconLeft')}"
+            state "mayssam", label:'', action:"left", icon:"${getUserTheme('mayssam','iconLeft')}"
         }
 
-        standardTile("right", "device.right", width: 1, height: 2, decoration: "${getUserPref('decRight')}") {
-            state "on", label:'', action:"right", icon:"${getUserPref('iconRight')}", defaultState: true
+        standardTile("right", "state.theme", width: 1, height: 2, decoration: "${getUserPref('decRight')}") {
+            state "default", label:'', action:"right", icon:"${getUserTheme('default','iconRight')}", defaultState: true
+            state "glyphs", label:'', action:"right", icon:"${getUserTheme('glyphs','iconRight')}"
+            state "mayssam", label:'', action:"right", icon:"${getUserTheme('mayssam','iconRight')}"
         }
 
         standardTile("push", "device.status", width: 2, height: 2, decoration: "${getUserPref('decPush')}") {
@@ -183,47 +216,63 @@ metadata {
             state "paused", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "${getUserPref('decBack')}") {
-            state "back", label:'', action:"back", icon:"${getUserPref('iconBack')}", defaultState: true
+        standardTile("back", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decBack')}") {
+            state "default", label:'', action:"back", icon:"${getUserTheme('default','iconBack')}", defaultState: true
+            state "glyphs", label:'', action:"back", icon:"${getUserTheme('glyphs','iconBack')}"
+            state "mayssam", label:'', action:"back", icon:"${getUserTheme('mayssam','iconBack')}"
         }
 
-        standardTile("info", "device.info", width: 1, height: 1, decoration: "${getUserPref('decInfo')}") {
-            state "info", label:'', action:"info", icon:"${getUserPref('iconInfo')}", defaultState: true
+        standardTile("info", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decInfo')}") {
+            state "default", label:'', action:"info", icon:"${getUserTheme('default','iconInfo')}", defaultState: true
+            state "glyphs", label:'', action:"info", icon:"${getUserTheme('glyphs','iconInfo')}"
+            state "mayssam", label:'', action:"info", icon:"${getUserTheme('mayssam','iconInfo')}"
         }
 
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1, decoration: "${getUserPref('decSkipF')}") {
-            state "skipforward", label:'', action:"skipforward", icon:"${getUserPref('iconSkipFwd')}", defaultState: true
+        standardTile("skipforward", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decSkipF')}") {
+            state "default", label:'', action:"skipforward", icon:"${getUserTheme('default','iconSkipFwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipforward", icon:"${getUserTheme('glyphs','iconSkipFwd')}"
+            state "mayssam", label:'', action:"skipforward", icon:"${getUserTheme('mayssam','iconSkipFwd')}"
         }
 
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1, decoration: "${getUserPref('decSkipB')}") {
-            state "skipbackward", label:'', action:"skipbackward", icon:"${getUserPref('iconSkipRwd')}", defaultState: true
+        standardTile("skipbackward", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decSkipB')}") {
+            state "default", label:'', action:"skipbackward", icon:"${getUserTheme('default','iconSkipRwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipbackward", icon:"${getUserTheme('glyphs','iconSkipRwd')}"
+            state "mayssam", label:'', action:"skipbackward", icon:"${getUserTheme('mayssam','iconSkipRwd')}"
         }
 
-        standardTile("next", "device.next", width: 1, height: 1, decoration: "${getUserPref('decNext')}") {
-            state "next", label:'', action:"nextTrack", icon:"${getUserPref('iconNext')}", defaultState: true
+        standardTile("next", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decNext')}") {
+            state "default", label:'', action:"nextTrack", icon:"${getUserTheme('default','iconNext')}", defaultState: true
+            state "glyphs", label:'', action:"nextTrack", icon:"${getUserTheme('glyphs','iconNext')}"
+            state "mayssam", label:'', action:"nextTrack", icon:"${getUserTheme('mayssam','iconNext')}"
         }
 
-        standardTile("previous", "device.previous", width: 1, height: 1, decoration: "${getUserPref('decPrev')}") {
-            state "previous", label:'', action:"previousTrack", icon:"${getUserPref('iconPrevious')}", defaultState: true
+        standardTile("previous", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPrev')}") {
+            state "default", label:'', action:"previousTrack", icon:"${getUserTheme('default','iconPrevious')}", defaultState: true
+            state "glyphs", label:'', action:"previousTrack", icon:"${getUserTheme('glyphs','iconPrevious')}"
+            state "mayssam", label:'', action:"previousTrack", icon:"${getUserTheme('mayssam','iconPrevious')}"
         }
 
-        standardTile("menu", "device.menu", width: 1, height: 1, decoration: "${getUserPref('decMenu')}") {
-            state "menu", label:'', action:"menu", icon:"${getUserPref('iconMenu')}", defaultState: true
+        standardTile("menu", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decMenu')}") {
+            state "default", label:'', action:"menu", icon:"${getUserTheme('default', 'iconMenu')}", defaultState: true
+            state "glyphs", label:'', action:"menu", icon:"${getUserTheme('glyphs', 'iconMenu')}"
+            state "mayssam", label:'', action:"menu", icon:"${getUserTheme('mayssam', 'iconMenu')}"
         }
 
-        standardTile("home", "device.home", width: 1, height: 1, decoration: "${getUserPref('decHome')}") {
-            state "home", label:'', action:"home", icon:"${getUserPref('iconHome')}", defaultState: true
+        standardTile("home", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decHome')}") {
+            state "default", label:'', action:"home", icon:"${getUserTheme('default','iconHome')}", defaultState: true
+            state "glyphs", label:'', action:"home", icon:"${getUserTheme('glyphs','iconHome')}"
+            state "mayssam", label:'', action:"home", icon:"${getUserTheme('mayssam','iconHome')}"
         }
 
-        standardTile("pgUp", "device.pgUp", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
-            state "pgUp", label:'', action:"pageUp", icon:"${getUserPref('iconPgUp')}", defaultState: true
+        standardTile("pgUp", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
+            state "default", label:'', action:"pageUp", icon:"${getUserTheme('default','iconPgUp')}", defaultState: true
+            state "glyphs", label:'', action:"pageUp", icon:"${getUserTheme('glyphs','iconPgUp')}"
+            state "mayssam", label:'', action:"pageUp", icon:"${getUserTheme('mayssam','iconPgUp')}"
         }
-        standardTile("pgDown", "device.pgDown", width: 1, height: 1, decoration: "${getUserPref('decPdown')}") {
-            state "phDown", label:'', action:"pageDown", icon:"${getUserPref('iconPgDown')}", defaultState: true
-        }
-
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", defaultState: true
+        standardTile("pgDown", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPdown')}") {
+            state "default", label:'', action:"pageDown", icon:"${getUserTheme('default','iconPgDown')}", defaultState: true
+            state "glyphs", label:'', action:"pageDown", icon:"${getUserTheme('glyphs','iconPgDown')}"
+            state "mayssam", label:'', action:"pageDown", icon:"${getUserTheme('mayssam','iconPgDown')}"
         }
 
         main("main")
@@ -242,12 +291,34 @@ metadata {
         input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
         input "inputBigSkip", "bool", required: false, title: "Big Skip: Big (10m) Small (30s)", defaultValue: false, displayDuringSetup: false
-        input "inputTheme", "enum", options:["default"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "default", displayDuringSetup: false
+        input name: "inputTheme", type: "enum", options:["default", "glyphs", "mayssam"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "Default", displayDuringSetup: false
     }
+}
+
+def installed() {
+    log.debug "Installed"
+    state.theme = inputTheme ?: "default"
+}
+
+def initialize() {
+    log.debug "Initialised"
+    state.defaultTheme = defaultTheme
+    state.glyphsTheme = glyphsTheme
+    state.mayssamTheme = mayssamTheme
+    if ((inputTheme != null) && (state.theme != inputTheme)){
+        sendEvent(name: "state.theme", value: inputTheme)
+    }
+}
+
+def updated() {
+    log.debug "Prefs Updated"
+    initialize()
 }
 
 // parse events into attributes
 def parse(evt) {
+    log.debug "Event :" + evt.value
+
     def msg = parseLanMessage(evt);
 
     if(msg.header){
@@ -498,17 +569,6 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "trackDescription", value: track)
 }
 
-def setPlaybackIcon(iconUrl) {
-    log.debug "Executing 'setPlaybackIcon'"
-
-    state.icon = iconUrl;
-
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-
-    log.debug "Icon set to " + state.icon
-}
-
 //TOOLS
 //define attributes for CoRE
 def describeAttributes(payload) {
@@ -532,17 +592,93 @@ def getTvLabels() {
 def getMinMovieRuntime(){
     return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
 }
-//Themes
-def getUserPref(pref){
-    def userPrefsMap = [:]
-    //Build prefs Map based on settings
-    switch (inputTheme){
-        default:
-            userPrefsMap = defaultTheme
-    }
 
-    //Add settings into prefs
-    userPrefsMap = userPrefsMap + defaultPrefs
-    //Return requested pref
-    return userPrefsMap[pref]
+def getUserTheme(index){
+    return getUserTheme(inputTheme ?: state?.theme ?: "default", index)
+}
+
+//Themes
+def getUserTheme(theme, index){
+    switch (theme){
+        case "glyphs":
+            if (!state?.glyphsTheme){
+                return glyphsTheme[index]
+            }
+            return state.glyphsTheme[index]
+            break;
+        case "mayssam":
+            if (!state?.mayssamTheme){
+                return mayssamTheme[index]
+            }
+            return state.mayssamTheme[index]
+            break;
+        default:
+            if (!state?.defaultTheme){
+                return defaultTheme[index]
+            }
+            return state.defaultTheme[index]
+    }
+}
+
+
+def getGlyphsTheme(){
+    def userGlyphsThemeMap = [:]
+    //ICONS
+    userGlyphsThemeMap.themeName = "Glymphs"
+    userGlyphsThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/main-icon.png"
+    userGlyphsThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/stop-icon.png"
+    userGlyphsThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/power-icon.png"
+    userGlyphsThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/up-icon.png"
+    userGlyphsThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/down-icon.png"
+    userGlyphsThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/left-icon.png"
+    userGlyphsThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/right-icon.png"
+    userGlyphsThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/back-icon.png"
+    userGlyphsThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/info-icon.png"
+    userGlyphsThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/small-fwd-icon.png"
+    userGlyphsThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/small-rwd-icon.png"
+    userGlyphsThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/next-icon.png"
+    userGlyphsThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/prev-icon.png"
+    userGlyphsThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/menu-icon.png"
+    userGlyphsThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/home-icon.png"
+    userGlyphsThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-up-icon.png"
+    userGlyphsThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-down-icon.png"
+    //COLOURS
+    userGlyphsThemeMap.colMainWaiting = "#ffffff"     //White
+    userGlyphsThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userGlyphsThemeMap.colMainPlaying = "#79b821"     //Green
+    userGlyphsThemeMap.colMainStopped = "#153591"     //Blue
+    userGlyphsThemeMap.colMainPaused = "#e86d13"      //Orange
+    userGlyphsThemeMap.colMainShutdown = "#e84e4e"    //Red
+    return userGlyphsThemeMap
+}
+
+def getMayssamTheme(){
+    def userMayssamThemeMap = [:]
+    //ICONS
+    userMayssamThemeMap.themeName = "Glymphs"
+    userMayssamThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/main-icon.png"
+    userMayssamThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/stop-icon.png"
+    userMayssamThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/power-icon.png"
+    userMayssamThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/up-icon.png"
+    userMayssamThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/down-icon.png"
+    userMayssamThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/left-icon.png"
+    userMayssamThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/right-icon.png"
+    userMayssamThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/back-icon.png"
+    userMayssamThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/info-icon.png"
+    userMayssamThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/small-fwd.png"
+    userMayssamThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/small-rwd.png"
+    userMayssamThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/next-icon.png"
+    userMayssamThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/prev-icon.png"
+    userMayssamThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/menu-icon.png"
+    userMayssamThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/home-icon.png"
+    userMayssamThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/pg-up-icon.png"
+    userMayssamThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/pg-down-icon.png"
+    //COLOURS
+    userMayssamThemeMap.colMainWaiting = "#ffffff"     //White
+    userMayssamThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userMayssamThemeMap.colMainPlaying = "#79b821"     //Green
+    userMayssamThemeMap.colMainStopped = "#153591"     //Blue
+    userMayssamThemeMap.colMainPaused = "#e86d13"      //Orange
+    userMayssamThemeMap.colMainShutdown = "#e84e4e"    //Red
+    return userMayssamThemeMap
 }
