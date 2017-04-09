@@ -1,6 +1,6 @@
 /**
  * Forked from https://github.com/Toliver182/SmartThings-Kodi who had
- * forked from a pelx version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
+ * forked from a plex version: https://github.com/iBeech/SmartThings/tree/master/PlexManager
  *
  *  I added some stuff like 'shutdown' so you can tell kodi to shutdown (the idea being it can turn off your TV)
  *  Also added better tracking of whats playing, I want to control the lights differently so I added some customer attributes
@@ -15,47 +15,81 @@
  *  for the specific language governing permissions and limitations under the License.
  *
  */
+//User customisation - update this method with your own preferences if you want.
+//I will keep the preferences in order, so you can copy and paste over them
+//NB you do not need to update this and the prefs are overwritten by device handler prefs if you update there
+def getDefaultTheme(){
+    def userDefaultThemeMap = [:]
+    //v1.2 START
+    //ICONS
+    userDefaultThemeMap.themeName = "Default"
+    userDefaultThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/stop-icon.png"
+    userDefaultThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/power-icon.png"
+    userDefaultThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/up-icon.png"
+    userDefaultThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/down-icon.png"
+    userDefaultThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/left-icon.png"
+    userDefaultThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/right-icon.png"
+    userDefaultThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/back-icon.png"
+    userDefaultThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/info-icon.png"
+    userDefaultThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/small-fwd-icon.png"
+    userDefaultThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/small-rwd-icon.png"
+    userDefaultThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/next-icon.png"
+    userDefaultThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/prev-icon.png"
+    userDefaultThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/menu-icon.png"
+    userDefaultThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/home-icon.png"
+    userDefaultThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/pg-up-icon.png"
+    userDefaultThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/default/pg-down-icon.png"
+    //COLOURS
+    userDefaultThemeMap.colMainWaiting = "#ffffff"     //White
+    userDefaultThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userDefaultThemeMap.colMainPlaying = "#79b821"     //Green
+    userDefaultThemeMap.colMainStopped = "#153591"     //Blue
+    userDefaultThemeMap.colMainPaused = "#e86d13"      //Orange
+    userDefaultThemeMap.colMainShutdown = "#e84e4e"    //Red
+    //v1.2 END
+    //v1.3 START
+    //v1.3 END
+    //Return
+    return userDefaultThemeMap
+}
 
-//DEFAULTS
-//Used for checking the kodi current playing metadata 'label' if word exists in teh label then 'movie category assigned
-def getDefaultMovieLabels() {
-    return "cinema, movie, film"
-}
-def getDefaultSportLabels() {
-    return "sport"
-}
-def getDefaultTVLabels() {
-    return "bbc, itv, channel, sky, amc, fox"
-}
-def getDefaultMinMovieRuntime() {
-    return 4200
-}
-//Colours
-def getTileRed(){
-    //return "#ff0000"
-    return "#e84e4e"
-}
-def getTileGreen() {
-    return "#79b821"
-}
-def getTileLightGreen(){
-    return "#90d2a7"
-}
-def getTileOrange(){
-    return "#e86d13"
-}
-def getTileBlue(){
-    return "#153591"
-}
-def getTileWhite(){
-    return "#ffffff"
+def getUserPref(pref){
+    def prefsMap = [:]
+    //Main Icon
+    prefsMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/main-icon.png"
+    //Select Colour
+    prefsMap.colSelectActive = "#22a3ec"    //Blue
+    prefsMap.colSelectInactive = "#ffffff"  //White
+    //DECORATION
+    prefsMap.decPush = "ring"
+    prefsMap.decStop = "ring"
+    prefsMap.decShutdown = "flat"
+    prefsMap.decUp = "flat"
+    prefsMap.decDown = "flat"
+    prefsMap.decLeft = "flat"
+    prefsMap.decRight = "flat"
+    prefsMap.decBack = "flat"
+    prefsMap.decInfo = "ring"
+    prefsMap.decSkipF = "flat"
+    prefsMap.decSkipB = "flat"
+    prefsMap.decNext = "flat"
+    prefsMap.decPrev = "flat"
+    prefsMap.decMenu = "flat"
+    prefsMap.decHome = "flat"
+    prefsMap.decPup = "flat"
+    prefsMap.decPdown = "flat"
+    //CATEGORY SETTINGS
+    prefsMap.movieLabels = "cinema, movie, film"
+    prefsMap.sportLabels = "sport"
+    prefsMap.tvLabels = "bbc, itv, channel, sky, amc, fox"
+    prefsMap.minMovieRuntime = 4200
+    return prefsMap[pref]
 }
 
 metadata {
     definition (name: "Kodi-Client", namespace: "north3221", author: "north3221") {
-        capability "Switch"             //For switch on/off
         capability "musicPlayer"        //For playback etc
-        capability "mediaController"    //Not sure I need this yet
+        capability "mediaController"    //Used for handling the action requests
         capability "Momentary"          //Added for 'push' command I use for 'select' on kodi
         //Custom Commands
         command "describeAttributes"
@@ -71,6 +105,10 @@ metadata {
         command "rewind"
         command "skipforward"
         command "skipbackward"
+        command "pageUp"
+        command "pageDown"
+        command "menu"
+        command "home"
 
         //Custom attributes
         attribute "currentPlayingType", "string"
@@ -78,21 +116,14 @@ metadata {
         attribute "currentPlayingName", "string"
     }
 
-    /*simulator {
-        // TODO: define status and reply messages here
-    }*/
-
     tiles(scale: 2) {
-        def appListIcon = "http://forums.launchbox-app.com/uploads/monthly_2016_09/57d4171090e0e_Kodi2.thumb.png.fea39fca17f73c0c7bd0b81baed367aa.png"
-        //def mainIcon = "st.Electronics.electronics16"
-
         valueTile("main", "device.status", width: 6, height: 2, canChangeIcon: false) {
-            state "waiting", label:'Waiting', action:"push" ,icon:"${appListIcon}", backgroundColor:tileWhite, defaultState: true
-            state "startup", label:'Startup', action:"push" ,icon:"${appListIcon}", backgroundColor:tileLightGreen, nextState: "waiting"
-            state "playing", label:'Playing', action:"pause", icon:"${appListIcon}", backgroundColor:tileGreen, nextState: "waiting"
-            state "stopped", label:'Stopped', action:"push", icon:"${appListIcon}", backgroundColor:tileBlue, nextState: "waiting"
-            state "paused", label:'Paused', action:"play", icon:"${appListIcon}", backgroundColor:tileOrange, nextState: "waiting"
-            state "shutdown", label:'Shutdown', action:"push", icon:"${appListIcon}", backgroundColor:tileRed, nextState: "waiting"
+            state "waiting", label:'Waiting', action:"push" ,icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainWaiting')}", defaultState: true
+            state "startup", label:'Startup', action:"push" ,icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainStartup')}", nextState: "waiting"
+            state "playing", label:'Playing', action:"pause", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainPlaying')}", nextState: "waiting"
+            state "stopped", label:'Stopped', action:"push", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainStopped')}", nextState: "waiting"
+            state "paused", label:'Paused', action:"play", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainPaused')}", nextState: "waiting"
+            state "shutdown", label:'Shutdown', action:"push", icon:"${getUserPref('iconMain')}", backgroundColor:"${getUserPref('colMainShutdown')}", nextState: "waiting"
         }
 
         multiAttributeTile(name: "mediaMulti", type:"mediaPlayer", width:6, height:4) {
@@ -102,9 +133,9 @@ metadata {
                 attributeState("stopped", label:"Stopped")
             }
             tileAttribute("device.status", key: "MEDIA_STATUS") {
-                attributeState("paused", label:"Paused", action:"play", nextState: "playing")
-                attributeState("playing", label:"Playing", action:"play", nextState: "paused")
-                attributeState("stopped", label:"Stopped", action:"play", nextState: "playing")
+                attributeState("paused", label:"Paused", action:"play", nextState: "waiting", defaultState: true)
+                attributeState("playing", label:"Playing", action:"play", nextState: "waiting")
+                attributeState("stopped", label:"Stopped", action:"play", nextState: "waiting")
             }
             tileAttribute("device.status", key: "PREVIOUS_TRACK") {
                 attributeState("status", action:"rewind", defaultState: true)
@@ -124,76 +155,152 @@ metadata {
             }
         }
 
-        standardTile("stop", "device.status", width: 1, height: 1) {
-            state "stopped", label:'', action:"music Player.stop", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/stop-red-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("stop", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decStop')}") {
+            state "default", label:'', action:"music Player.stop", icon:"${getUserTheme('default','iconStop')}", defaultState: true
+            state "glyphs", label:'', action:"music Player.stop", icon:"${getUserTheme('glyphs','iconStop')}"
+            state "mayssam", label:'', action:"music Player.stop", icon:"${getUserTheme('mayssam','iconStop')}"
+            
         }
 
-        standardTile("shutdown", "device.shutdown", width: 1, height: 1, decoration: "ring") {
-            state "default", label:'', action:"shutdown", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/shutdown-icon.jpg", backgroundColor:tileWhite, defaultState: true
+        standardTile("shutdown", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decShutdown')}") {
+            state "default", label:'', action:"shutdown", icon:"${getUserTheme('default','iconShutdown')}", defaultState: true
+            state "glyphs", label:'', action:"shutdown", icon:"${getUserTheme('glyphs','iconShutdown')}"
+            state "mayssam", label:'', action:"shutdown", icon:"${getUserTheme('mayssam','iconShutdown')}"
         }
 
-        standardTile("up", "device.up", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"up", icon:"st.samsung.da.oven_ic_up", backgroundColor:tileWhite, defaultState: true
+        standardTile("up", "state.theme", width: 2, height: 1, decoration: "${getUserPref('decUp')}") {
+            state "default", label:'', action:"up", icon:"${getUserTheme('default','iconUp')}", defaultState: true
+            state "glyphs", label:'', action:"up", icon:"${getUserTheme('glyphs','iconUp')}"
+            state "mayssam", label:'', action:"up", icon:"${getUserTheme('mayssam','iconUp')}"
         }
 
-        standardTile("down", "device.down", width: 2, height: 1, decoration: "flat") {
-            state "on", label:'', action:"down", icon:"st.samsung.da.oven_ic_down", backgroundColor:tileWhite, defaultState: true
+        standardTile("down", "state.theme", width: 2, height: 1, decoration: "${getUserPref('decDown')}") {
+            state "default", label:'', action:"down", icon:"${getUserTheme('default','iconDown')}", defaultState: true
+            state "glyphs", label:'', action:"down", icon:"${getUserTheme('glyphs','iconDown')}"
+            state "mayssam", label:'', action:"down", icon:"${getUserTheme('mayssam','iconDown')}"
         }
 
-        standardTile("left", "device.left", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"left", icon:"st.samsung.da.RAC_4line_01_ic_left", backgroundColor:tileWhite, defaultState: true
+        standardTile("left", "state.theme", width: 1, height: 2, decoration: "${getUserPref('decLeft')}") {
+            state "default", label:'', action:"left", icon:"${getUserTheme('default','iconLeft')}", defaultState: true
+            state "glyphs", label:'', action:"left", icon:"${getUserTheme('glyphs','iconLeft')}"
+            state "mayssam", label:'', action:"left", icon:"${getUserTheme('mayssam','iconLeft')}"
         }
 
-        standardTile("right", "device.right", width: 2, height: 2, decoration: "flat") {
-            state "on", label:'', action:"right", icon:"st.samsung.da.RAC_4line_03_ic_right", backgroundColor:tileWhite, defaultState: true
+        standardTile("right", "state.theme", width: 1, height: 2, decoration: "${getUserPref('decRight')}") {
+            state "default", label:'', action:"right", icon:"${getUserTheme('default','iconRight')}", defaultState: true
+            state "glyphs", label:'', action:"right", icon:"${getUserTheme('glyphs','iconRight')}"
+            state "mayssam", label:'', action:"right", icon:"${getUserTheme('mayssam','iconRight')}"
         }
 
-        standardTile("push", "device.status", width: 2, height: 2) {
-            state "stopped", label:'Select', action:"push", backgroundColor:tileGreen, defaultState: true
-            state "playing", label:'Select', action:"push", backgroundColor:tileWhite
-            state "paused", label:'Select', action:"push", backgroundColor:tileWhite
+        standardTile("push", "device.status", width: 2, height: 2, decoration: "${getUserPref('decPush')}") {
+            state "stopped", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectActive')}", defaultState: true
+            state "playing", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
+            state "paused", label:'Select', action:"push", backgroundColor:"${getUserPref('colSelectInactive')}"
         }
 
-        standardTile("back", "device.back", width: 1, height: 1, decoration: "flat") {
-            state "back", label:'', action:"back", icon:"http://4.bp.blogspot.com/-OVSmk6zGEOc/Uy50I_FEVqI/AAAAAAAABL0/hfwYhWNViSY/s1600/back+key+assistant+menu+in+Galaxy+S4+Android+Kitkat.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("back", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decBack')}") {
+            state "default", label:'', action:"back", icon:"${getUserTheme('default','iconBack')}", defaultState: true
+            state "glyphs", label:'', action:"back", icon:"${getUserTheme('glyphs','iconBack')}"
+            state "mayssam", label:'', action:"back", icon:"${getUserTheme('mayssam','iconBack')}"
         }
 
-        standardTile("info", "device.info", width: 1, height: 1) {
-            state "info", label:'', action:"info", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/cb3da7df6e0fb6c578460c88293895d7868cc343/resources/info-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("info", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decInfo')}") {
+            state "default", label:'', action:"info", icon:"${getUserTheme('default','iconInfo')}", defaultState: true
+            state "glyphs", label:'', action:"info", icon:"${getUserTheme('glyphs','iconInfo')}"
+            state "mayssam", label:'', action:"info", icon:"${getUserTheme('mayssam','iconInfo')}"
         }
 
-        standardTile("1x1", "device.status", width: 1, height: 1, decoration: "flat") {
-            state "on", label:'', action:"", icon:"", backgroundColor:tileWhite, defaultState: true
+        standardTile("skipforward", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decSkipF')}") {
+            state "default", label:'', action:"skipforward", icon:"${getUserTheme('default','iconSkipFwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipforward", icon:"${getUserTheme('glyphs','iconSkipFwd')}"
+            state "mayssam", label:'', action:"skipforward", icon:"${getUserTheme('mayssam','iconSkipFwd')}"
         }
 
-        standardTile("skipforward", "device.skipforward", width: 1, height: 1) {
-            state "skipforward", label:'', action:"skipforward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-fwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("skipbackward", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decSkipB')}") {
+            state "default", label:'', action:"skipbackward", icon:"${getUserTheme('default','iconSkipRwd')}", defaultState: true
+            state "glyphs", label:'', action:"skipbackward", icon:"${getUserTheme('glyphs','iconSkipRwd')}"
+            state "mayssam", label:'', action:"skipbackward", icon:"${getUserTheme('mayssam','iconSkipRwd')}"
         }
 
-        standardTile("skipbackward", "device.skipbackward", width: 1, height: 1) {
-            state "skipbackward", label:'', action:"skipbackward", icon:"https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/small-rwd-icon.png", backgroundColor:tileWhite, defaultState: true
+        standardTile("next", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decNext')}") {
+            state "default", label:'', action:"nextTrack", icon:"${getUserTheme('default','iconNext')}", defaultState: true
+            state "glyphs", label:'', action:"nextTrack", icon:"${getUserTheme('glyphs','iconNext')}"
+            state "mayssam", label:'', action:"nextTrack", icon:"${getUserTheme('mayssam','iconNext')}"
+        }
+
+        standardTile("previous", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPrev')}") {
+            state "default", label:'', action:"previousTrack", icon:"${getUserTheme('default','iconPrevious')}", defaultState: true
+            state "glyphs", label:'', action:"previousTrack", icon:"${getUserTheme('glyphs','iconPrevious')}"
+            state "mayssam", label:'', action:"previousTrack", icon:"${getUserTheme('mayssam','iconPrevious')}"
+        }
+
+        standardTile("menu", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decMenu')}") {
+            state "default", label:'', action:"menu", icon:"${getUserTheme('default', 'iconMenu')}", defaultState: true
+            state "glyphs", label:'', action:"menu", icon:"${getUserTheme('glyphs', 'iconMenu')}"
+            state "mayssam", label:'', action:"menu", icon:"${getUserTheme('mayssam', 'iconMenu')}"
+        }
+
+        standardTile("home", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decHome')}") {
+            state "default", label:'', action:"home", icon:"${getUserTheme('default','iconHome')}", defaultState: true
+            state "glyphs", label:'', action:"home", icon:"${getUserTheme('glyphs','iconHome')}"
+            state "mayssam", label:'', action:"home", icon:"${getUserTheme('mayssam','iconHome')}"
+        }
+
+        standardTile("pgUp", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPup')}") {
+            state "default", label:'', action:"pageUp", icon:"${getUserTheme('default','iconPgUp')}", defaultState: true
+            state "glyphs", label:'', action:"pageUp", icon:"${getUserTheme('glyphs','iconPgUp')}"
+            state "mayssam", label:'', action:"pageUp", icon:"${getUserTheme('mayssam','iconPgUp')}"
+        }
+        standardTile("pgDown", "state.theme", width: 1, height: 1, decoration: "${getUserPref('decPdown')}") {
+            state "default", label:'', action:"pageDown", icon:"${getUserTheme('default','iconPgDown')}", defaultState: true
+            state "glyphs", label:'', action:"pageDown", icon:"${getUserTheme('glyphs','iconPgDown')}"
+            state "mayssam", label:'', action:"pageDown", icon:"${getUserTheme('mayssam','iconPgDown')}"
         }
 
         main("main")
         details(["mediaMulti",
-                 "skipbackward", "stop", "up", "info", "skipforward",
-                 "left", "push", "right",
-                 "shutdown", "1x1", "down", "1x1","back"
+                 "previous", "skipbackward", "up", "skipforward", "next",
+                 "info", "left", "push", "right", "pgUp",
+                 "menu", "pgDown",
+                 "shutdown", "stop", "down", "home","back"
         ])
     }
 
     preferences {
-        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: defaultMovieLabels, displayDuringSetup: false
-        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: defaultSportLabels, displayDuringSetup: false
-        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: defaultTVLabels, displayDuringSetup: false
-        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: defaultMinMovieRuntime, displayDuringSetup: false
+        input "inputMovieLabel", "text", required: false, title: "Movie labels: search kodi label for:", defaultValue: "${getUserPref('movieLabels')}", displayDuringSetup: false
+        input "inputSportLabel", "text", required: false, title: "Sport labels: search kodi label for:", defaultValue: "${getUserPref('sportLabels')}", displayDuringSetup: false
+        input "inputTVLabel", "text", required: false, title: "TV labels: search kodi label for:", defaultValue: "${getUserPref('tvLabels')}", displayDuringSetup: false
+        input "inputMinMovieRuntime", "number", required: false, title: "Min Runtime to class as Movie (secs):", defaultValue: "${getUserPref('minMovieRuntime')}", displayDuringSetup: false
         input "inputShutdownAsQuit", "bool", required: false, title: "Shutdown as Quit:", defaultValue: false, displayDuringSetup: false
-        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big(10m) Small(30s)", defaultValue: false, displayDuringSetup: false
+        input "inputBigSkip", "bool", required: false, title: "Big Skip: Big (10m) Small (30s)", defaultValue: false, displayDuringSetup: false
+        input name: "inputTheme", type: "enum", options:["default", "glyphs", "mayssam"], description: "Select a theme for the device handler", required: false, title: "Theme", defaultValue: "Default", displayDuringSetup: false
     }
+}
+
+def installed() {
+    log.debug "Installed"
+    state.theme = inputTheme ?: "default"
+}
+
+def initialize() {
+    log.debug "Initialised"
+    state.defaultTheme = defaultTheme
+    state.glyphsTheme = glyphsTheme
+    state.mayssamTheme = mayssamTheme
+    if ((inputTheme != null) && (state.theme != inputTheme)){
+        sendEvent(name: "state.theme", value: inputTheme)
+    }
+}
+
+def updated() {
+    log.debug "Prefs Updated"
+    initialize()
 }
 
 // parse events into attributes
 def parse(evt) {
+    log.debug "Event :" + evt.value
+
     def msg = parseLanMessage(evt);
 
     if(msg.header){
@@ -290,46 +397,11 @@ def parseNowPlaying(msgBody){
     log.info "Current Playing type (" + type + ") category (" + category + ") title (" + playingTitle + ")"
 }
 
-def getMovieLabels() {
-    def returnList = defaultMovieLabels
-    if (inputMovieLabel) {
-        returnList = inputMovieLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
-}
-
-def getSportLabels() {
-    def returnList = defaultSportLabels
-    if (inputSportsLabel) {
-        returnList = inputSportsLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
-}
-
-def getTvLabels() {
-    def returnList = defaultTVLabels
-    if (inputTVLabel) {
-        returnList = inputTVLabel
-    }
-    returnList = returnList.replaceAll("\\s","").toLowerCase().split(',').toList()
-    return returnList
-}
-
-def getMinMovieRuntime(){
-    if (inputMinMovieRuntime){
-        return inputMinMovieRuntime
-    }
-    return defaultMinMovieRuntime
-}
-
 def executeAction(action) {
     log.debug "Execute Action Request = " + action
-    def lastState = "off"
-    lastState = device.currentState('switch')?.getValue();
-    sendEvent(name: "switch", value: device.deviceNetworkId + "." + action);
-    sendEvent(name: "switch", value: lastState);
+    sendEvent(name: "currentActivity", value: device.deviceNetworkId + "." + action);
+    //Need to reset the command as hib wont accept duplicates
+    sendEvent(name: "currentActivity", value: "RESETACTION");
 }
 
 def push() {
@@ -392,39 +464,54 @@ def mute(){
     executeAction("mute")
 }
 
+def nextTrack(){
+    executeAction("skipnext")
+}
+
+def previousTrack(){
+    executeAction("skipprevious")
+}
+
+def pageUp(){
+    executeAction("pageup")
+}
+
+def pageDown(){
+    executeAction("pagedown")
+}
+
+def menu(){
+    executeAction("contextmenu")
+}
+
+def home(){
+    executeAction("home")
+}
+
+
 def setLevel(level) {
     sendEvent(name: "level", value: level);
     executeAction("setVolume." + level);
 }
 
 def setPlaybackState(state) {
-
     log.debug "Setting playback state to: " + state
     switch(state) {
         case "stopped":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "stopped");
             setPlaybackTitle("","","")
             break;
-
         case "playing":
-            sendEvent(name: "switch", value: "on");
             sendEvent(name: "status", value: "playing");
             break;
-
         case "paused":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "paused");
             break;
-
         case "shutdown":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "shutdown");
             setPlaybackTitle("","", "")
             break;
-
         case "startup":
-            sendEvent(name: "switch", value: "off");
             sendEvent(name: "status", value: "startup");
             setPlaybackTitle("","", "")
             break;
@@ -464,17 +551,7 @@ def setPlaybackTitle(type, category, name) {
     sendEvent(name: "trackDescription", value: track)
 }
 
-def setPlaybackIcon(iconUrl) {
-    log.debug "Executing 'setPlaybackIcon'"
-
-    state.icon = iconUrl;
-
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-    //sendEvent(name: "scanNewClients", icon: iconUrl)
-
-    log.debug "Icon set to " + state.icon
-}
-
+//TOOLS
 //define attributes for CoRE
 def describeAttributes(payload) {
     payload.attributes = [
@@ -483,4 +560,107 @@ def describeAttributes(payload) {
             [ name: "currentPlayingName", type: "string"]
     ]
     return null
+}
+//Getters
+def getMovieLabels() {
+    return (inputMovieLabel ?: getUserPref("movieLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+def getSportLabels() {
+    return (inputSportsLabel ?: getUserPref("sportLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+def getTvLabels() {
+    return (inputTVLabel ?: getUserPref("tvLabels")).replaceAll("\\s","").toLowerCase().split(',').toList()
+}
+def getMinMovieRuntime(){
+    return inputMinMovieRuntime ?: getUserPref("minMovieRuntime")
+}
+
+def getUserTheme(index){
+    return getUserTheme(inputTheme ?: state?.theme ?: "default", index)
+}
+
+//Themes
+def getUserTheme(theme, index){
+    switch (theme){
+        case "glyphs":
+            if (!state?.glyphsTheme){
+                return glyphsTheme[index]
+            }
+            return state.glyphsTheme[index]
+            break;
+        case "mayssam":
+            if (!state?.mayssamTheme){
+                return mayssamTheme[index]
+            }
+            return state.mayssamTheme[index]
+            break;
+        default:
+            if (!state?.defaultTheme){
+                return defaultTheme[index]
+            }
+            return state.defaultTheme[index]
+    }
+}
+
+
+def getGlyphsTheme(){
+    def userGlyphsThemeMap = [:]
+    //ICONS
+    userGlyphsThemeMap.themeName = "Glymphs"
+    userGlyphsThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/main-icon.png"
+    userGlyphsThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/stop-icon.png"
+    userGlyphsThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/power-icon.png"
+    userGlyphsThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/up-icon.png"
+    userGlyphsThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/down-icon.png"
+    userGlyphsThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/left-icon.png"
+    userGlyphsThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/right-icon.png"
+    userGlyphsThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/back-icon.png"
+    userGlyphsThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/info-icon.png"
+    userGlyphsThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/small-fwd-icon.png"
+    userGlyphsThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/small-rwd-icon.png"
+    userGlyphsThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/next-icon.png"
+    userGlyphsThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/prev-icon.png"
+    userGlyphsThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/menu-icon.png"
+    userGlyphsThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/home-icon.png"
+    userGlyphsThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-up-icon.png"
+    userGlyphsThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/glyphs/pg-down-icon.png"
+    //COLOURS
+    userGlyphsThemeMap.colMainWaiting = "#ffffff"     //White
+    userGlyphsThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userGlyphsThemeMap.colMainPlaying = "#79b821"     //Green
+    userGlyphsThemeMap.colMainStopped = "#153591"     //Blue
+    userGlyphsThemeMap.colMainPaused = "#e86d13"      //Orange
+    userGlyphsThemeMap.colMainShutdown = "#e84e4e"    //Red
+    return userGlyphsThemeMap
+}
+
+def getMayssamTheme(){
+    def userMayssamThemeMap = [:]
+    //ICONS
+    userMayssamThemeMap.themeName = "Glymphs"
+    userMayssamThemeMap.iconMain = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/main-icon.png"
+    userMayssamThemeMap.iconStop = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/stop-icon.png"
+    userMayssamThemeMap.iconShutdown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/power-icon.png"
+    userMayssamThemeMap.iconUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/up-icon.png"
+    userMayssamThemeMap.iconDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/down-icon.png"
+    userMayssamThemeMap.iconLeft = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/left-icon.png"
+    userMayssamThemeMap.iconRight = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/right-icon.png"
+    userMayssamThemeMap.iconBack = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/back-icon.png"
+    userMayssamThemeMap.iconInfo = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/info-icon.png"
+    userMayssamThemeMap.iconSkipFwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/small-fwd.png"
+    userMayssamThemeMap.iconSkipRwd = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/small-rwd.png"
+    userMayssamThemeMap.iconNext = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/next-icon.png"
+    userMayssamThemeMap.iconPrevious = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/prev-icon.png"
+    userMayssamThemeMap.iconMenu = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/menu-icon.png"
+    userMayssamThemeMap.iconHome = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/home-icon.png"
+    userMayssamThemeMap.iconPgUp = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/pg-up-icon.png"
+    userMayssamThemeMap.iconPgDown = "https://raw.githubusercontent.com/north3221/north3221SmartThings/master/resources/themes/mayssam/pg-down-icon.png"
+    //COLOURS
+    userMayssamThemeMap.colMainWaiting = "#ffffff"     //White
+    userMayssamThemeMap.colMainStartup = "#90d2a7"     //Light Green
+    userMayssamThemeMap.colMainPlaying = "#79b821"     //Green
+    userMayssamThemeMap.colMainStopped = "#153591"     //Blue
+    userMayssamThemeMap.colMainPaused = "#e86d13"      //Orange
+    userMayssamThemeMap.colMainShutdown = "#e84e4e"    //Red
+    return userMayssamThemeMap
 }

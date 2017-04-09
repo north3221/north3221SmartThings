@@ -227,17 +227,14 @@ void stateIsStartup() {
     KodiClient.setPlaybackState("startup")
 }
 
-
-
 def response(evt) {
     def msg = parseLanMessage(evt.description);
 }
 
-
-//Incoming command handler
-def switchChange(evt) {
-    // Ignore on/off
-    if(evt.value == "on" || evt.value == "off") return;
+//Handle the requested actions to media controller
+def controlEvents(evt){
+    // Ignore RESETACTION as this is used between button presses to allow multiple same actions
+    if(evt.value == "RESETACTION") return;
 
     def kodiIP = getKodiAddress(evt.value);
     // Parse out the new switch state from the event data
@@ -252,43 +249,39 @@ def switchChange(evt) {
             setVolume(kodiIP, vol);
             break;
         case "shutdown":            //Cant be done with generic execute action
-            shutdown()
+            executeAction("System.Shutdown")
             break;
         case "quit":                //Cant be done with generic execute action
-            quit()
+            executeAction("Application.Quit")
             break;
         case "skip":                //Cant be done with generic execute action
             skip(evt.value.tokenize('.')[2])
             break;
+        case "home":
+            executeAction("Input.Home")
+            break;
         default:                    //Just execute command
             log.debug "execute " + command
-            executeAction(command)
+            executeAction("Input.ExecuteAction", command)
     }
 }
 
 //Child device setup
 def checkKodi() {
-
     log.debug "Checking to see if the client has been added"
 
     def children = getChildDevices()  ;
-    def childrenEmpty = children.isEmpty();
-
-
     def KodiClient = children.find{ d -> d.deviceNetworkId.contains(NetworkDeviceId()) }
 
     if(!KodiClient){
         log.debug "No Devices found, adding device"
         KodiClient = addChildDevice("north3221", "Kodi-Client", NetworkDeviceId() , theHub.id, [label:"$settings.clientName", name:"$settings.clientName"])
         log.debug "Added Device"
-    }
-    else
-    {
+    } else {
         log.debug "Device Already Added"
     }
-    subscribe(KodiClient, "switch", switchChange)
+    subscribe(KodiClient, "currentActivity", controlEvents)
 }
-
 
 def setVolume(kodiIP, level) {
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.SetVolume\", \"params\": { \"volume\": "+ level + "}, \"id\": 1}"
@@ -301,27 +294,21 @@ def getPlayingtitle(){
 
 }
 
-// Added shutdown
-def shutdown(){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"System.Shutdown\", \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-// Added quit
-def quit(){
-    def command = "{ \"id\": 1, \"jsonrpc\": \"2.0\", \"method\": \"Application.Quit\", \"id\": 1}"
-    executeRequest("/jsonrpc", "POST",command)
-}
-
-// Added skip
 def skip(skipType){
     def command = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.Seek\", \"params\": {\"playerid\": 1, \"value\": \"" + skipType + "\"}, \"id\": 1}"
     executeRequest("/jsonrpc", "POST",command)
 }
 
-def executeAction (action){
-    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"Input.ExecuteAction\",\"params\": { \"action\": \"" + action + "\"},\"id\":1}"
+def executeAction (method, action){
+    def command = "{\"jsonrpc\":\"2.0\",\"method\":\"" + method + "\""
+    if (action) {
+        command = command + ",\"params\": { \"action\": \"" + action + "\"}"
+    }
+    command = command + ",\"id\":1}"
     executeRequest("/jsonrpc", "POST",command)
+}
+def executeAction(method){
+    executeAction(method, null)
 }
 
 //main command handler
